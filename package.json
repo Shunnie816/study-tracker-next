@@ -16,6 +16,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "recoil": "^0.7.7",
     "sass": "^1.69.5"
   },
   "devDependencies": {
