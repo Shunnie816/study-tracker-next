@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../assets/styles/reset.scss";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Layout } from "@/components/parts/Layout";
 
 export const metadata: Metadata = {
   title: "Study Tracker Next",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Layout>{children}</Layout>
     </html>
   );
 }
