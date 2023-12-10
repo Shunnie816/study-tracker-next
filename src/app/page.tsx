@@ -1,5 +1,10 @@
-import { Home } from "../components/pages/Home";
-
-export default function HomePage() {
-  return <Home />;
+export default function Page() {
+  return (
+    <>
+      <h1>Hello, report</h1>
+      <h1> Hello, report</h1>
+      <h1> Hello, report</h1>
+      <h1> Hello, report</h1>
+    </>
+  );
 }
