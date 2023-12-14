@@ -10,7 +10,7 @@ const meta: Meta<typeof Selectbox> = {
 export default meta;
 type Story = StoryObj<typeof Selectbox>;
 
-let times = [];
+let times: Array<number> = [];
 for (let i = 5; i <= 180; i += 5) {
   times.push(i);
 }
