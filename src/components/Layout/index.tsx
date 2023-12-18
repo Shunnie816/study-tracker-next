@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Header } from "../Header";
+import { Header } from "../parts/Header";
 import styles from "./index.module.scss";
 
 type Props = {
