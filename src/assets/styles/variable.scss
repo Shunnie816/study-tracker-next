@@ -1,3 +1,8 @@
 // 各index.module.scssからアクセスするためのカスタムプロパティ
 :root {
+  // bg-color
+  --itemHover: darkgray;
+
+  //container-size
+  --containerSmall: 360px;
 }
