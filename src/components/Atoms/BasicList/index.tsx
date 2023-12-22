@@ -4,9 +4,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit"; //Iconコンポーネントを作ったら削除
 
 import styles from "./index.module.scss";
+import { BaseIcon } from "../BaseIcon";
 
 type Props = {
   items: Array<string>;
@@ -22,7 +22,7 @@ export const BasicList: FC<Props> = ({ items, icon }) => {
           {icon && (
             <ListItemSecondaryAction>
               <IconButton>
-                <EditIcon />
+                <BaseIcon icon="edit" />
               </IconButton>
             </ListItemSecondaryAction>
           )}
