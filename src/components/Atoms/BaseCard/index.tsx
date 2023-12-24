@@ -12,7 +12,12 @@ export const BaseCard: FC<Props> = ({ children, title }) => {
   return (
     <Card>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography
+          variant="caption"
+          display="block"
+          color="text.secondary"
+          gutterBottom
+        >
           {title}
         </Typography>
         {children}
