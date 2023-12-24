@@ -1,5 +1,13 @@
 // 各index.module.scssからアクセスするためのカスタムプロパティ
 :root {
+  //font-size
+  --fontSizeXS: 12px;
+  --fontSizeS: 14px;
+  --fontSizeM: 16px;
+  --fontSizeL: 18px;
+  --fontSizeXL: 20px;
+  --fontSizeXXL: 24px;
+
   // bg-color
   --itemHover: darkgray;
 
