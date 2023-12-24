@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import styles from "./index.module.scss";
+
 export type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -13,7 +15,7 @@ export const Modal: FC<Props> = ({ isOpen, onClose, title, children }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
-      {children}
+      <div className={styles.contentWrapper}>{children}</div>
     </Dialog>
   );
 };

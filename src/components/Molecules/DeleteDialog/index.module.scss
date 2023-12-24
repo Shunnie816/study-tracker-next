@@ -1,10 +1,7 @@
 @import "../../../assets/styles/variable.scss";
 
-.wrapper {
+.buttonWrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.contentWrapper {
-  margin: var(--spacing-1) 0;
+  margin-right: var(--spacing-3);
 }
