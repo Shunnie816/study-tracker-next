@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../assets/styles/reset.scss";
+import "../assets/styles/variable.scss";
 import { Layout } from "@/components/Templates/Layout";
 
 export const metadata: Metadata = {
