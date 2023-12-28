@@ -1,10 +1,9 @@
+import { Report } from "@/components/Pages/Report";
+
 export default function Page() {
   return (
     <>
-      <h1>Hello, report</h1>
-      <h1> Hello, report</h1>
-      <h1> Hello, report</h1>
-      <h1> Hello, report</h1>
+      <Report />
     </>
   );
 }
