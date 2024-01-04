@@ -13,13 +13,12 @@ import MailIcon from "@mui/icons-material/Mail";
 
 import styles from "./index.module.scss";
 
-//rightだけ出るようにすっきりさせる
+//rightだけ出るようにすっきりさせたが、本来は不要なコードも混ざっていそう
 
-type Anchor = "left" | "right";
+type Anchor = "right";
 
 export const HamburgerMenu = () => {
   const [state, setState] = useState({
-    left: false,
     right: false,
   });
 
@@ -74,19 +73,19 @@ export const HamburgerMenu = () => {
 
   return (
     <div>
-      {(["left", "right"] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+      <React.Fragment>
+        <Button onClick={toggleDrawer("right", true)}>
+          ハンバーガーメニューを開く
+        </Button>
+        <SwipeableDrawer
+          anchor={"right"}
+          open={state["right"]}
+          onClose={toggleDrawer("right", false)}
+          onOpen={toggleDrawer("right", true)}
+        >
+          {list("right")}
+        </SwipeableDrawer>
+      </React.Fragment>
     </div>
   );
 };
