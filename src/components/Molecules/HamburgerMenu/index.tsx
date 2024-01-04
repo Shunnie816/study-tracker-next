@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
+import { BaseIcon } from "@/components/Atoms/BaseIcon";
 
 import styles from "./index.module.scss";
 
@@ -33,7 +34,7 @@ export const HamburgerMenu: FC<Props> = ({ children }) => {
     <div>
       <React.Fragment>
         <Button onClick={toggleDrawer("right", true)}>
-          ハンバーガーメニューを開く
+          <BaseIcon icon={"menu"} color="action" />
         </Button>
         <SwipeableDrawer
           anchor={"right"}
