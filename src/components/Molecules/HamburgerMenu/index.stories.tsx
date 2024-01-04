@@ -12,6 +12,7 @@ type Story = StoryObj<typeof HamburgerMenu>;
 
 export const FirstStory: Story = {
   args: {
-    //👇 The args you need here will depend on your component
+    children:
+      "メニューのリストメニューのリストメニューのリストメニューのリスト",
   },
 };
