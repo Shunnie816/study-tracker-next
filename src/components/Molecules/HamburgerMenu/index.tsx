@@ -1,23 +1,19 @@
-import React, { FC, useState } from "react";
+"use client";
+
+import React, { FC } from "react";
+import router from "next/router";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
-import { BaseIcon } from "@/components/Atoms/BaseIcon";
-
 import styles from "./index.module.scss";
 
-//rightだけ出るようにすっきりさせたが、本来は不要なコードも混ざっていそう
+type Props = {
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-type Anchor = "right";
-type Props = { children: React.ReactNode };
-
-export const HamburgerMenu: FC<Props> = ({ children }) => {
-  const [state, setState] = useState({
-    right: false,
-  });
-
+export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
   const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event &&
         event.type === "keydown" &&
@@ -26,25 +22,34 @@ export const HamburgerMenu: FC<Props> = ({ children }) => {
       ) {
         return;
       }
-
-      setState({ ...state, [anchor]: open });
+      setState(open);
     };
 
   return (
     <div>
-      <React.Fragment>
-        <Button onClick={toggleDrawer("right", true)}>
-          <BaseIcon icon={"menu"} color="action" />
-        </Button>
+      <>
         <SwipeableDrawer
           anchor={"right"}
-          open={state["right"]}
-          onClose={toggleDrawer("right", false)}
-          onOpen={toggleDrawer("right", true)}
+          open={state}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
         >
-          <div className={styles.container}>{children}</div>
+          <div className={styles.container}>
+            <div>
+              <Button color="inherit">ログイン</Button>
+              <Button color="inherit" onClick={() => router.push("/")}>
+                記録する
+              </Button>
+              <Button color="inherit" onClick={() => router.push("/register")}>
+                教材登録
+              </Button>
+              <Button color="inherit" onClick={() => router.push("/posts")}>
+                学習記録
+              </Button>
+            </div>
+          </div>
         </SwipeableDrawer>
-      </React.Fragment>
+      </>
     </div>
   );
 };
