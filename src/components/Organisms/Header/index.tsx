@@ -6,7 +6,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { BaseIcon } from "@/components/Atoms/BaseIcon";
 import { HamburgerMenu } from "@/components/Molecules/HamburgerMenu";
 import styles from "./index.module.scss";
