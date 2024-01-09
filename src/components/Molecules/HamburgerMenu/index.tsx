@@ -1,10 +1,18 @@
 "use client";
 
 import React, { FC } from "react";
-import router from "next/router";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Button from "@mui/material/Button";
 import styles from "./index.module.scss";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { BaseIcon, Icon } from "@/components/Atoms/BaseIcon";
+import { useRouter } from "next/navigation";
 
 type Props = {
   state: boolean;
@@ -12,6 +20,8 @@ type Props = {
 };
 
 export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
+  const router = useRouter();
+
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -25,6 +35,10 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
       setState(open);
     };
 
+  const menuItems = ["ログイン", "記録する", "教材登録", "学習記録"];
+  const icons: Icon[] = ["login", "edit", "book", "school"];
+  const urlPath = ["/", "/", "/register", "/posts"];
+
   return (
     <div>
       <>
@@ -35,7 +49,26 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
           onOpen={toggleDrawer(true)}
         >
           <div className={styles.container}>
-            <div>
+            <Box
+              sx={{ width: 250 }}
+              role="presentation"
+              onClick={toggleDrawer(false)}
+              onKeyDown={toggleDrawer(false)}
+            >
+              <List>
+                {menuItems.map((text, index) => (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton onClick={() => router.push(urlPath[index])}>
+                      <ListItemIcon>
+                        <BaseIcon icon={icons[index]} />
+                      </ListItemIcon>
+                      <ListItemText primary={text} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+            {/* <div>
               <Button color="inherit">ログイン</Button>
               <Button color="inherit" onClick={() => router.push("/")}>
                 記録する
@@ -46,7 +79,7 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
               <Button color="inherit" onClick={() => router.push("/posts")}>
                 学習記録
               </Button>
-            </div>
+            </div> */}
           </div>
         </SwipeableDrawer>
       </>

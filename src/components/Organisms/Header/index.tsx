@@ -19,7 +19,13 @@ export const Header: FC<Props> = () => {
   return (
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed" }}>
       <AppBar position="static">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Typography
             color="inherit"
             variant="h6"
@@ -31,10 +37,10 @@ export const Header: FC<Props> = () => {
           >
             Study Tracker
           </Typography>
-          <div>
-            <Button onClick={() => setState(true)}>
-              <BaseIcon icon={"menu"} color="action" />
-            </Button>
+          <div className={styles.menuIcon}>
+            <a onClick={() => setState(true)}>
+              <BaseIcon icon={"menu"} color="inherit" />
+            </a>
             <HamburgerMenu state={state} setState={setState} />
           </div>
         </Toolbar>
