@@ -23,3 +23,10 @@ export const Delete: Story = {
     fontSize: "small",
   },
 };
+
+export const Menu: Story = {
+  args: {
+    icon: "menu",
+    fontSize: "small",
+  },
+};
