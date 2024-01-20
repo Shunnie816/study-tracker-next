@@ -14,7 +14,9 @@ export type Props = {
 export const Modal: FC<Props> = ({ isOpen, onClose, title, children }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle style={{ padding: "16px 24px 8px 24px" }}>
+        {title}
+      </DialogTitle>
       <div className={styles.contentWrapper}>{children}</div>
     </Dialog>
   );

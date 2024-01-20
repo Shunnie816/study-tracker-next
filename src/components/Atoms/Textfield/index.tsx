@@ -17,21 +17,8 @@ type BaseProps = {
 type Props = BaseProps & Pick<TextFieldProps, keyof BaseProps>;
 
 /**
- * Box(form)コンポーネントでネストした状態にするかは要検討
- * react-hook-form実装時に不便になるかもしれないため
- * Textfieldのpropsだけ入れ替えられるならBoxも含めた実装にする
+ * textfiledだけの役割を持たせるため、formは画面で実装
  */
 export const Textfield: FC<Props> = ({ ...Props }) => {
-  return (
-    <Box
-      component="form"
-      sx={{
-        "& > :not(style)": { margin: "0.5rem 0.7rem", width: "80%" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField {...Props} />
-    </Box>
-  );
+  return <TextField {...Props} fullWidth />;
 };
