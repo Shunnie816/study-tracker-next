@@ -6,7 +6,7 @@ type BaseProps = {
   color?: string;
   size?: string;
   disabled?: boolean;
-  children: string;
+  children: React.ReactNode;
 };
 
 type ButtonType = React.ComponentPropsWithoutRef<"button">;

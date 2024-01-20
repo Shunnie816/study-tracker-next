@@ -50,7 +50,12 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
       >
         投稿を削除
       </CustomButton>
-      <DeleteDialog isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} />
+      <DeleteDialog
+        isOpen={isOpen}
+        onClose={onClose}
+        onSubmit={onSubmit}
+        deleteTarget="投稿"
+      />
     </BaseCard>
   );
 };

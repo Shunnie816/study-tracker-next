@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { DeleteDialog } from "./index";
+import { EditDialog } from "./index";
 import { CustomButton } from "@/components/Atoms/CustomButton";
 
 //👇 This default export determines where your story goes in the story list
-const meta: Meta<typeof DeleteDialog> = {
-  component: DeleteDialog,
+const meta: Meta<typeof EditDialog> = {
+  component: EditDialog,
 };
 
 export default meta;
-type Story = StoryObj<typeof DeleteDialog>;
+type Story = StoryObj<typeof EditDialog>;
 
 const Component: Story["render"] = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [texbook, setTextbook] = useState<string>("");
+
+  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextbook(e.target.value);
+  };
+
   const onClose = () => {
     setIsOpen(false);
   };
@@ -24,13 +30,15 @@ const Component: Story["render"] = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <CustomButton variant="contained" onClick={onOpen}>
-        Open DeleteDialog
+        Open EditDialog
       </CustomButton>
-      <DeleteDialog
+      <EditDialog
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={onClose}
-        deleteTarget="投稿"
+        onDelete={onClose}
+        textBook={texbook}
+        onInput={onInput}
       />
     </div>
   );
