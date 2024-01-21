@@ -33,24 +33,22 @@ export const Selectbox: FC<Props> = ({
   onChange,
 }) => {
   return (
-    <Box sx={{ width: "80%", margin: "1.0rem 0.7rem" }}>
-      <FormControl fullWidth error={error}>
-        <InputLabel id={label}>{label}</InputLabel>
-        <Select
-          labelId={label}
-          id={id}
-          value={value}
-          label={label}
-          onChange={onChange}
-        >
-          {items.map((item, index) => (
-            <MenuItem value={item} key={index}>
-              {menuItemText ? item + menuItemText : item}
-            </MenuItem>
-          ))}
-        </Select>
-        {error && <FormHelperText>{errorMessage}</FormHelperText>}
-      </FormControl>
-    </Box>
+    <FormControl fullWidth error={error}>
+      <InputLabel id={label}>{label}</InputLabel>
+      <Select
+        labelId={label}
+        id={id}
+        value={value}
+        label={label}
+        onChange={onChange}
+      >
+        {items.map((item, index) => (
+          <MenuItem value={item} key={index}>
+            {menuItemText ? item + menuItemText : item}
+          </MenuItem>
+        ))}
+      </Select>
+      {error && <FormHelperText>{errorMessage}</FormHelperText>}
+    </FormControl>
   );
 };
