@@ -7,36 +7,42 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
 type BaseProps = {
-  labelId?: string;
   id?: string;
   value: string;
   label: string;
   /** MenuItemに格納する値をまとめた配列*/
-  items: Array<string | number>;
+  items: Array<string>;
   /**MenuItemに'分'などを付け足したいときに使用 */
   menuItemText?: string;
   error?: boolean;
   errorMessage: string;
+  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
 };
 
 type SelectProps = React.ComponentPropsWithoutRef<"select">;
 type Props = BaseProps & Omit<SelectProps, keyof BaseProps>;
 
 export const Selectbox: FC<Props> = ({
-  labelId,
   id,
-  value = "",
+  value,
   label,
   items,
   menuItemText,
   error,
   errorMessage,
+  onChange,
 }) => {
   return (
     <Box sx={{ width: "80%", margin: "1.0rem 0.7rem" }}>
       <FormControl fullWidth error={error}>
-        <InputLabel id={id}>{label}</InputLabel>
-        <Select labelId={labelId} id={id} value={value} label={label}>
+        <InputLabel id={label}>{label}</InputLabel>
+        <Select
+          labelId={label}
+          id={id}
+          value={value}
+          label={label}
+          onChange={onChange}
+        >
           {items.map((item, index) => (
             <MenuItem value={item} key={index}>
               {menuItemText ? item + menuItemText : item}
