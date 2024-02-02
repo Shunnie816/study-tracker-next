@@ -12,9 +12,7 @@ type BaseProps = {
 type ButtonType = React.ComponentPropsWithoutRef<"button">;
 
 /** 基本はMUIのButtonのプロパティを使いつつ、一部デフォルトのbuttonのonClickを使う */
-type Props = BaseProps &
-  Pick<ButtonProps, keyof BaseProps> &
-  Pick<ButtonType, "onClick">;
+type Props = BaseProps & ButtonProps & Omit<ButtonType, keyof BaseProps>;
 
 export const CustomButton: FC<Props> = ({
   variant = "contained",
@@ -22,7 +20,7 @@ export const CustomButton: FC<Props> = ({
   size,
   disabled = false,
   children,
-  onClick,
+  ...rest
 }) => {
   return (
     <Button
@@ -30,7 +28,7 @@ export const CustomButton: FC<Props> = ({
       color={color}
       size={size}
       disabled={disabled}
-      onClick={onClick}
+      {...rest}
     >
       {children}
     </Button>
