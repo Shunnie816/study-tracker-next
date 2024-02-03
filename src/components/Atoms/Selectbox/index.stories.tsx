@@ -21,21 +21,8 @@ export const TimeSelect: Story = {
   args: {
     value: "",
     label: "学習時間",
-    items: times,
+    options: times,
     menuItemText: "分",
-    error: false,
-    errorMessage: "学習時間を選択してください。",
-  },
-};
-
-export const TimeSelectWithError: Story = {
-  args: {
-    value: "",
-    label: "学習時間",
-    items: times,
-    menuItemText: "分",
-    error: true,
-    errorMessage: "学習時間を選択してください。",
   },
 };
 
@@ -43,18 +30,6 @@ export const TextbookSelect: Story = {
   args: {
     value: "",
     label: "教材選択",
-    items: textbooks,
-    error: false,
-    errorMessage: "教材を選択してください。",
-  },
-};
-
-export const TextbookSelectWithError: Story = {
-  args: {
-    value: "",
-    label: "教材選択",
-    items: textbooks,
-    error: true,
-    errorMessage: "教材を選択してください。",
+    options: textbooks,
   },
 };
