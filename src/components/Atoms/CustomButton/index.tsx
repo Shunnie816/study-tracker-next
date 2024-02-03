@@ -6,6 +6,7 @@ type BaseProps = {
   color?: string;
   size?: string;
   disabled?: boolean;
+  fullWidth?: boolean;
   children: React.ReactNode;
 };
 
@@ -20,10 +21,12 @@ export const CustomButton: FC<Props> = ({
   size,
   disabled = false,
   children,
+  fullWidth = true,
   ...rest
 }) => {
   return (
     <Button
+      fullWidth={fullWidth}
       variant={variant}
       color={color}
       size={size}
