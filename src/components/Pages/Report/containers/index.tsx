@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
-import { SelectChangeEvent } from "@mui/material";
-import { Textfield } from "@/components/Atoms/Textfield";
 import { CustomButton } from "@/components/Atoms/CustomButton";
 import { TimeSelect } from "../presentations/TimeSelect";
 import { TextbookSelect } from "../presentations/TextbookSelect";
+import { SelectChangeEvent, TextField } from "@mui/material";
 
 export type ReportData = {
   time: string;
@@ -21,6 +20,10 @@ export const Report = () => {
   const [studyContent, setStudyContent] = useState<string>("");
 
   const methods = useForm<ReportData>();
+  const {
+    register,
+    formState: { errors },
+  } = methods;
 
   const onSubmit: SubmitHandler<ReportData> = (data) => {
     console.log("onsubmit", data);
@@ -28,7 +31,7 @@ export const Report = () => {
     console.log("type of textbook", typeof data.textbook);
     setTime("");
     setTextbook("");
-    // setStudyContent("");
+    setStudyContent("");
   };
 
   // const onChangeTime = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -38,7 +41,10 @@ export const Report = () => {
     setTime(event.target.value);
   };
 
-  const onChangeTextbook = (event: SelectChangeEvent) => {
+  // const onChangeTextbook = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setTextbook(event.target.value);
+  // };
+  const onChangeTextbook = (event: SelectChangeEvent<string>) => {
     setTextbook(event.target.value);
   };
 
@@ -72,17 +78,19 @@ export const Report = () => {
               onChange={onChangeTextbook}
               data={textbookData}
             />
-            {/* <Textfield
-          {...register("studyContent", {
-            required: "学習内容を入力してください",
-          })}
-          label="学習内容を入力"
-          variant="outlined"
-          // value={studyContent}
-          onInput={onChangeStudyContent}
-          error={errors.studyContent?.message ? true : false}
-          errorMessage={errors.studyContent?.message}
-        /> */}
+            <TextField
+              {...register("studyContent", {
+                required: "学習内容を入力してください",
+              })}
+              label="学習内容を入力"
+              variant="outlined"
+              value={studyContent}
+              //onChangeに変えるべきか？
+              onInput={onChangeStudyContent}
+              error={errors.studyContent?.message ? true : false}
+              helperText={errors.studyContent?.message}
+              fullWidth
+            />
           </div>
           <div className={styles.button}>
             <CustomButton variant="contained" type="submit" size="large">

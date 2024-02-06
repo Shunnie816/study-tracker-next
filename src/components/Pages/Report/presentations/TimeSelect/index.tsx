@@ -4,13 +4,13 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ReportData } from "../../containers";
 
-type Props = {
+type BaseProps = {
   value: string;
-  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
+  onChange: (event: SelectChangeEvent) => void;
   data: string[];
 };
 
-export const TimeSelect = ({ value, onChange, data }: Props) => {
+export const TimeSelect = ({ value, data, onChange }: BaseProps) => {
   const {
     register,
     formState: { errors },

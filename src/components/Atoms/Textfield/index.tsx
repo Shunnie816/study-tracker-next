@@ -1,24 +1,29 @@
-import React, { FC } from "react";
-import Box from "@mui/material/Box";
+import React, { forwardRef } from "react";
 import { TextField, TextFieldProps } from "@mui/material";
 
 type Variant = "outlined" | "filled" | "standard";
 
 type BaseProps = {
-  id?: string;
   label: string;
   variant: Variant;
-  onInput: React.ChangeEventHandler<HTMLInputElement>;
-  value: string;
   error?: boolean;
-  helperText?: string;
+  errorMessage?: string;
 };
 
-type Props = BaseProps & Pick<TextFieldProps, keyof BaseProps>;
+type Props = BaseProps & TextFieldProps;
 
-/**
- * textfiledだけの役割を持たせるため、formは画面で実装
- */
-export const Textfield: FC<Props> = ({ ...Props }) => {
-  return <TextField {...Props} fullWidth />;
-};
+export const Textfield = forwardRef<HTMLInputElement, Props>(
+  ({ label, variant, error, errorMessage }: Props, ref) => {
+    return (
+      <TextField
+        label={label}
+        variant={variant}
+        error={error}
+        helperText={error && errorMessage}
+        fullWidth
+        ref={ref}
+      />
+    );
+  }
+);
+Textfield.displayName = "Textfield";

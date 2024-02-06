@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select, { SelectChangeEvent, SelectProps } from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
 type BaseProps = {
@@ -13,7 +13,7 @@ type BaseProps = {
   children: React.ReactNode;
 };
 
-type SelectProps = React.ComponentPropsWithoutRef<"select">;
+// type SelectProps = React.ComponentPropsWithoutRef<"select">;
 type Props = BaseProps & Omit<SelectProps, keyof BaseProps>;
 
 // eslint-disable-next-line react/display-name
