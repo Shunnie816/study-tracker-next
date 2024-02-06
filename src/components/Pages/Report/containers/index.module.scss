@@ -1,0 +1,13 @@
+.container {
+  padding-top: var(--spacing-24);
+
+  .formsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .button {
+    margin-top: var(--spacing-4);
+  }
+}
