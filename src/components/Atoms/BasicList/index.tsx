@@ -14,7 +14,6 @@ type Props = {
   onClick: () => void;
 };
 
-/** TODO: storybookでたぶんエラーでてる */
 export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
   return (
     <List className={styles.container}>
@@ -22,11 +21,13 @@ export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
         <ListItem disablePadding key={index}>
           <ListItemText>{value}</ListItemText>
           {icon && (
-            <ListItemSecondaryAction onClick={onClick}>
-              <IconButton>
-                <BaseIcon icon="edit" />
-              </IconButton>
-            </ListItemSecondaryAction>
+            <>
+              <ListItemSecondaryAction onClick={onClick}>
+                <IconButton>
+                  <BaseIcon icon="edit" />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </>
           )}
         </ListItem>
       ))}
