@@ -1,0 +1,22 @@
+.container {
+  padding: var(--spacing-5) var(--spacing-4);
+
+  .logWrapper {
+    display: flex;
+    flex-direction: column;
+
+    .list {
+      display: flex;
+      gap: var(--spacing-5);
+      margin: var(--spacing-1) 0;
+
+      .dataTitle {
+        width: 30%;
+      }
+
+      .dataDefinition {
+        width: 70%;
+      }
+    }
+  }
+}

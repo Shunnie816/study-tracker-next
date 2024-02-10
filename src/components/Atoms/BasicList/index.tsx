@@ -4,9 +4,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import IconButton from "@mui/material/IconButton";
-
+import { BaseIcon } from "@/components/Atoms/BaseIcon";
 import styles from "./index.module.scss";
-import { BaseIcon } from "../BaseIcon";
 
 type Props = {
   items: Array<string>;
