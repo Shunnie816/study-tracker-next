@@ -43,7 +43,7 @@ export const EditDialog: FC<Props> = ({
           戻る
         </CustomButton>
         <CustomButton variant="outlined" onClick={onSubmit} size="small">
-          編集を登録
+          保存
         </CustomButton>
         <CustomButton
           variant="outlined"
@@ -51,7 +51,7 @@ export const EditDialog: FC<Props> = ({
           onClick={onSubmit}
           size="small"
         >
-          教材を削除
+          削除
         </CustomButton>
         <DeleteDialog
           isOpen={isDeleteOpen}

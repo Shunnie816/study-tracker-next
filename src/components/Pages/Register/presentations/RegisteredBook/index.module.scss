@@ -1,0 +1,8 @@
+.container {
+  padding: 0 var(--spacing-2);
+  width: 70%;
+
+  .list {
+    max-width: var(--containerSmall);
+  }
+}

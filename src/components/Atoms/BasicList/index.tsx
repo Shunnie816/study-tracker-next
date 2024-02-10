@@ -11,20 +11,23 @@ import { BaseIcon } from "../BaseIcon";
 type Props = {
   items: Array<string>;
   icon: boolean;
+  onClick: () => void;
 };
 
-export const BasicList: FC<Props> = ({ items, icon }) => {
+export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
   return (
     <List className={styles.container}>
       {items.map((value, index) => (
         <ListItem disablePadding key={index}>
           <ListItemText>{value}</ListItemText>
           {icon && (
-            <ListItemSecondaryAction>
-              <IconButton>
-                <BaseIcon icon="edit" />
-              </IconButton>
-            </ListItemSecondaryAction>
+            <>
+              <ListItemSecondaryAction onClick={onClick}>
+                <IconButton>
+                  <BaseIcon icon="edit" />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </>
           )}
         </ListItem>
       ))}
