@@ -35,9 +35,15 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
       setState(open);
     };
 
-  const menuItems = ["ログイン", "記録する", "教材登録", "学習記録"];
-  const icons: Icon[] = ["login", "edit", "book", "school"];
-  const urlPath = ["/", "/", "/register", "/posts"];
+  const menuItems = [
+    "ログイン",
+    "記録する",
+    "教材登録",
+    "学習記録",
+    "学習時間",
+  ];
+  const icons: Icon[] = ["login", "edit", "book", "school", "time"];
+  const urlPath = ["/", "/", "/register", "/posts", "/study-log"];
 
   return (
     <div>
