@@ -11,7 +11,7 @@ import styles from "./index.module.scss";
 type Props = {
   date: string;
   textbook: string;
-  time: string | number;
+  time: string;
   content: string;
 };
 
@@ -47,6 +47,7 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
         color="error"
         size="small"
         onClick={modalOpen}
+        fullWidth={false}
       >
         投稿を削除
       </CustomButton>

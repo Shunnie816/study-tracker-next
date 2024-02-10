@@ -1,0 +1,9 @@
+.container {
+  padding: var(--spacing-5) var(--spacing-4);
+
+  .postWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+}
