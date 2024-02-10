@@ -16,7 +16,7 @@ export const Header: FC<Props> = () => {
   const [state, setState] = useState<boolean>(false);
 
   return (
-    <Box sx={{ flexGrow: 1, width: "100%", position: "fixed" }}>
+    <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", zIndex: "100" }}>
       <AppBar position="static">
         <Toolbar
           sx={{
