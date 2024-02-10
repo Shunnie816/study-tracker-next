@@ -7,6 +7,7 @@ import { CustomButton } from "@/components/Atoms/CustomButton";
 import { BasicList } from "@/components/Atoms/BasicList";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import { useRegister } from "./useRegister";
+import { Heading } from "@/components/Atoms/Heading";
 
 type TextbookType = {
   textbook: string;
@@ -43,9 +44,7 @@ export const Register = () => {
 
   return (
     <div className={styles.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        教材登録
-      </Typography>
+      <Heading text="教材登録" />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <TextField
           {...register("textbook", {
