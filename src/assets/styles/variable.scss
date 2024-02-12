@@ -1,5 +1,8 @@
 // 各index.module.scssからアクセスするためのカスタムプロパティ
 :root {
+  //breakpoint
+  --breakpoint: 767px;
+
   //font-size
   --fontSizeXS: 12px;
   --fontSizeS: 14px;
