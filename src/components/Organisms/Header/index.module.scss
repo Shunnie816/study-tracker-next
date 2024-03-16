@@ -1,8 +1,17 @@
 .headerMenu {
-  display: flex;
-  justify-content: flex-end;
-}
+  justify-content: space-between;
 
-.menuIcon {
-  padding-top: var(--spacing-1);
+  .mobileHeader {
+    padding-top: var(--spacing-1);
+  }
+
+  .pcHeader {
+    display: flex;
+    padding-right: var(--spacing-5);
+    width: 50%;
+
+    .link {
+      color: var(--white);
+    }
+  }
 }

@@ -74,18 +74,6 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
                 ))}
               </List>
             </Box>
-            {/* <div>
-              <Button color="inherit">ログイン</Button>
-              <Button color="inherit" onClick={() => router.push("/")}>
-                記録する
-              </Button>
-              <Button color="inherit" onClick={() => router.push("/register")}>
-                教材登録
-              </Button>
-              <Button color="inherit" onClick={() => router.push("/posts")}>
-                学習記録
-              </Button>
-            </div> */}
           </div>
         </SwipeableDrawer>
       </>
