@@ -8,7 +8,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SchoolIcon from "@mui/icons-material/School";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
-export type Icon =
+export type IconType =
   | "edit"
   | "delete"
   | "menu"
@@ -17,7 +17,7 @@ export type Icon =
   | "school"
   | "time";
 type BaseProps = {
-  icon: Icon;
+  icon: IconType;
 };
 type Props = BaseProps & Pick<IconProps, "color" | "fontSize">;
 
@@ -31,7 +31,7 @@ const iconMap = {
   time: AccessTimeIcon,
 };
 
-export const BaseIcon: FC<Props> = ({ icon, color, fontSize }) => {
+export const Icon: FC<Props> = ({ icon, color, fontSize }) => {
   const Icon = iconMap[icon] || null;
   return Icon && <Icon color={color} fontSize={fontSize} />;
 };

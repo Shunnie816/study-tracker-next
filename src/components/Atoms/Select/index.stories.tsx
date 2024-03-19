@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Selectbox } from "./index";
+import { Select } from "./index";
 
 //👇 This default export determines where your story goes in the story list
-const meta: Meta<typeof Selectbox> = {
-  component: Selectbox,
+const meta: Meta<typeof Select> = {
+  component: Select,
 };
 
 export default meta;
-type Story = StoryObj<typeof Selectbox>;
+type Story = StoryObj<typeof Select>;
 
 let times: Array<number> = [];
 for (let i = 5; i <= 180; i += 5) {

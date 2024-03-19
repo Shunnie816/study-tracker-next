@@ -11,7 +11,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { BaseIcon, Icon } from "@/components/Atoms/BaseIcon";
+import { Icon, IconType } from "@/components/Atoms/Icon";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -42,7 +42,7 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
     "学習記録",
     "学習時間",
   ];
-  const icons: Icon[] = ["login", "edit", "book", "school", "time"];
+  const icons: IconType[] = ["login", "edit", "book", "school", "time"];
   const urlPath = ["/", "/", "/register", "/posts", "/study-log"];
 
   return (
@@ -66,7 +66,7 @@ export const HamburgerMenu: FC<Props> = ({ state, setState }) => {
                   <ListItem key={text} disablePadding>
                     <ListItemButton onClick={() => router.push(urlPath[index])}>
                       <ListItemIcon>
-                        <BaseIcon icon={icons[index]} />
+                        <Icon icon={icons[index]} />
                       </ListItemIcon>
                       <ListItemText primary={text} />
                     </ListItemButton>

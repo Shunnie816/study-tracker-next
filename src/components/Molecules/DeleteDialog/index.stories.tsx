@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { DeleteDialog } from "./index";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof DeleteDialog> = {
@@ -23,9 +23,9 @@ const Component: Story["render"] = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <CustomButton variant="contained" onClick={onOpen}>
+      <Button variant="contained" onClick={onOpen}>
         Open DeleteDialog
-      </CustomButton>
+      </Button>
       <DeleteDialog
         isOpen={isOpen}
         onClose={onClose}

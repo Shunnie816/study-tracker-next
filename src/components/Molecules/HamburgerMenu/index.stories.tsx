@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { HamburgerMenu } from "./index";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof HamburgerMenu> = {
@@ -16,7 +16,7 @@ const Component: Story["render"] = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
-      <CustomButton variant="contained">Open HamburgerMenu</CustomButton>
+      <Button variant="contained">Open HamburgerMenu</Button>
       <HamburgerMenu state={isOpen} setState={setIsOpen} />
     </>
   );

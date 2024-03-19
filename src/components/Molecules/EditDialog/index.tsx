@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
 
 import styles from "./index.module.scss";
 import { DeleteDialog } from "../DeleteDialog";
-import { Textfield } from "@/components/Atoms/Textfield";
+import { TextField } from "@/components/Atoms/TextField";
 
 type Props = {
   isOpen: boolean;
@@ -31,7 +31,7 @@ export const EditDialog: FC<Props> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="教材を編集">
       <div className={styles.textfield}>
-        <Textfield
+        <TextField
           label="教材名を入力"
           variant="outlined"
           onInput={onInput}
@@ -39,20 +39,20 @@ export const EditDialog: FC<Props> = ({
         />
       </div>
       <div className={styles.buttonWrapper}>
-        <CustomButton variant="text" onClick={onClose} size="small">
+        <Button variant="text" onClick={onClose} size="small">
           戻る
-        </CustomButton>
-        <CustomButton variant="outlined" onClick={onSubmit} size="small">
+        </Button>
+        <Button variant="outlined" onClick={onSubmit} size="small">
           保存
-        </CustomButton>
-        <CustomButton
+        </Button>
+        <Button
           variant="outlined"
           color="error"
           onClick={onSubmit}
           size="small"
         >
           削除
-        </CustomButton>
+        </Button>
         <DeleteDialog
           isOpen={isDeleteOpen}
           onClose={onCloseDeleteDialog}

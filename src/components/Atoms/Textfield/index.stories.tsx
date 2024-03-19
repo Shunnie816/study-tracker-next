@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Textfield } from "./index";
+import { TextField } from "./index";
 
 //👇 This default export determines where your story goes in the story list
-const meta: Meta<typeof Textfield> = {
-  component: Textfield,
+const meta: Meta<typeof TextField> = {
+  component: TextField,
 };
 
 export default meta;
-type Story = StoryObj<typeof Textfield>;
+type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
   args: {

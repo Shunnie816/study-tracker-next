@@ -8,11 +8,11 @@ import {
 } from "react-hook-form";
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
-import { CustomButton } from "@/components/Atoms/CustomButton";
-import { Selectbox } from "@/components/Atoms/Selectbox";
+import { Button } from "@/components/Atoms/Button";
+import { Select } from "@/components/Atoms/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
-import { Textfield } from "@/components/Atoms/Textfield";
+import { TextField } from "@/components/Atoms/TextField";
 
 export const Report = () => {
   const methods = useForm<ReportData>({
@@ -56,7 +56,7 @@ export const Report = () => {
               control={control}
               name="time"
               render={({ field }) => (
-                <Selectbox
+                <Select
                   {...field}
                   label={"学習時間"}
                   value={getValues("time")}
@@ -70,7 +70,7 @@ export const Report = () => {
               control={control}
               name="textbook"
               render={({ field }) => (
-                <Selectbox
+                <Select
                   {...field}
                   label={"教材選択"}
                   value={getValues("textbook")}
@@ -84,7 +84,7 @@ export const Report = () => {
               control={control}
               name="studyContent"
               render={({ field }) => (
-                <Textfield
+                <TextField
                   {...field}
                   label={"学習内容を入力"}
                   value={getValues("studyContent")}
@@ -95,9 +95,9 @@ export const Report = () => {
             />
           </div>
           <div className={styles.button}>
-            <CustomButton variant="contained" type="submit" size="large">
+            <Button variant="contained" type="submit" size="large">
               確定
-            </CustomButton>
+            </Button>
           </div>
         </form>
       </FormProvider>

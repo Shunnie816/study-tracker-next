@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import { BaseCard } from "@/components/Atoms/BaseCard";
+import { Card } from "@/components/Atoms/Card";
 import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -32,7 +32,7 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
   };
 
   return (
-    <BaseCard title={date}>
+    <Card title={date}>
       <div className={styles.wrapper}>
         <Typography variant="subtitle1">教材名：{textbook}</Typography>
         <Typography variant="subtitle1">時間：{time}分</Typography>
@@ -42,7 +42,7 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
         <Typography variant="subtitle2">学習内容：</Typography>
         <Typography variant="body2">{content}</Typography>
       </div>
-      <CustomButton
+      <Button
         variant="outlined"
         color="error"
         size="small"
@@ -50,13 +50,13 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
         fullWidth={false}
       >
         投稿を削除
-      </CustomButton>
+      </Button>
       <DeleteDialog
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={onSubmit}
         deleteTarget="投稿"
       />
-    </BaseCard>
+    </Card>
   );
 };

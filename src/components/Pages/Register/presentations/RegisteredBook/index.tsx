@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { BaseIcon } from "@/components/Atoms/BaseIcon";
+import { Icon } from "@/components/Atoms/Icon";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import {
   IconButton,
@@ -30,7 +30,7 @@ export const RegisteredBook: FC<Props> = ({ listData }) => {
               <ListItemText>{value}</ListItemText>
               <ListItemSecondaryAction onClick={() => setIsOpen(true)}>
                 <IconButton>
-                  <BaseIcon icon="edit" />
+                  <Icon icon="edit" />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
