@@ -8,7 +8,7 @@ import {
 } from "react-hook-form";
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 import { Selectbox } from "@/components/Atoms/Selectbox";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
@@ -95,9 +95,9 @@ export const Report = () => {
             />
           </div>
           <div className={styles.button}>
-            <CustomButton variant="contained" type="submit" size="large">
+            <Button variant="contained" type="submit" size="large">
               確定
-            </CustomButton>
+            </Button>
           </div>
         </form>
       </FormProvider>

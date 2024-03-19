@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 import { TextField, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 import { List } from "@/components/Atoms/List";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import { useRegister } from "./useRegister";
@@ -59,9 +59,9 @@ export const Register = () => {
           fullWidth
         />
         <div className={styles.button}>
-          <CustomButton variant="contained" type="submit">
+          <Button variant="contained" type="submit">
             登録する
-          </CustomButton>
+          </Button>
         </div>
       </form>
       <div className={styles.registered}>

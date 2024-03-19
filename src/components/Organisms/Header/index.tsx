@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import { Icon } from "@/components/Atoms/Icon";
 import { HamburgerMenu } from "@/components/Molecules/HamburgerMenu";
 import styles from "./index.module.scss";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 import Link from "next/link";
 
 type Props = {};
@@ -44,31 +44,31 @@ export const Header: FC<Props> = () => {
             </div>
           ) : (
             <div className={styles.pcHeader}>
-              <CustomButton color="inherit" variant="text">
+              <Button color="inherit" variant="text">
                 <Link href="/" className={styles.link}>
                   ログイン
                 </Link>
-              </CustomButton>
-              <CustomButton color="inherit" variant="text">
+              </Button>
+              <Button color="inherit" variant="text">
                 <Link href="/" className={styles.link}>
                   記録する
                 </Link>
-              </CustomButton>
-              <CustomButton color="inherit" variant="text">
+              </Button>
+              <Button color="inherit" variant="text">
                 <Link href="/register" className={styles.link}>
                   教材登録
                 </Link>
-              </CustomButton>
-              <CustomButton color="inherit" variant="text">
+              </Button>
+              <Button color="inherit" variant="text">
                 <Link href="/posts" className={styles.link}>
                   学習記録
                 </Link>
-              </CustomButton>
-              <CustomButton color="inherit" variant="text">
+              </Button>
+              <Button color="inherit" variant="text">
                 <Link href="/study-log" className={styles.link}>
                   学習時間
                 </Link>
-              </CustomButton>
+              </Button>
             </div>
           )}
         </Toolbar>

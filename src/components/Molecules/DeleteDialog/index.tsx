@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
 
 import styles from "./index.module.scss";
@@ -20,12 +20,12 @@ export const DeleteDialog: FC<Props> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="削除してよろしいですか？">
       <div className={styles.buttonWrapper}>
-        <CustomButton variant="text" onClick={onClose}>
+        <Button variant="text" onClick={onClose}>
           キャンセル
-        </CustomButton>
-        <CustomButton variant="outlined" color="error" onClick={onSubmit}>
+        </Button>
+        <Button variant="outlined" color="error" onClick={onSubmit}>
           {deleteTarget}を削除
-        </CustomButton>
+        </Button>
       </div>
     </Modal>
   );
