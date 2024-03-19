@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import IconButton from "@mui/material/IconButton";
-import { BaseIcon } from "@/components/Atoms/BaseIcon";
+import { Icon } from "@/components/Atoms/Icon";
 import styles from "./index.module.scss";
 
 type Props = {
@@ -23,7 +23,7 @@ export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
             <>
               <ListItemSecondaryAction onClick={onClick}>
                 <IconButton>
-                  <BaseIcon icon="edit" />
+                  <Icon icon="edit" />
                 </IconButton>
               </ListItemSecondaryAction>
             </>

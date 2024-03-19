@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { BaseIcon } from "@/components/Atoms/BaseIcon";
+import { Icon } from "@/components/Atoms/Icon";
 import { HamburgerMenu } from "@/components/Molecules/HamburgerMenu";
 import styles from "./index.module.scss";
 import { CustomButton } from "@/components/Atoms/CustomButton";
@@ -38,7 +38,7 @@ export const Header: FC<Props> = () => {
           {isMobile ? (
             <div className={styles.mobileHeader}>
               <a onClick={() => setState(true)}>
-                <BaseIcon icon={"menu"} color="inherit" />
+                <Icon icon={"menu"} color="inherit" />
               </a>
               <HamburgerMenu state={state} setState={setState} />
             </div>
