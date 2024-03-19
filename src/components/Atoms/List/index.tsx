@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import List from "@mui/material/List";
+import { List as MUIList } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
@@ -13,9 +13,9 @@ type Props = {
   onClick: () => void;
 };
 
-export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
+export const List: FC<Props> = ({ items, icon, onClick }) => {
   return (
-    <List className={styles.container}>
+    <MUIList className={styles.container}>
       {items.map((value, index) => (
         <ListItem disablePadding key={index}>
           <ListItemText>{value}</ListItemText>
@@ -30,6 +30,6 @@ export const BasicList: FC<Props> = ({ items, icon, onClick }) => {
           )}
         </ListItem>
       ))}
-    </List>
+    </MUIList>
   );
 };

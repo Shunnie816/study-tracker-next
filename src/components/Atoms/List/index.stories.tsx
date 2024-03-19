@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BasicList } from "./index";
+import { List } from "./index";
 
 //👇 This default export determines where your story goes in the story list
-const meta: Meta<typeof BasicList> = {
-  component: BasicList,
+const meta: Meta<typeof List> = {
+  component: List,
 };
 
 export default meta;
-type Story = StoryObj<typeof BasicList>;
+type Story = StoryObj<typeof List>;
 
 const textbooks = ["英語", "数学", "国語", "理科", "社会"];
 

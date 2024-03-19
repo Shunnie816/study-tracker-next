@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 import { TextField, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CustomButton } from "@/components/Atoms/CustomButton";
-import { BasicList } from "@/components/Atoms/BasicList";
+import { List } from "@/components/Atoms/List";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import { useRegister } from "./useRegister";
 import { Heading } from "@/components/Atoms/Heading";
@@ -69,7 +69,7 @@ export const Register = () => {
           登録済みの教材
         </Typography>
         <div className={styles.list}>
-          <BasicList
+          <List
             items={sampleTextbookData}
             icon
             onClick={() => setIsOpen(true)}
