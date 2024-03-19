@@ -27,7 +27,7 @@ export const Textfield = forwardRef<HTMLInputElement, Props>(
     ref
   ) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(event.target.value); // 入力値を更新
+      onChange(event.target.value); // 親から子へのコールバック
     };
 
     return (

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Controller,
   FormProvider,
@@ -61,10 +61,11 @@ export const Report = () => {
                   label={"学習時間"}
                   value={getValues("time")}
                   options={timeData}
+                  error={errors.time && true}
+                  errorMessage={errors.time?.message}
                 />
               )}
             />
-            {errors.time && <p>{errors.time?.message}</p>}
             <Controller
               control={control}
               name="textbook"
@@ -74,11 +75,11 @@ export const Report = () => {
                   label={"教材選択"}
                   value={getValues("textbook")}
                   options={textbookData}
+                  error={errors.textbook && true}
+                  errorMessage={errors.textbook?.message}
                 />
               )}
             />
-            {errors.textbook && <p>{errors.textbook.message}</p>}
-
             <Controller
               control={control}
               name="studyContent"
@@ -87,10 +88,11 @@ export const Report = () => {
                   {...field}
                   label={"学習内容を入力"}
                   value={getValues("studyContent")}
+                  error={errors.studyContent && true}
+                  errorMessage={errors.studyContent?.message}
                 />
               )}
             />
-            {errors.studyContent && <p>{errors.studyContent.message}</p>}
           </div>
           <div className={styles.button}>
             <CustomButton variant="contained" type="submit" size="large">
