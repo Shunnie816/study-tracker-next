@@ -9,7 +9,7 @@ import {
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Atoms/Button";
-import { Selectbox } from "@/components/Atoms/Selectbox";
+import { Select } from "@/components/Atoms/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
 import { Textfield } from "@/components/Atoms/Textfield";
@@ -56,7 +56,7 @@ export const Report = () => {
               control={control}
               name="time"
               render={({ field }) => (
-                <Selectbox
+                <Select
                   {...field}
                   label={"学習時間"}
                   value={getValues("time")}
@@ -70,7 +70,7 @@ export const Report = () => {
               control={control}
               name="textbook"
               render={({ field }) => (
-                <Selectbox
+                <Select
                   {...field}
                   label={"教材選択"}
                   value={getValues("textbook")}
