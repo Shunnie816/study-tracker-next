@@ -11,7 +11,8 @@ type BaseProps = {
   options: Array<string | number>;
   /**MenuItemに'分'などを付け足したいときに使用 */
   menuItemText?: string;
-  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
+  // onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
+  onChange: (event: string) => void;
 };
 
 type SelectProps = React.ComponentPropsWithoutRef<"select">;
@@ -20,6 +21,10 @@ type Props = BaseProps & Omit<SelectProps, keyof BaseProps>;
 // eslint-disable-next-line react/display-name
 export const Selectbox = forwardRef(
   ({ id, label, value, options, menuItemText, onChange }: Props, ref) => {
+    const handleChange = (event: SelectChangeEvent) => {
+      onChange(event.target.value);
+    };
+
     return (
       <FormControl fullWidth>
         <InputLabel id={label}>{label}</InputLabel>
@@ -28,7 +33,7 @@ export const Selectbox = forwardRef(
           id={id}
           label={label}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           ref={ref}
         >
           {options?.map((item, index) => (
