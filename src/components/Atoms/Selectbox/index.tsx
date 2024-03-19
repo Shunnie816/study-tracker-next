@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FormHelperText } from "@mui/material";
 
 type BaseProps = {
   label: string;
@@ -11,7 +12,9 @@ type BaseProps = {
   options: Array<string | number>;
   /**MenuItemに'分'などを付け足したいときに使用 */
   menuItemText?: string;
-  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
+  onChange: (event: string) => void;
+  error?: boolean;
+  errorMessage?: string;
 };
 
 type SelectProps = React.ComponentPropsWithoutRef<"select">;
@@ -19,16 +22,32 @@ type Props = BaseProps & Omit<SelectProps, keyof BaseProps>;
 
 // eslint-disable-next-line react/display-name
 export const Selectbox = forwardRef(
-  ({ id, label, value, options, menuItemText, onChange }: Props, ref) => {
+  (
+    {
+      id,
+      label,
+      value,
+      options,
+      menuItemText,
+      onChange,
+      error,
+      errorMessage,
+    }: Props,
+    ref
+  ) => {
+    const handleChange = (event: SelectChangeEvent) => {
+      onChange(event.target.value); // 親から子へのコールバック
+    };
+
     return (
-      <FormControl fullWidth>
+      <FormControl fullWidth error={error}>
         <InputLabel id={label}>{label}</InputLabel>
         <Select
           labelId={label}
           id={id}
           label={label}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           ref={ref}
         >
           {options?.map((item, index) => (
@@ -37,6 +56,7 @@ export const Selectbox = forwardRef(
             </MenuItem>
           ))}
         </Select>
+        {error && <FormHelperText>{errorMessage}</FormHelperText>}
       </FormControl>
     );
   }
