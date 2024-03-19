@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { BaseCard } from "@/components/Atoms/BaseCard";
+import { Card } from "@/components/Atoms/Card";
 import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
 import { CustomButton } from "@/components/Atoms/CustomButton";
 
@@ -32,7 +32,7 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
   };
 
   return (
-    <BaseCard title={date}>
+    <Card title={date}>
       <div className={styles.wrapper}>
         <Typography variant="subtitle1">教材名：{textbook}</Typography>
         <Typography variant="subtitle1">時間：{time}分</Typography>
@@ -57,6 +57,6 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
         onSubmit={onSubmit}
         deleteTarget="投稿"
       />
-    </BaseCard>
+    </Card>
   );
 };

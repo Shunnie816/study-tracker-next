@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Card from "@mui/material/Card";
+import { Card as MUICard } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
@@ -8,9 +8,9 @@ export type Props = {
   title: string;
 };
 
-export const BaseCard: FC<Props> = ({ children, title }) => {
+export const Card: FC<Props> = ({ children, title }) => {
   return (
-    <Card>
+    <MUICard>
       <CardContent>
         <Typography
           variant="caption"
@@ -22,6 +22,6 @@ export const BaseCard: FC<Props> = ({ children, title }) => {
         </Typography>
         {children}
       </CardContent>
-    </Card>
+    </MUICard>
   );
 };
