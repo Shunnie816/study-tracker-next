@@ -12,7 +12,7 @@ import { Button } from "@/components/Atoms/Button";
 import { Select } from "@/components/Atoms/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
-import { Textfield } from "@/components/Atoms/Textfield";
+import { TextField } from "@/components/Atoms/TextField";
 
 export const Report = () => {
   const methods = useForm<ReportData>({
@@ -84,7 +84,7 @@ export const Report = () => {
               control={control}
               name="studyContent"
               render={({ field }) => (
-                <Textfield
+                <TextField
                   {...field}
                   label={"学習内容を入力"}
                   value={getValues("studyContent")}

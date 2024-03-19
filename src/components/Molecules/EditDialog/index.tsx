@@ -4,7 +4,7 @@ import { Modal } from "@/components/Atoms/Modal";
 
 import styles from "./index.module.scss";
 import { DeleteDialog } from "../DeleteDialog";
-import { Textfield } from "@/components/Atoms/Textfield";
+import { TextField } from "@/components/Atoms/TextField";
 
 type Props = {
   isOpen: boolean;
@@ -31,7 +31,7 @@ export const EditDialog: FC<Props> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="教材を編集">
       <div className={styles.textfield}>
-        <Textfield
+        <TextField
           label="教材名を入力"
           variant="outlined"
           onInput={onInput}

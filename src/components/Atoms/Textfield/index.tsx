@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { TextField, TextFieldProps } from "@mui/material";
+import { TextField as MUITextField, TextFieldProps } from "@mui/material";
 
 type Variant = "outlined" | "filled" | "standard";
 
@@ -14,7 +14,7 @@ type BaseProps = {
 
 type Props = BaseProps & TextFieldProps;
 
-export const Textfield = forwardRef<HTMLInputElement, Props>(
+export const TextField = forwardRef<HTMLInputElement, Props>(
   (
     {
       label,
@@ -31,7 +31,7 @@ export const Textfield = forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <TextField
+      <MUITextField
         label={label}
         variant={variant}
         value={value}
@@ -44,4 +44,4 @@ export const Textfield = forwardRef<HTMLInputElement, Props>(
     );
   }
 );
-Textfield.displayName = "Textfield";
+TextField.displayName = "TextField";
