@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { EditDialog } from "./index";
 import { Button } from "@/components/Atoms/Button";
+import { Controller, useForm } from "react-hook-form";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof EditDialog> = {
@@ -13,11 +14,7 @@ type Story = StoryObj<typeof EditDialog>;
 
 const Component: Story["render"] = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [texbook, setTextbook] = useState<string>("");
-
-  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextbook(e.target.value);
-  };
+  const { control, getValues } = useForm();
 
   const onClose = () => {
     setIsOpen(false);
@@ -32,13 +29,19 @@ const Component: Story["render"] = () => {
       <Button variant="contained" onClick={onOpen}>
         Open EditDialog
       </Button>
-      <EditDialog
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={onClose}
-        onDelete={onClose}
-        textBook={texbook}
-        onInput={onInput}
+      <Controller
+        control={control}
+        name="editDialog"
+        render={({ field }) => (
+          <EditDialog
+            {...field}
+            isOpen={isOpen}
+            onClose={onClose}
+            onSubmit={onClose}
+            onDelete={onClose}
+            textBook={getValues("editDialog")}
+          />
+        )}
       />
     </div>
   );
