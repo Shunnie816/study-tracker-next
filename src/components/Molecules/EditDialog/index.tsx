@@ -1,10 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
-
-import styles from "./index.module.scss";
 import { DeleteDialog } from "../DeleteDialog";
 import { TextField } from "@/components/Atoms/TextField";
+import styles from "./index.module.scss";
 
 type Props = {
   isOpen: boolean;
@@ -12,7 +11,7 @@ type Props = {
   onSubmit: () => void;
   onDelete: () => void;
   textBook: string;
-  onInput: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: () => void;
 };
 
 export const EditDialog: FC<Props> = ({
@@ -21,12 +20,17 @@ export const EditDialog: FC<Props> = ({
   onSubmit,
   onDelete,
   textBook,
-  onInput,
+  onChange,
 }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const onCloseDeleteDialog = () => {
     setIsDeleteOpen(false);
   };
+
+  const handleDelete = useCallback(() => {
+    onDelete();
+    setIsDeleteOpen(false);
+  }, [onDelete]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="教材を編集">
@@ -34,7 +38,7 @@ export const EditDialog: FC<Props> = ({
         <TextField
           label="教材名を入力"
           variant="outlined"
-          onInput={onInput}
+          onChange={onChange}
           value={textBook}
         />
       </div>
@@ -48,7 +52,7 @@ export const EditDialog: FC<Props> = ({
         <Button
           variant="outlined"
           color="error"
-          onClick={onSubmit}
+          onClick={() => setIsDeleteOpen(true)}
           size="small"
         >
           削除
@@ -56,7 +60,7 @@ export const EditDialog: FC<Props> = ({
         <DeleteDialog
           isOpen={isDeleteOpen}
           onClose={onCloseDeleteDialog}
-          onSubmit={onDelete}
+          onSubmit={handleDelete}
           deleteTarget="教材"
         />
       </div>
