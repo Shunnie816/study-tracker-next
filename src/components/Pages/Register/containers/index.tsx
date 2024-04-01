@@ -1,38 +1,51 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./index.module.scss";
-import { TextField, Typography } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Typography } from "@mui/material";
+import {
+  Controller,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
 import { List } from "@/components/Atoms/List";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import { useRegister } from "./useRegister";
 import { Heading } from "@/components/Atoms/Heading";
-
-type TextbookType = {
-  textbook: string;
-};
+import { TextField } from "@/components/Atoms/TextField";
+import {
+  EditTextBookData,
+  TextBookData,
+  editForm,
+  textbookForm,
+} from "./formSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisteredBook } from "../presentations/RegisteredBook";
 
 export const Register = () => {
-  const [textbook, setTextbook] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const {
-    register,
-    handleSubmit,
     formState: { errors },
-  } = useForm<TextbookType>();
+    control,
+    handleSubmit,
+    getValues,
+    reset,
+  } = useForm<TextBookData>({
+    resolver: zodResolver(textbookForm),
+    defaultValues: { textbook: "" },
+  });
+  const methods = useForm<EditTextBookData>({
+    resolver: zodResolver(editForm),
+    defaultValues: { textbook: "" },
+  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTextbook(event.target.value);
-  };
-
-  const onSubmit: SubmitHandler<TextbookType> = (data) => {
+  const onSubmit: SubmitHandler<TextBookData> = (data) => {
     console.log("data", data);
-    setTextbook("");
+    reset();
   };
 
-  const { editName, setEditName, handleEdit, submitEdit, onDelete } =
-    useRegister();
+  const { submitEdit, onDelete } = useRegister();
 
   const sampleTextbookData = [
     "typescript",
@@ -46,17 +59,18 @@ export const Register = () => {
     <div className={styles.container}>
       <Heading text="教材登録" />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <TextField
-          {...register("textbook", {
-            required: "教材名が入力されていません",
-          })}
-          label="教材名を入力"
-          variant="outlined"
-          value={textbook}
-          onChange={handleChange}
-          error={errors.textbook?.message ? true : false}
-          helperText={errors.textbook?.message}
-          fullWidth
+        <Controller
+          control={control}
+          name="textbook"
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label={"学習内容を入力"}
+              value={getValues("textbook")}
+              error={errors.textbook && true}
+              errorMessage={errors.textbook?.message}
+            />
+          )}
         />
         <div className={styles.button}>
           <Button variant="contained" type="submit">
@@ -64,26 +78,21 @@ export const Register = () => {
           </Button>
         </div>
       </form>
-      <div className={styles.registered}>
-        <Typography variant="h5" component="h2" gutterBottom fontWeight="bold">
-          登録済みの教材
-        </Typography>
-        <div className={styles.list}>
-          <List
-            items={sampleTextbookData}
-            icon
-            onClick={() => setIsOpen(true)}
-          />
-          <EditDialog
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            onSubmit={submitEdit}
-            onDelete={onDelete}
-            textBook={editName}
-            onInput={handleEdit}
-          />
+      <FormProvider {...methods}>
+        <div className={styles.registered}>
+          <Typography
+            variant="h5"
+            component="h2"
+            gutterBottom
+            fontWeight="bold"
+          >
+            登録済みの教材
+          </Typography>
+          <div className={styles.list}>
+            <RegisteredBook listData={sampleTextbookData} />
+          </div>
         </div>
-      </div>
+      </FormProvider>
     </div>
   );
 };
