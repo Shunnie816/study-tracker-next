@@ -9,42 +9,61 @@ import {
   ListItemText,
 } from "@mui/material";
 import styles from "./index.module.scss";
-import { useRegister } from "../../containers/useRegister";
 
 type Props = {
   listData: Array<string>;
 };
 
+type ListProps = {
+  value: string;
+  onClick: () => void;
+};
+
 /** TODO: EditDialogが真っ黒になる */
+/** TODO: EditDialogの初期値が全部同じ。どのリストアイテムかを識別させる必要がある */
 export const RegisteredBook: FC<Props> = ({ listData }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { editName, setEditName, handleEdit, submitEdit, onDelete } =
-    useRegister();
+
+  const submitEdit = () => {
+    alert("教材を保存しました");
+    setIsOpen(false);
+  };
+
+  const onDelete = () => {
+    alert("教材を削除しました");
+    setIsOpen(false);
+  };
 
   return (
     <div className={styles.container}>
       <List className={styles.list}>
         {listData.map((value, index) => (
-          <div key={index}>
-            <ListItem disablePadding>
-              <ListItemText>{value}</ListItemText>
-              <ListItemSecondaryAction onClick={() => setIsOpen(true)}>
-                <IconButton>
-                  <Icon icon="edit" />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
+          /** FIXME: textbookのidをkeyにする */
+          <React.Fragment key={index}>
+            <MUIListItem value={value} onClick={() => setIsOpen(true)} />
             <EditDialog
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               onSubmit={submitEdit}
               onDelete={onDelete}
-              textBook={editName}
-              onInput={handleEdit}
+              textBook={value}
             />
-          </div>
+          </React.Fragment>
         ))}
       </List>
     </div>
+  );
+};
+
+const MUIListItem = ({ value, onClick }: ListProps) => {
+  return (
+    <ListItem disablePadding>
+      <ListItemText>{value}</ListItemText>
+      <ListItemSecondaryAction onClick={onClick}>
+        <IconButton>
+          <Icon icon="edit" />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
 };
