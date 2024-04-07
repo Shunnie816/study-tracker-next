@@ -12,7 +12,7 @@ type Props = {
   onClose: () => void;
   onSubmit: () => void;
   onDelete: () => void;
-  textBook: string;
+  textbook: string;
 };
 
 export const EditDialog: FC<Props> = ({
@@ -20,9 +20,9 @@ export const EditDialog: FC<Props> = ({
   onClose,
   onSubmit,
   onDelete,
-  textBook,
+  textbook,
 }) => {
-  const { control, getValues } = useFormContext<EditTextBookData>();
+  const { control, getValues, setValue } = useFormContext<EditTextBookData>();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const onCloseDeleteDialog = () => {
@@ -51,7 +51,7 @@ export const EditDialog: FC<Props> = ({
                 label="教材名を入力"
                 variant="outlined"
                 /** TODO: 初期値が設定されていない */
-                value={getValues("textbook")}
+                value={textbook}
               />
             )}
           />

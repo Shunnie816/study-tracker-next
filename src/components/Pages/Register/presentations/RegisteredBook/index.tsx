@@ -9,9 +9,10 @@ import {
   ListItemText,
 } from "@mui/material";
 import styles from "./index.module.scss";
+import { Textbook } from "@/pages/api/textbook";
 
 type Props = {
-  listData: Array<string>;
+  listData: Textbook[];
 };
 
 type ListProps = {
@@ -37,16 +38,18 @@ export const RegisteredBook: FC<Props> = ({ listData }) => {
   return (
     <div className={styles.container}>
       <List className={styles.list}>
-        {listData.map((value, index) => (
-          /** FIXME: textbookのidをkeyにする */
-          <React.Fragment key={index}>
-            <MUIListItem value={value} onClick={() => setIsOpen(true)} />
+        {listData.map((textbook) => (
+          <React.Fragment key={textbook.id}>
+            <MUIListItem
+              value={textbook.name}
+              onClick={() => setIsOpen(true)}
+            />
             <EditDialog
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               onSubmit={submitEdit}
               onDelete={onDelete}
-              textBook={value}
+              textbook={textbook.name}
             />
           </React.Fragment>
         ))}

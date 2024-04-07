@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 import { Typography } from "@mui/material";
 import {
@@ -9,9 +9,6 @@ import {
   useForm,
 } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
-import { List } from "@/components/Atoms/List";
-import { EditDialog } from "@/components/Molecules/EditDialog";
-import { useRegister } from "./useRegister";
 import { Heading } from "@/components/Atoms/Heading";
 import { TextField } from "@/components/Atoms/TextField";
 import {
@@ -22,9 +19,11 @@ import {
 } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisteredBook } from "../presentations/RegisteredBook";
+import { useRegister } from "./useRegister";
 
 export const Register = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { textbooks, postData } = useRegister();
+
   const {
     formState: { errors },
     control,
@@ -35,6 +34,7 @@ export const Register = () => {
     resolver: zodResolver(textbookForm),
     defaultValues: { textbook: "" },
   });
+
   const methods = useForm<EditTextBookData>({
     resolver: zodResolver(editForm),
     defaultValues: { textbook: "" },
@@ -44,16 +44,6 @@ export const Register = () => {
     console.log("data", data);
     reset();
   };
-
-  const { submitEdit, onDelete } = useRegister();
-
-  const sampleTextbookData = [
-    "typescript",
-    "Next.js",
-    "React",
-    "storybook",
-    "tailwind.css",
-  ];
 
   return (
     <div className={styles.container}>
@@ -89,7 +79,11 @@ export const Register = () => {
             登録済みの教材
           </Typography>
           <div className={styles.list}>
-            <RegisteredBook listData={sampleTextbookData} />
+            {textbooks ? (
+              <RegisteredBook listData={textbooks} />
+            ) : (
+              <>登録された教材がありません</>
+            )}
           </div>
         </div>
       </FormProvider>
