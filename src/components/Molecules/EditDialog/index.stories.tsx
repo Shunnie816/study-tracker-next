@@ -39,7 +39,7 @@ const Component: Story["render"] = () => {
             onClose={onClose}
             onSubmit={onClose}
             onDelete={onClose}
-            textBook={getValues("editDialog")}
+            textbook={getValues("editDialog")}
           />
         )}
       />
