@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuidv4 } from "uuid";
 
-type Textbook = {
+export type Textbook = {
   id: string;
   name: string;
 };
@@ -27,7 +27,7 @@ export default function handler(
     const id = uuidv4(); /** UUIDの生成 */
     const newTextbook: Textbook = { name, id };
     textbooks.push(newTextbook);
-    res.status(201).json(textbooks);
+    // res.status(201).json(textbooks);
   } else {
     /**TODO: エラーハンドリング記述 */
     // res.status(405).json({});
