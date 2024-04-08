@@ -22,7 +22,7 @@ export const EditDialog: FC<Props> = ({
   onDelete,
   textbook,
 }) => {
-  const { control, getValues, setValue } = useFormContext<EditTextBookData>();
+  const { control } = useFormContext<EditTextBookData>();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const onCloseDeleteDialog = () => {
