@@ -1,26 +1,40 @@
-import { useState } from "react";
+import { Textbook } from "@/pages/api/textbook";
+import axios from "axios";
+import useSWR from "swr";
 
 export const useRegister = () => {
-  const [editName, setEditName] = useState<string>("");
+  const apiPath = "/api/textbook";
 
-  const handleEdit = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditName(event.target.value);
-  };
+  async function fetchData(): Promise<Textbook[]> {
+    try {
+      const res = await axios.get("/api/textbook");
+      return res.data;
+    } catch (error) {
+      throw new Error("データが取得できませんでした。");
+    }
+  }
 
-  const submitEdit = () => {
-    alert("教材名を編集しました。");
-  };
+  async function postData(textbook: { name: string }) {
+    try {
+      await axios.post(apiPath, textbook);
+    } catch (error) {
+      throw new Error("データを登録できませんでした。");
+    }
+  }
 
-  const onDelete = () => {
-    alert("教材を削除しました。");
-  };
+  /** isLoading, errorハンドリングを記述する */
+  const { data: textbooks } = useSWR(apiPath, fetchData, {
+    onSuccess(data) {
+      return data;
+    },
+    onError(error) {
+      console.log("swr returns error", error);
+    },
+  });
 
   return {
-    editName,
-    setEditName,
-    handleEdit,
-    submitEdit,
-    onDelete,
+    textbooks,
+    postData,
   };
 };
 

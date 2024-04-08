@@ -9,42 +9,62 @@ import {
   ListItemText,
 } from "@mui/material";
 import styles from "./index.module.scss";
-import { useRegister } from "../../containers/useRegister";
+import { Textbook } from "@/pages/api/textbook";
 
 type Props = {
-  listData: Array<string>;
+  listData: Textbook[];
 };
 
-/** TODO: EditDialogが真っ黒になる */
+type ListProps = {
+  value: string;
+  onClick: () => void;
+};
+
 export const RegisteredBook: FC<Props> = ({ listData }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { editName, setEditName, handleEdit, submitEdit, onDelete } =
-    useRegister();
+  const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
+
+  const submitEdit = () => {
+    alert("教材を保存しました");
+    setIsOpen({});
+  };
+
+  const onDelete = () => {
+    alert("教材を削除しました");
+    setIsOpen({});
+  };
 
   return (
     <div className={styles.container}>
       <List className={styles.list}>
-        {listData.map((value, index) => (
-          <div key={index}>
-            <ListItem disablePadding>
-              <ListItemText>{value}</ListItemText>
-              <ListItemSecondaryAction onClick={() => setIsOpen(true)}>
-                <IconButton>
-                  <Icon icon="edit" />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
+        {listData.map((textbook) => (
+          <React.Fragment key={textbook.id}>
+            <MUIListItem
+              value={textbook.name}
+              onClick={() => setIsOpen({ [textbook.id]: true })}
+            />
             <EditDialog
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
+              isOpen={isOpen[textbook.id] || false}
+              onClose={() => setIsOpen({})}
               onSubmit={submitEdit}
               onDelete={onDelete}
-              textBook={editName}
-              onInput={handleEdit}
+              textbook={textbook.name}
             />
-          </div>
+          </React.Fragment>
         ))}
       </List>
     </div>
+  );
+};
+
+const MUIListItem = ({ value, onClick }: ListProps) => {
+  return (
+    <ListItem disablePadding>
+      <ListItemText>{value}</ListItemText>
+      <ListItemSecondaryAction onClick={onClick}>
+        <IconButton>
+          <Icon icon="edit" />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
 };
