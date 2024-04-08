@@ -20,8 +20,6 @@ type ListProps = {
   onClick: () => void;
 };
 
-/** TODO: EditDialogが真っ黒になる */
-/** TODO: EditDialogの初期値が全部同じ。どのリストアイテムかを識別させる必要がある */
 export const RegisteredBook: FC<Props> = ({ listData }) => {
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
 
@@ -45,7 +43,7 @@ export const RegisteredBook: FC<Props> = ({ listData }) => {
               onClick={() => setIsOpen({ [textbook.id]: true })}
             />
             <EditDialog
-              isOpen={isOpen[textbook.id]}
+              isOpen={isOpen[textbook.id] || false}
               onClose={() => setIsOpen({})}
               onSubmit={submitEdit}
               onDelete={onDelete}
