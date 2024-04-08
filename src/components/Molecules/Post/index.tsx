@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { Card } from "@/components/Atoms/Card";
 import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
 import { Button } from "@/components/Atoms/Button";
@@ -13,9 +13,10 @@ type Props = {
   textbook: string;
   time: string;
   content: string;
+  onDelete: () => void;
 };
 
-export const Post: FC<Props> = ({ date, textbook, time, content }) => {
+export const Post = ({ date, textbook, time, content, onDelete }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const modalOpen = () => {
@@ -26,8 +27,8 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
     setIsOpen(false);
   };
 
-  const onSubmit = () => {
-    //削除処理
+  const handleDelete = () => {
+    onDelete();
     onClose();
   };
 
@@ -54,7 +55,7 @@ export const Post: FC<Props> = ({ date, textbook, time, content }) => {
       <DeleteDialog
         isOpen={isOpen}
         onClose={onClose}
-        onSubmit={onSubmit}
+        onSubmit={handleDelete}
         deleteTarget="投稿"
       />
     </Card>
