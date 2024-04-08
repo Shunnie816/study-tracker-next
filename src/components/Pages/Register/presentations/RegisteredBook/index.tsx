@@ -23,16 +23,16 @@ type ListProps = {
 /** TODO: EditDialogが真っ黒になる */
 /** TODO: EditDialogの初期値が全部同じ。どのリストアイテムかを識別させる必要がある */
 export const RegisteredBook: FC<Props> = ({ listData }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
 
   const submitEdit = () => {
     alert("教材を保存しました");
-    setIsOpen(false);
+    setIsOpen({});
   };
 
   const onDelete = () => {
     alert("教材を削除しました");
-    setIsOpen(false);
+    setIsOpen({});
   };
 
   return (
@@ -42,11 +42,11 @@ export const RegisteredBook: FC<Props> = ({ listData }) => {
           <React.Fragment key={textbook.id}>
             <MUIListItem
               value={textbook.name}
-              onClick={() => setIsOpen(true)}
+              onClick={() => setIsOpen({ [textbook.id]: true })}
             />
             <EditDialog
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
+              isOpen={isOpen[textbook.id]}
+              onClose={() => setIsOpen({})}
               onSubmit={submitEdit}
               onDelete={onDelete}
               textbook={textbook.name}
