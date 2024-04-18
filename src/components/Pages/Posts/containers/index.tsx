@@ -18,7 +18,7 @@ export const Posts = () => {
               <React.Fragment key={data.id}>
                 <Post
                   date={data.date}
-                  textbook={data.textbook}
+                  textbook={data.textbook.name}
                   time={data.time}
                   content={data.content}
                   onDelete={() => {}}
