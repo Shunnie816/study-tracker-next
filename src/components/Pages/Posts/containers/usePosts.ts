@@ -14,9 +14,9 @@ export const usePosts = () => {
     }
   }
 
-  async function postData(textbook: { name: string }) {
+  async function postData(data: PostData) {
     try {
-      await axios.post(apiPath, textbook);
+      await axios.post(apiPath, data);
     } catch (error) {
       throw new Error("データを登録できませんでした。");
     }

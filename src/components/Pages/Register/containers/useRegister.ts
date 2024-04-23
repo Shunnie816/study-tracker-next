@@ -1,5 +1,6 @@
 import { Textbook } from "@/pages/api/textbook";
 import axios from "axios";
+import { useMemo } from "react";
 import useSWR from "swr";
 
 export const useRegister = () => {
@@ -23,7 +24,7 @@ export const useRegister = () => {
   }
 
   /** isLoading, errorハンドリングを記述する */
-  const { data: textbooks } = useSWR(apiPath, fetchData, {
+  const { data } = useSWR(apiPath, fetchData, {
     onSuccess(data) {
       return data;
     },
@@ -31,6 +32,10 @@ export const useRegister = () => {
       console.log("swr returns error", error);
     },
   });
+
+  const textbooks = useMemo(() => {
+    return data ?? [];
+  }, [data]);
 
   return {
     textbooks,
