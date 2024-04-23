@@ -79,6 +79,7 @@ export const Register = () => {
             登録済みの教材
           </Typography>
           <div className={styles.list}>
+            {/* TODO: textbooksが[]で来た場合の対処 */}
             {textbooks ? (
               <RegisteredBook listData={textbooks} />
             ) : (

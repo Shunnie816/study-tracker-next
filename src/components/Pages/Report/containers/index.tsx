@@ -13,11 +13,24 @@ import { Select } from "@/components/Atoms/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
 import { TextField } from "@/components/Atoms/TextField";
+import { useRegister } from "../../Register/containers/useRegister";
+import { TextbookSelect } from "../presentations/TextbookSelect";
+import { usePosts } from "../../Posts/containers/usePosts";
+import { v4 as uuidv4 } from "uuid";
+import { formatDate, timeData } from "./utils";
+import { PostData } from "@/pages/api/post";
 
 export const Report = () => {
+  const { textbooks } = useRegister();
+  const { postData } = usePosts();
+
   const methods = useForm<ReportData>({
     resolver: zodResolver(formSchema),
-    defaultValues: { time: "", textbook: "", studyContent: "" },
+    defaultValues: {
+      time: "",
+      textbook: "",
+      studyContent: "",
+    },
   });
   const {
     formState: { errors },
@@ -27,25 +40,37 @@ export const Report = () => {
     reset,
   } = methods;
 
+  /** dataをpostDataの型に成形してsubmitする */
   const onSubmit: SubmitHandler<ReportData> = (data) => {
-    console.log("onsubmit", data);
+    const submitData: PostData = {
+      id: "",
+      date: "",
+      textbook: { id: "", name: "" },
+      time: data.time,
+      content: data.studyContent,
+    };
+
+    /** UUIDの生成 */
+    submitData.id = uuidv4();
+
+    /** 日付取得と成形 */
+    submitData.date = formatDate(new Date());
+
+    /** Textbook型に成形 */
+    const textbook = textbooks.find((textbook) => {
+      return textbook.id === data.textbook;
+    });
+    if (textbook) {
+      submitData.textbook = textbook;
+    } else {
+      throw new Error("教材が見つかりませんでした");
+    }
+
+    postData(submitData);
+
+    /** formSchemaをデフォルト値に戻す */
     reset();
   };
-
-  /** 時間の仮データ */
-  let timeData: Array<string> = [];
-  for (let i: number = 5; i <= 180; i += 5) {
-    let value: string = i.toString();
-    timeData.push(value);
-  }
-
-  /** 教材の仮データ */
-  const textbookData: Array<string> = [
-    "React",
-    "Typescript",
-    "Next.js",
-    "Storybook",
-  ];
 
   return (
     <Container maxWidth="sm" className={styles.container}>
@@ -70,11 +95,11 @@ export const Report = () => {
               control={control}
               name="textbook"
               render={({ field }) => (
-                <Select
+                <TextbookSelect
                   {...field}
                   label={"教材選択"}
                   value={getValues("textbook")}
-                  options={textbookData}
+                  options={textbooks ?? []}
                   error={errors.textbook && true}
                   errorMessage={errors.textbook?.message}
                 />
