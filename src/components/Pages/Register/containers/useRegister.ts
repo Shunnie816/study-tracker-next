@@ -15,7 +15,7 @@ export const useRegister = () => {
     }
   }
 
-  async function postData(textbook: { name: string }) {
+  async function postData(textbook: Textbook) {
     try {
       await axios.post(apiPath, textbook);
     } catch (error) {

@@ -20,6 +20,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisteredBook } from "../presentations/RegisteredBook";
 import { useRegister } from "./useRegister";
+import { v4 as uuidv4 } from "uuid";
 
 export const Register = () => {
   const { textbooks, postData } = useRegister();
@@ -41,7 +42,12 @@ export const Register = () => {
   });
 
   const onSubmit: SubmitHandler<TextBookData> = (data) => {
-    console.log("data", data);
+    /** 教材IDを生成 */
+    const id = uuidv4();
+
+    postData({ id: id, name: data.textbook });
+
+    /** formの値を初期値に戻す */
     reset();
   };
 

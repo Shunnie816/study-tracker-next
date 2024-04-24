@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { v4 as uuidv4 } from "uuid";
 
 export type Textbook = {
   id: string;
@@ -23,8 +22,7 @@ export default function handler(
   if (req.method === "GET") {
     res.status(200).json(textbooks);
   } else if (req.method === "POST") {
-    const { name } = req.body;
-    const id = uuidv4(); /** UUIDの生成 */
+    const { id, name } = req.body;
     const newTextbook: Textbook = { name, id };
     textbooks.push(newTextbook);
     // res.status(201).json(textbooks);
