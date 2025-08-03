@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { HamburgerMenu } from "./index";
 import { Button } from "@/components/Atoms/Button";
 
