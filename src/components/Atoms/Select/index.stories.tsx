@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-import { Select } from "./index";
+import Select from "./index";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Select> = {
@@ -22,7 +22,6 @@ export const TimeSelect: Story = {
     value: "",
     label: "学習時間",
     options: times,
-    menuItemText: "分",
   },
 };
 
