@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -21,17 +21,21 @@ type BaseProps<T> = {
 type SelectProps = React.ComponentPropsWithoutRef<"select">;
 type Props<T> = BaseProps<T> & Omit<SelectProps, keyof BaseProps<T>>;
 
-export default function Select<T>({
-  id,
-  label,
-  value,
-  options,
-  valueKey,
-  labelKey,
-  onChange,
-  error,
-  errorMessage,
-}: Props<T>) {
+/** Note: SelectInnerは実装の中身 */
+function SelectInner<T>(
+  {
+    id,
+    label,
+    value,
+    options,
+    valueKey,
+    labelKey,
+    onChange,
+    error,
+    errorMessage,
+  }: Props<T>,
+  ref: React.Ref<HTMLSelectElement>
+) {
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value);
   };
@@ -45,6 +49,7 @@ export default function Select<T>({
         label={label}
         value={value}
         onChange={handleChange}
+        ref={ref}
       >
         {/*
          * optionsの中身がstring[]であればそのまま文字列を表示
@@ -73,3 +78,8 @@ export default function Select<T>({
     </FormControl>
   );
 }
+
+/** Selectコンポーネントは、SelectInnerをforwardRefでラップしてrefを渡す */
+export const Select = forwardRef(SelectInner) as <T>(
+  props: Props<T> & { ref?: React.Ref<HTMLSelectElement> }
+) => ReturnType<typeof SelectInner>;
