@@ -18,6 +18,7 @@ import { formatDate, timeData } from "./utils";
 import { PostData } from "@/pages/api/post";
 import FormSelect from "@/components/Molecules/FormSelect";
 import FormTextField from "@/components/Molecules/FormTextField";
+import { Textbook } from "@/pages/api/textbook";
 
 export const Report = () => {
   const { textbooks } = useRegister();
@@ -35,7 +36,6 @@ export const Report = () => {
     formState: { errors },
     control,
     handleSubmit,
-    getValues,
     reset,
   } = methods;
 
@@ -77,7 +77,7 @@ export const Report = () => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formsWrapper}>
-            <FormSelect
+            <FormSelect<string, ReportData>
               name="time"
               control={control}
               options={timeData}
@@ -85,7 +85,7 @@ export const Report = () => {
               error={!!errors.time}
               errorMessage={errors.time?.message}
             />
-            <FormSelect
+            <FormSelect<Textbook, ReportData>
               name="textbook"
               control={control}
               options={textbooks}
@@ -95,7 +95,7 @@ export const Report = () => {
               error={!!errors.textbook}
               errorMessage={errors.textbook?.message}
             />
-            <FormTextField
+            <FormTextField<ReportData>
               name="studyContent"
               control={control}
               label="学習内容"

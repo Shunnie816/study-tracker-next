@@ -1,8 +1,12 @@
-import Select from "@/components/Atoms/Select";
+import { Select } from "@/components/Atoms/Select";
 import React from "react";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
-type FormSelectProps<O, T extends FieldValues = FieldValues> = {
+/**
+ * O: MenuItemに格納する値の型
+ * T: React Hook FormのFieldValues型(formのデータ型)
+ */
+type FormSelectProps<O, T extends FieldValues> = {
   name: Path<T>;
   control: Control<T>;
   options: O[];
@@ -14,7 +18,7 @@ type FormSelectProps<O, T extends FieldValues = FieldValues> = {
   errorMessage?: string;
 };
 
-export default function FormSelect<O, T extends FieldValues = FieldValues>({
+export default function FormSelect<O, T extends FieldValues>({
   name,
   control,
   options,
