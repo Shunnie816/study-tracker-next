@@ -9,16 +9,15 @@ import {
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Atoms/Button";
-import { Select } from "@/components/Atoms/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
-import { TextField } from "@/components/Atoms/TextField";
 import { useRegister } from "../../Register/containers/useRegister";
-import { TextbookSelect } from "../presentations/TextbookSelect";
 import { usePosts } from "../../Posts/containers/usePosts";
 import { v4 as uuidv4 } from "uuid";
 import { formatDate, timeData } from "./utils";
 import { PostData } from "@/pages/api/post";
+import FormSelect from "@/components/Molecules/FormSelect";
+import FormTextField from "@/components/Molecules/FormTextField";
 
 export const Report = () => {
   const { textbooks } = useRegister();
@@ -67,6 +66,7 @@ export const Report = () => {
     }
 
     postData(submitData);
+    console.log("Submitted Data:", submitData);
 
     /** formSchemaをデフォルト値に戻す */
     reset();
@@ -77,46 +77,30 @@ export const Report = () => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.formsWrapper}>
-            <Controller
-              control={control}
+            <FormSelect
               name="time"
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  label={"学習時間"}
-                  value={getValues("time")}
-                  options={timeData}
-                  error={errors.time && true}
-                  errorMessage={errors.time?.message}
-                />
-              )}
-            />
-            <Controller
               control={control}
+              options={timeData}
+              label="学習時間"
+              error={!!errors.time}
+              errorMessage={errors.time?.message}
+            />
+            <FormSelect
               name="textbook"
-              render={({ field }) => (
-                <TextbookSelect
-                  {...field}
-                  label={"教材選択"}
-                  value={getValues("textbook")}
-                  options={textbooks ?? []}
-                  error={errors.textbook && true}
-                  errorMessage={errors.textbook?.message}
-                />
-              )}
-            />
-            <Controller
               control={control}
+              options={textbooks}
+              valueKey="id"
+              labelKey="name"
+              label="教材"
+              error={!!errors.textbook}
+              errorMessage={errors.textbook?.message}
+            />
+            <FormTextField
               name="studyContent"
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label={"学習内容を入力"}
-                  value={getValues("studyContent")}
-                  error={errors.studyContent && true}
-                  errorMessage={errors.studyContent?.message}
-                />
-              )}
+              control={control}
+              label="学習内容"
+              error={!!errors.studyContent}
+              errorMessage={errors.studyContent?.message}
             />
           </div>
           <div className={styles.button}>
