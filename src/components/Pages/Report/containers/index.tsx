@@ -1,14 +1,8 @@
 "use client";
 import React from "react";
-import {
-  Controller,
-  FormProvider,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Container from "@mui/material/Container";
 import styles from "./index.module.scss";
-import { Button } from "@/components/Atoms/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
 import { useRegister } from "../../Register/containers/useRegister";
@@ -16,9 +10,7 @@ import { usePosts } from "../../Posts/containers/usePosts";
 import { v4 as uuidv4 } from "uuid";
 import { formatDate, timeData } from "./utils";
 import { PostData } from "@/pages/api/post";
-import FormSelect from "@/components/Molecules/FormSelect";
-import FormTextField from "@/components/Molecules/FormTextField";
-import { Textbook } from "@/pages/api/textbook";
+import ReportForm from "@/components/Organisms/ReportForm";
 
 export const Report = () => {
   const { textbooks } = useRegister();
@@ -40,7 +32,7 @@ export const Report = () => {
   } = methods;
 
   /** dataをpostDataの型に成形してsubmitする */
-  const onSubmit: SubmitHandler<ReportData> = (data) => {
+  const onSubmit = handleSubmit((data: ReportData) => {
     const submitData: PostData = {
       id: "",
       date: "",
@@ -70,46 +62,18 @@ export const Report = () => {
 
     /** formSchemaをデフォルト値に戻す */
     reset();
-  };
+  });
 
   return (
     <Container maxWidth="sm" className={styles.container}>
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.formsWrapper}>
-            <FormSelect<string, ReportData>
-              name="time"
-              control={control}
-              options={timeData}
-              label="学習時間"
-              error={!!errors.time}
-              errorMessage={errors.time?.message}
-            />
-            <FormSelect<Textbook, ReportData>
-              name="textbook"
-              control={control}
-              options={textbooks}
-              valueKey="id"
-              labelKey="name"
-              label="教材"
-              error={!!errors.textbook}
-              errorMessage={errors.textbook?.message}
-            />
-            <FormTextField<ReportData>
-              name="studyContent"
-              control={control}
-              label="学習内容"
-              error={!!errors.studyContent}
-              errorMessage={errors.studyContent?.message}
-            />
-          </div>
-          <div className={styles.button}>
-            <Button variant="contained" type="submit" size="large">
-              確定
-            </Button>
-          </div>
-        </form>
-      </FormProvider>
+      <ReportForm
+        methods={methods}
+        control={control}
+        errors={errors}
+        textbooks={textbooks}
+        timeData={timeData}
+        onSubmit={onSubmit}
+      />
     </Container>
   );
 };
