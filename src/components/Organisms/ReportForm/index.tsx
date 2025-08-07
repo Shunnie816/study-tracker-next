@@ -4,7 +4,6 @@ import {
   UseFormReturn,
   FieldErrors,
   Control,
-  SubmitHandler,
 } from "react-hook-form";
 import FormSelect from "@/components/Molecules/FormSelect";
 import FormTextField from "@/components/Molecules/FormTextField";
@@ -22,6 +21,7 @@ type ReportFormProps = {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 
+/** NOTE: 再利用するつもりはないので、nameやlabelは直接記述している */
 export default function ReportForm({
   methods,
   control,
