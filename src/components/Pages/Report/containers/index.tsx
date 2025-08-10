@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
-import Container from "@mui/material/Container";
-import styles from "./index.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
 import { useRegister } from "../../Register/containers/useRegister";
@@ -11,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { formatDate, timeData } from "./utils";
 import { PostData } from "@/pages/api/post";
 import ReportForm from "@/components/Organisms/ReportForm";
+import { SingleColumn } from "@/components/Templates/SingleColumn";
 
 export const Report = () => {
   const { textbooks } = useRegister();
@@ -65,7 +64,7 @@ export const Report = () => {
   });
 
   return (
-    <Container maxWidth="sm" className={styles.container}>
+    <SingleColumn title="学習記録">
       <ReportForm
         methods={methods}
         control={control}
@@ -74,6 +73,6 @@ export const Report = () => {
         timeData={timeData}
         onSubmit={onSubmit}
       />
-    </Container>
+    </SingleColumn>
   );
 };
