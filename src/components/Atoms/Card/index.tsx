@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Card as MUICard } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,7 @@ export type Props = {
   title: string;
 };
 
-export const Card: FC<Props> = ({ children, title }) => {
+export function Card({ children, title }: Props) {
   return (
     <MUICard>
       <CardContent>
@@ -24,4 +24,4 @@ export const Card: FC<Props> = ({ children, title }) => {
       </CardContent>
     </MUICard>
   );
-};
+}

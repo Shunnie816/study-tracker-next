@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
 import { DeleteDialog } from "../DeleteDialog";
@@ -15,13 +15,13 @@ type Props = {
   textbook: string;
 };
 
-export const EditDialog: FC<Props> = ({
+export function EditDialog({
   isOpen,
   onClose,
   onSubmit,
   onDelete,
   textbook,
-}) => {
+}: Props) {
   const { control } = useFormContext<EditTextBookData>();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
@@ -81,4 +81,4 @@ export const EditDialog: FC<Props> = ({
       </form>
     </Modal>
   );
-};
+}

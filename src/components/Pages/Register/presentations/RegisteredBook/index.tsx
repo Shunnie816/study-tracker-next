@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { Icon } from "@/components/Atoms/Icon";
 import { EditDialog } from "@/components/Molecules/EditDialog";
 import {
@@ -20,7 +20,7 @@ type ListProps = {
   onClick: () => void;
 };
 
-export const RegisteredBook: FC<Props> = ({ listData }) => {
+export function RegisteredBook({ listData }: Props) {
   const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
 
   const submitEdit = () => {
@@ -54,7 +54,7 @@ export const RegisteredBook: FC<Props> = ({ listData }) => {
       </List>
     </div>
   );
-};
+}
 
 const MUIListItem = ({ value, onClick }: ListProps) => {
   return (

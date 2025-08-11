@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import styles from "./index.module.scss";
 import {
@@ -24,14 +24,14 @@ type Props = {
   ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
 };
 
-export const HamburgerMenu: FC<Props> = ({
+export function HamburgerMenu({
   isOpen,
   setIsOpen,
   menuItems,
   icons,
   urlPath,
   toggleDrawer,
-}) => {
+}: Props) {
   return (
     <div>
       <SwipeableDrawer
@@ -69,4 +69,4 @@ export const HamburgerMenu: FC<Props> = ({
       </SwipeableDrawer>
     </div>
   );
-};
+}

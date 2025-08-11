@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { List as MUIList } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -13,7 +13,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const List: FC<Props> = ({ items, icon, onClick }) => {
+export function List({ items, icon, onClick }: Props) {
   return (
     <MUIList className={styles.container}>
       {items.map((value, index) => (
@@ -32,4 +32,4 @@ export const List: FC<Props> = ({ items, icon, onClick }) => {
       ))}
     </MUIList>
   );
-};
+}

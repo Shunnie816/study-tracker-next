@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,9 +13,7 @@ import { clns } from "@/libs/utils";
 import { useDeviceSize } from "@/libs/hooks/useDeviceSize";
 import { useHamburgerMenu } from "./useHamburgerMenu";
 
-type Props = {};
-
-export const Header: FC<Props> = () => {
+export function Header() {
   const { isPC } = useDeviceSize();
   const { isOpen, setIsOpen, toggleDrawer, menuItems, icons, urlPath } =
     useHamburgerMenu();
@@ -72,4 +70,4 @@ export const Header: FC<Props> = () => {
       </AppBar>
     </Box>
   );
-};
+}

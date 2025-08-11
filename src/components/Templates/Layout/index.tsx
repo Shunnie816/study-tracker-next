@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React from "react";
 import { Header } from "../Header";
 import styles from "./index.module.scss";
 import { Footer } from "../Footer";
@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Layout: FC<Props> = ({ children }) => {
+export function Layout({ children }: Props) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -19,4 +19,4 @@ export const Layout: FC<Props> = ({ children }) => {
       <Footer />
     </ThemeProvider>
   );
-};
+}

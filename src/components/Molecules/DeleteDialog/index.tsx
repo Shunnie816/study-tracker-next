@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
-
 import styles from "./index.module.scss";
 
 type Props = {
@@ -11,12 +10,12 @@ type Props = {
   deleteTarget: "投稿" | "教材";
 };
 
-export const DeleteDialog: FC<Props> = ({
+export function DeleteDialog({
   isOpen,
   onClose,
   onSubmit,
   deleteTarget,
-}) => {
+}: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="削除してよろしいですか？">
       <div className={styles.buttonWrapper}>
@@ -29,4 +28,4 @@ export const DeleteDialog: FC<Props> = ({
       </div>
     </Modal>
   );
-};
+}
