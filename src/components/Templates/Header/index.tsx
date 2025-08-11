@@ -1,22 +1,24 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Icon } from "@/components/Atoms/Icon";
-import { HamburgerMenu } from "@/components/Molecules/HamburgerMenu";
+import { HamburgerMenu } from "@/components/Organisms/HamburgerMenu";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Atoms/Button";
 import Link from "next/link";
 import { clns } from "@/libs/utils";
 import { useDeviceSize } from "@/libs/hooks/useDeviceSize";
+import { useHamburgerMenu } from "./useHamburgerMenu";
 
 type Props = {};
 
 export const Header: FC<Props> = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isPC } = useDeviceSize();
+  const { isOpen, setIsOpen, toggleDrawer, menuItems, icons, urlPath } =
+    useHamburgerMenu();
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", zIndex: "100" }}>
@@ -57,7 +59,14 @@ export const Header: FC<Props> = () => {
             <a onClick={() => setIsOpen(true)}>
               <Icon icon={"menu"} color="inherit" />
             </a>
-            <HamburgerMenu state={isOpen} setState={setIsOpen} />
+            <HamburgerMenu
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              menuItems={menuItems}
+              icons={icons}
+              urlPath={urlPath}
+              toggleDrawer={toggleDrawer}
+            />
           </div>
         </Toolbar>
       </AppBar>

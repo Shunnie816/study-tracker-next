@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useHamburgerMenu } from "@/components/Templates/Header/useHamburgerMenu";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { HamburgerMenu } from "./index";
 import { Button } from "@/components/Atoms/Button";
@@ -11,13 +11,22 @@ const meta: Meta<typeof HamburgerMenu> = {
 export default meta;
 type Story = StoryObj<typeof HamburgerMenu>;
 
-/** storybook表示するならハンバーガーメニューの設計を考え直す必要があるかも */
 const Component: Story["render"] = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { isOpen, setIsOpen, menuItems, icons, urlPath, toggleDrawer } =
+    useHamburgerMenu();
   return (
     <>
-      <Button variant="contained">Open HamburgerMenu</Button>
-      <HamburgerMenu state={isOpen} setState={setIsOpen} />
+      <Button variant="contained" onClick={() => setIsOpen(true)}>
+        Open HamburgerMenu
+      </Button>
+      <HamburgerMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        menuItems={menuItems}
+        icons={icons}
+        urlPath={urlPath}
+        toggleDrawer={toggleDrawer}
+      />
     </>
   );
 };
