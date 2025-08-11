@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Select } from "./index";
 
@@ -22,7 +22,6 @@ export const TimeSelect: Story = {
     value: "",
     label: "学習時間",
     options: times,
-    menuItemText: "分",
   },
 };
 

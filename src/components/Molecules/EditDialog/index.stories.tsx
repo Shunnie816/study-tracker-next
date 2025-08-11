@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { EditDialog } from "./index";
 import { Button } from "@/components/Atoms/Button";
 import { Controller, useForm } from "react-hook-form";
