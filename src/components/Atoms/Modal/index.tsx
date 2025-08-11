@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 
@@ -11,7 +11,7 @@ export type Props = {
   children: React.ReactNode;
 };
 
-export const Modal: FC<Props> = ({ isOpen, onClose, title, children }) => {
+export function Modal({ isOpen, onClose, title, children }: Props) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle style={{ padding: "16px 24px 8px 24px" }}>
@@ -20,4 +20,4 @@ export const Modal: FC<Props> = ({ isOpen, onClose, title, children }) => {
       <div className={styles.contentWrapper}>{children}</div>
     </Dialog>
   );
-};
+}

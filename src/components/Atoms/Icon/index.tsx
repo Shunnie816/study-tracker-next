@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { IconProps } from "@mui/material/Icon";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -31,7 +31,7 @@ const iconMap = {
   time: AccessTimeIcon,
 };
 
-export const Icon: FC<Props> = ({ icon, color, fontSize }) => {
+export function Icon({ icon, color, fontSize }: Props) {
   const Icon = iconMap[icon] || null;
   return Icon && <Icon color={color} fontSize={fontSize} />;
-};
+}

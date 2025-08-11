@@ -1,15 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 
 type Props = {
   text: string;
 };
 
-/** TODO: 他のサイズとかにも対応させてく */
-export const Heading: FC<Props> = ({ text }) => {
+export function Heading({ text }: Props) {
   return (
     <Typography variant="h4" component="h1" gutterBottom>
       {text}
     </Typography>
   );
-};
+}

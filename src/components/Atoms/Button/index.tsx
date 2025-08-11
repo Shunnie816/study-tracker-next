@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button as MUIButton, ButtonProps } from "@mui/material";
 
 type BaseProps = {
@@ -15,7 +15,7 @@ type ButtonType = React.ComponentPropsWithoutRef<"button">;
 /** 基本はMUIのButtonのプロパティを使いつつ、一部デフォルトのbuttonのonClickを使う */
 type Props = BaseProps & ButtonProps & Omit<ButtonType, keyof BaseProps>;
 
-export const Button: FC<Props> = ({
+export function Button({
   variant = "contained",
   color,
   size,
@@ -23,7 +23,7 @@ export const Button: FC<Props> = ({
   children,
   fullWidth = true,
   ...rest
-}) => {
+}: Props) {
   return (
     <MUIButton
       fullWidth={fullWidth}
@@ -36,4 +36,4 @@ export const Button: FC<Props> = ({
       {children}
     </MUIButton>
   );
-};
+}
