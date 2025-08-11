@@ -3,15 +3,27 @@
 
   .mobileHeader {
     padding-top: var(--spacing-1);
+
+    @media screen and (min-width: $breakpoint) {
+      &.isPC {
+        display: none;
+      }
+    }
   }
 
   .pcHeader {
-    display: flex;
-    padding-right: var(--spacing-5);
-    width: 50%;
+    display: none;
 
     .link {
       color: var(--white);
+    }
+
+    @media screen and (min-width: $breakpoint) {
+      .isPC {
+        display: flex;
+        padding-right: var(--spacing-5);
+        width: 50%;
+      }
     }
   }
 }
