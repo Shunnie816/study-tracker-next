@@ -10,8 +10,8 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
     "mock": "firebase emulators:start --import=./src/emulators --export-on-exit"
   },
   "dependencies": {
