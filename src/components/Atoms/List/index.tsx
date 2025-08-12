@@ -4,12 +4,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import IconButton from "@mui/material/IconButton";
-import { Icon } from "@/components/Atoms/Icon";
 import styles from "./index.module.scss";
+import { Icon } from "../Icon";
 
 type Props = {
   items: Array<string>;
-  icon: boolean;
+  icon?: boolean;
   onClick: () => void;
 };
 
