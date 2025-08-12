@@ -1,0 +1,52 @@
+import { Textbook } from "@/pages/api/textbook";
+import { useMemo } from "react";
+import useSWR from "swr";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { COLLECTIONS } from "../firebase/constants";
+
+export function useRegister() {
+  const apiPath = "textbooks";
+
+  async function fetchTextbooks() {
+    /** Firestoreからデータを取得 */
+    const textbookData = await getDocs(collection(db, COLLECTIONS.TEXTBOOKS));
+    const textbooks = textbookData.docs.map((doc) => ({
+      id: doc.id,
+      name: doc.data().name,
+    })) as Textbook[];
+    return textbooks;
+  }
+
+  // TODO: idは登録しないので、idを除外する
+  async function postData(textbook: Textbook) {
+    /** Firestoreに教材データを登録 */
+    try {
+      await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
+        ...textbook,
+      });
+    } catch (e) {
+      console.error("Error adding textbook: ", e);
+    }
+  }
+
+  const { data } = useSWR(apiPath, fetchTextbooks, {
+    onSuccess(data) {
+      return data;
+    },
+    onError(error) {
+      console.log("Error fetching textbooks: ", error);
+    },
+  });
+
+  const textbooks = useMemo(() => {
+    return data ?? [];
+  }, [data]);
+
+  return {
+    textbooks,
+    postData,
+  };
+}
+
+export type UseRegister = ReturnType<typeof useRegister>;

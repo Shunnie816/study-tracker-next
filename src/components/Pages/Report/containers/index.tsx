@@ -3,9 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReportData, formSchema } from "./formSchema";
-import { useRegister } from "../../Register/containers/useRegister";
-import { usePosts } from "../../Posts/containers/usePosts";
-import { v4 as uuidv4 } from "uuid";
+import { useRegister } from "../../../../libs/hooks/useRegister";
+import { usePosts } from "../../../../libs/hooks/usePosts";
 import { formatDate, timeData } from "./utils";
 import { PostData } from "@/pages/api/post";
 import ReportForm from "@/components/Organisms/ReportForm";
@@ -33,15 +32,11 @@ export const Report = () => {
   /** dataをpostDataの型に成形してsubmitする */
   const onSubmit = handleSubmit((data: ReportData) => {
     const submitData: PostData = {
-      id: "",
       date: "",
       textbook: { id: "", name: "" },
       time: data.time,
       content: data.studyContent,
     };
-
-    /** UUIDの生成 */
-    submitData.id = uuidv4();
 
     /** 日付取得と成形 */
     submitData.date = formatDate(new Date());
@@ -56,11 +51,13 @@ export const Report = () => {
       throw new Error("教材が見つかりませんでした");
     }
 
-    postData(submitData);
-    console.log("Submitted Data:", submitData);
-
-    /** formSchemaをデフォルト値に戻す */
-    reset();
+    postData(submitData)
+      .then(() => {
+        reset();
+      })
+      .catch((error) => {
+        console.error("Error submitting report:", error);
+      });
   });
 
   return (

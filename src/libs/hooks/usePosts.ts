@@ -1,10 +1,14 @@
 import { PostData } from "@/pages/api/post";
+import { addDoc, collection } from "@firebase/firestore";
 import axios from "axios";
 import useSWR from "swr";
+import { db } from "../firebase";
+import { COLLECTIONS } from "../firebase/constants";
 
 export const usePosts = () => {
-  const apiPath = "/api/post";
+  const apiPath = "posts";
 
+  // TODO: firestoreに置き換え
   async function fetchData(): Promise<PostData[]> {
     try {
       const res = await axios.get(apiPath);
@@ -15,10 +19,11 @@ export const usePosts = () => {
   }
 
   async function postData(data: PostData) {
+    /** Firestoreに教材データを登録 */
     try {
-      await axios.post(apiPath, data);
-    } catch (error) {
-      throw new Error("データを登録できませんでした。");
+      await addDoc(collection(db, COLLECTIONS.POSTS), { ...data });
+    } catch (e) {
+      console.error("Error adding post: ", e);
     }
   }
 
@@ -38,5 +43,4 @@ export const usePosts = () => {
   };
 };
 
-/** TODO: このコード調べる */
 export type UsePosts = ReturnType<typeof usePosts>;

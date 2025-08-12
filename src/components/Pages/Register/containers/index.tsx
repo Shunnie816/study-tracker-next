@@ -19,7 +19,7 @@ import {
 } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisteredBook } from "../presentations/RegisteredBook";
-import { useRegister } from "./useRegister";
+import { useRegister } from "../../../../libs/hooks/useRegister";
 import { v4 as uuidv4 } from "uuid";
 
 export const Register = () => {

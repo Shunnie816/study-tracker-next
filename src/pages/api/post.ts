@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Textbook } from "./textbook";
 
 export type PostData = {
-  id: string;
+  // TODO: idは削除
+  id?: string;
   date: string;
   textbook: Textbook;
   time: string;
