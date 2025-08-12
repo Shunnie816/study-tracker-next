@@ -36,7 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # emulators
-/src/emulators/data.ts
+/src/emulators/
 
 # firebase
 firebase-debug.log
