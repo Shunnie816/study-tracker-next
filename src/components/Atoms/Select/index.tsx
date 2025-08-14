@@ -1,9 +1,9 @@
-import React, { forwardRef } from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import { Select as MUISelect, SelectChangeEvent } from "@mui/material";
 import { FormHelperText } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import React, { forwardRef } from "react";
 
 type BaseProps<T> = {
   label: string;
@@ -12,7 +12,7 @@ type BaseProps<T> = {
   options: T[];
   valueKey?: keyof T;
   labelKey?: keyof T;
-  /**MenuItemに'分'などを付け足したいときに使用 */
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: string) => void;
   error?: boolean;
   errorMessage?: string;
@@ -81,5 +81,6 @@ function SelectInner<T>(
 
 /** Selectコンポーネントは、SelectInnerをforwardRefでラップしてrefを渡す */
 export const Select = forwardRef(SelectInner) as <T>(
+  // eslint-disable-next-line no-unused-vars
   props: Props<T> & { ref?: React.Ref<HTMLSelectElement> }
 ) => ReturnType<typeof SelectInner>;

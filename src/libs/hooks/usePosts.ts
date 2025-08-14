@@ -1,7 +1,7 @@
-import { PostData } from "@/pages/api/post";
 import { addDoc, collection } from "@firebase/firestore";
 import axios from "axios";
 import useSWR from "swr";
+import { PostData } from "@/pages/api/post";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 

@@ -1,15 +1,14 @@
 "use client";
 import React from "react";
-import styles from "./index.module.scss";
-import { Heading } from "@/components/Atoms/Heading";
 import { Card } from "@/components/Atoms/Card";
+import { Heading } from "@/components/Atoms/Heading";
+import styles from "./index.module.scss";
 import { useStudyLog } from "./useStudyLog";
-import { Textbook } from "@/pages/api/textbook";
 
-type LogData = {
-  textbook: Textbook;
-  time: string;
-};
+// type LogData = {
+//   textbook: Textbook;
+//   time: string;
+// };
 
 export const StudyLog = () => {
   const { data } = useStudyLog();

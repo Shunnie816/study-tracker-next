@@ -1,9 +1,9 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import ReportForm from "./index";
 import { useForm } from "react-hook-form";
 import type { ReportData } from "@/components/Pages/Report/containers/formSchema";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
+import ReportForm from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof ReportForm> = {
   component: ReportForm,

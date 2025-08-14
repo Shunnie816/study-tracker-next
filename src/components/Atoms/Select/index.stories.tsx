@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Select } from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Select> = {

@@ -1,7 +1,7 @@
-import React from "react";
 import { Card as MUICard } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import React from "react";
 
 export type Props = {
   children: React.ReactNode;

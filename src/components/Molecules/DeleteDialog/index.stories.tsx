@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/nextjs";
-import { DeleteDialog } from "./index";
 import { Button } from "@/components/Atoms/Button";
+import { DeleteDialog } from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof DeleteDialog> = {

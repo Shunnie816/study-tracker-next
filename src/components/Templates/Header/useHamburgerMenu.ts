@@ -1,5 +1,5 @@
-import { IconType } from "@/components/Atoms/Icon";
 import { useState } from "react";
+import { IconType } from "@/components/Atoms/Icon";
 
 /**
  * ハンバーガーメニューの開閉状態を管理するカスタムフック

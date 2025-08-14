@@ -1,6 +1,6 @@
-import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
+import React from "react";
 
 import styles from "./index.module.scss";
 
