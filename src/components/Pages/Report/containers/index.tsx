@@ -21,6 +21,7 @@ export const Report = () => {
       textbook: "",
       studyContent: "",
     },
+    mode: "onBlur",
   });
   const {
     formState: { errors },
