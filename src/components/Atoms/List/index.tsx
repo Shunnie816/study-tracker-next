@@ -1,15 +1,15 @@
-import React from "react";
 import { List as MUIList } from "@mui/material";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import IconButton from "@mui/material/IconButton";
-import { Icon } from "@/components/Atoms/Icon";
+import ListItem from "@mui/material/ListItem";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import ListItemText from "@mui/material/ListItemText";
+import React from "react";
+import { Icon } from "../Icon";
 import styles from "./index.module.scss";
 
 type Props = {
   items: Array<string>;
-  icon: boolean;
+  icon?: boolean;
   onClick: () => void;
 };
 

@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import styles from "./index.module.scss";
 import { Heading } from "@/components/Atoms/Heading";
 import { Post } from "@/components/Molecules/Post";
 import { usePosts } from "../../../../libs/hooks/usePosts";
+import styles from "./index.module.scss";
 
 export const Posts = () => {
-  const { posts, postData } = usePosts();
+  const { posts } = usePosts();
 
   return (
     <div className={styles.container}>

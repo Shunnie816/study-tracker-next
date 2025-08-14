@@ -5,9 +5,9 @@ import {
   FieldErrors,
   Control,
 } from "react-hook-form";
+import { Button } from "@/components/Atoms/Button";
 import FormSelect from "@/components/Molecules/FormSelect";
 import FormTextField from "@/components/Molecules/FormTextField";
-import { Button } from "@/components/Atoms/Button";
 import { ReportData } from "@/components/Pages/Report/containers/formSchema";
 import { Textbook } from "@/pages/api/textbook";
 import styles from "./index.module.scss";
@@ -18,6 +18,7 @@ type ReportFormProps = {
   errors: FieldErrors<ReportData>;
   textbooks: Textbook[];
   timeData: string[];
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 };
 

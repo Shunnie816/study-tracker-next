@@ -1,12 +1,12 @@
-import React from "react";
-import { IconProps } from "@mui/material/Icon";
-import EditIcon from "@mui/icons-material/Edit";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import EditIcon from "@mui/icons-material/Edit";
 import LoginIcon from "@mui/icons-material/Login";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SchoolIcon from "@mui/icons-material/School";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { IconProps } from "@mui/material/Icon";
+import React from "react";
 
 export type IconType =
   | "edit"

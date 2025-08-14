@@ -1,12 +1,11 @@
-import React, { forwardRef } from "react";
 import { TextField as MUITextField, TextFieldProps } from "@mui/material";
+import React, { forwardRef } from "react";
 
 type Variant = "outlined" | "filled" | "standard";
 
 type BaseProps = {
-  label: string;
   variant?: Variant;
-  value: string;
+  // eslint-disable-next-line no-unused-vars
   onChange: (value: string) => void; // 追加
   error?: boolean;
   errorMessage?: string;

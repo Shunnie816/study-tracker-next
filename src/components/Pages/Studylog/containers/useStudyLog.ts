@@ -1,8 +1,7 @@
+import axios from "axios";
+import useSWR from "swr";
 import { PostData } from "@/pages/api/post";
 import { Textbook } from "@/pages/api/textbook";
-import axios from "axios";
-import { text } from "stream/consumers";
-import useSWR from "swr";
 
 export const useStudyLog = () => {
   const apiPathToPost = "/api/post";

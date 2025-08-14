@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
-import { DeleteDialog } from "../DeleteDialog";
 import { TextField } from "@/components/Atoms/TextField";
-import styles from "./index.module.scss";
-import { Controller, useFormContext } from "react-hook-form";
 import { EditTextBookData } from "@/components/Pages/Register/containers/formSchema";
+import { DeleteDialog } from "../DeleteDialog";
+import styles from "./index.module.scss";
 
 type Props = {
   isOpen: boolean;

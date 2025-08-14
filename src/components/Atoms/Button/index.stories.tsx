@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs";
-
 import { Button } from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Button> = {
@@ -51,5 +50,13 @@ export const Delete: Story = {
     variant: "outlined",
     color: "error",
     size: "small",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    ...Standard.args,
+    variant: "contained",
+    disabled: true,
   },
 };

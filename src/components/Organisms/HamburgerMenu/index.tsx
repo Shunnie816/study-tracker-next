@@ -1,7 +1,4 @@
 "use client";
-import React from "react";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import styles from "./index.module.scss";
 import {
   Box,
   List,
@@ -10,8 +7,11 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Icon, IconType } from "@/components/Atoms/Icon";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Link from "next/link";
+import React from "react";
+import { Icon, IconType } from "@/components/Atoms/Icon";
+import styles from "./index.module.scss";
 
 type Props = {
   isOpen: boolean;
@@ -20,7 +20,9 @@ type Props = {
   icons: IconType[];
   urlPath: string[];
   toggleDrawer: (
+    // eslint-disable-next-line no-unused-vars
     open: boolean
+    // eslint-disable-next-line no-unused-vars
   ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
 };
 
