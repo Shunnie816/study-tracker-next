@@ -11,6 +11,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof ReportForm> = {
   component: ReportForm,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "学習報告フォームのOrganismコンポーネント。バリデーションや教材選択に対応。",
+      },
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof ReportForm>;

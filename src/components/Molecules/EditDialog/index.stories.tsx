@@ -7,6 +7,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof EditDialog> = {
   component: EditDialog,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "編集ダイアログ用のMoleculeコンポーネント。編集・削除・バリデーションに対応。",
+      },
+    },
+  },
 };
 
 export default meta;

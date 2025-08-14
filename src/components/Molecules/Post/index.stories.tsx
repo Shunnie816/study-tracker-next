@@ -4,6 +4,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Post> = {
   component: Post,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "学習記録表示用のMoleculeコンポーネント。日付・教材・内容などを表示。",
+      },
+    },
+  },
 };
 
 export default meta;
