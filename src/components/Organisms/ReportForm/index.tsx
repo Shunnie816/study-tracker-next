@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/Atoms/Button";
 import FormSelect from "@/components/Molecules/FormSelect";
 import FormTextField from "@/components/Molecules/FormTextField";
-import { ReportData } from "@/components/Pages/Report/containers/formSchema";
+import { ReportData } from "@/components/Pages/Report/formSchema";
 import { Textbook } from "@/pages/api/textbook";
 import styles from "./index.module.scss";
 

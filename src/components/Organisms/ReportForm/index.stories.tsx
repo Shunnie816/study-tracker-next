@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {
   formSchema,
   type ReportData,
-} from "@/components/Pages/Report/containers/formSchema";
+} from "@/components/Pages/Report/formSchema";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import ReportForm from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
