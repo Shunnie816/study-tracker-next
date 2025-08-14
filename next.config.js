@@ -1,4 +1,4 @@
-const path = require("path");
+import path from "path";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,8 +6,8 @@ const nextConfig = {
   basePath: "/study-tracker",
   sassOptions: {
     additionalData: `@import "@/assets/styles/breakpoint.scss";`,
-    includePaths: [path.join(__dirname, "src")],
+    includePaths: [path.join(process.cwd(), "src")],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
