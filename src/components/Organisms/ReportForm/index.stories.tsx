@@ -1,6 +1,10 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
-import type { ReportData } from "@/components/Pages/Report/containers/formSchema";
+import {
+  formSchema,
+  type ReportData,
+} from "@/components/Pages/Report/containers/formSchema";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import ReportForm from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
@@ -19,12 +23,13 @@ const timeData = ["30分", "1時間", "2時間"];
 
 const Template: Story["render"] = (args) => {
   const methods = useForm<ReportData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       time: "",
       textbook: "",
       studyContent: "",
     },
-    mode: "onChange",
+    mode: "onBlur",
   });
   return (
     <SingleColumn title="SingleColumn">
