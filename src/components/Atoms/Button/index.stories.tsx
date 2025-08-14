@@ -53,3 +53,11 @@ export const Delete: Story = {
     size: "small",
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    ...Standard.args,
+    variant: "contained",
+    disabled: true,
+  },
+};
