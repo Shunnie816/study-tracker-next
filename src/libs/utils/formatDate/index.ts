@@ -1,12 +1,4 @@
 /**
- * 可変長引数でクラス名を受け取り、条件付きで有効なクラスのみをスペース区切りで返す
- * 例: classNames("a", isActive && "b", isError && "c")
- */
-export function clns(...args: unknown[]): string {
-  return args.filter(Boolean).join(" ");
-}
-
-/**
  * Date型の日付をフォーマットして文字列で返す
  * @param date
  * @returns ex: 2023/03/15 12:30:45

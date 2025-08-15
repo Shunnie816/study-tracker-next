@@ -9,7 +9,7 @@ import { Button } from "@/components/Atoms/Button";
 import { Icon } from "@/components/Atoms/Icon";
 import { HamburgerMenu } from "@/components/Organisms/HamburgerMenu";
 import { useDeviceSize } from "@/libs/hooks/useDeviceSize";
-import { clns } from "@/libs/utils";
+import { clns } from "@/libs/utils/clns/indext";
 import styles from "./index.module.scss";
 import { useHamburgerMenu } from "./useHamburgerMenu";
 

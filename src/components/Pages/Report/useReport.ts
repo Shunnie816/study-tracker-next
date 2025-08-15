@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePosts } from "@/libs/hooks/usePosts";
 import { useRegister } from "@/libs/hooks/useRegister";
-import { formatDate } from "@/libs/utils";
+import { formatDate } from "@/libs/utils/formatDate";
 import { PostData } from "@/pages/api/post";
 import { formSchema, ReportData } from "./formSchema";
 
