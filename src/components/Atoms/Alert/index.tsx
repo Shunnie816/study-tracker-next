@@ -1,6 +1,10 @@
 import { Alert as MUIAlert, AlertProps } from "@mui/material";
 import React from "react";
 
-export default function Alert({ severity, ...rest }: AlertProps) {
-  return <MUIAlert severity={severity} {...rest} />;
+type Props = {
+  security: "success" | "error" | "info" | "warning";
+} & AlertProps;
+
+export default function Alert({ security, ...rest }: Props) {
+  return <MUIAlert severity={security} {...rest} />;
 }
