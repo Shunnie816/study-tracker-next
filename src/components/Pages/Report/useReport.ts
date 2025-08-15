@@ -76,7 +76,7 @@ export function useReport() {
   });
 
   /** 時間の仮データ */
-  let timeData: Array<string> = [""];
+  let timeData: Array<string> = [];
   for (let i: number = 5; i <= 180; i += 5) {
     let value: string = i.toString();
     timeData.push(value);

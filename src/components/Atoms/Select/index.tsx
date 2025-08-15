@@ -40,6 +40,9 @@ function SelectInner<T>(
     onChange(event.target.value);
   };
 
+  // optionsの先頭に空白（未選択）を追加
+  const formattedOptions = ["", ...options];
+
   return (
     <FormControl fullWidth error={error}>
       <InputLabel id={label}>{label}</InputLabel>
@@ -55,7 +58,7 @@ function SelectInner<T>(
          * optionsの中身がstring[]であればそのまま文字列を表示
          * optionsの中身がオブジェクトの配列であれば、valueKeyとlabelKeyを使って表示
          */}
-        {options?.map((item, index) => (
+        {formattedOptions?.map((item, index) => (
           <MenuItem
             value={
               typeof item === "string"
