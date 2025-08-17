@@ -1,6 +1,10 @@
 .headerMenu {
   justify-content: space-between;
 
+  .link {
+    color: var(--white);
+  }
+
   .mobileHeader {
     padding-top: var(--spacing-1);
 
@@ -13,10 +17,6 @@
 
   .pcHeader {
     display: none;
-
-    .link {
-      color: var(--white);
-    }
 
     @media screen and (min-width: $breakpoint) {
       &.isPC {

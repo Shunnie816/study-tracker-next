@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 import React from "react";
 import { Icon } from "@/components/Atoms/Icon";
 import { ListMenu } from "@/components/Atoms/ListMenu";
@@ -21,14 +22,11 @@ export function Header() {
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", zIndex: "100" }}>
       <AppBar position="static">
         <Toolbar className={styles.headerMenu}>
-          <Typography
-            color="inherit"
-            variant="h6"
-            component="a"
-            href={URL_VALUES.REPORT}
-          >
-            Study Tracker
-          </Typography>
+          <Link href={URL_VALUES.REPORT} className={styles.link}>
+            <Typography color="inherit" variant="h6">
+              Study Tracker
+            </Typography>
+          </Link>
           <div className={clns(styles.pcHeader, isPC && styles.isPC)}>
             <ListMenu items={menuItems} row />
           </div>

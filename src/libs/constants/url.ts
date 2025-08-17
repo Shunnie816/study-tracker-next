@@ -1,5 +1,5 @@
 export const URL_VALUES = {
-  REPORT: "/study-tracker",
+  REPORT: "/",
   REGISTER: "/register",
   POSTS: "/posts",
   STUDYLOG: "/study-log",
