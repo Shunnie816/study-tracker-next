@@ -6,6 +6,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof DeleteDialog> = {
   component: DeleteDialog,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "削除ダイアログ用のMoleculeコンポーネント。削除対象やコールバックをpropsで指定。",
+      },
+    },
+  },
 };
 
 export default meta;

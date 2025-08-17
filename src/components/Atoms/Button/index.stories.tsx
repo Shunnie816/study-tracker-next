@@ -4,6 +4,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Button> = {
   component: Button,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "ボタン用のAtomコンポーネント。ラベルやアイコン、バリアントをpropsで指定可能。",
+      },
+    },
+  },
 };
 
 export default meta;

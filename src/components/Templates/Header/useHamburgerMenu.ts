@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { IconType } from "@/components/Atoms/Icon";
+import { ListMenuItem } from "@/components/Atoms/ListMenu";
+import { URL_VALUES } from "@/libs/constants/url";
 
 /**
  * ハンバーガーメニューの開閉状態を管理するカスタムフック
@@ -19,22 +20,35 @@ export function useHamburgerMenu() {
       setIsOpen(open);
     };
 
-  const menuItems = [
-    "ログイン",
-    "記録する",
-    "教材登録",
-    "学習記録",
-    "学習時間",
+  const menuItems: ListMenuItem[] = [
+    {
+      label: "記録する",
+      icon: "edit",
+      href: URL_VALUES.REPORT,
+    },
+    {
+      label: "教材登録",
+      icon: "book",
+      href: URL_VALUES.REGISTER,
+    },
+    {
+      label: "学習記録",
+      icon: "school",
+      href: URL_VALUES.POSTS,
+    },
+    {
+      label: "学習時間",
+      icon: "time",
+      href: URL_VALUES.STUDYLOG,
+    },
   ];
-  const icons: IconType[] = ["login", "edit", "book", "school", "time"];
-  const urlPath = ["/", "/", "/register", "/posts", "/study-log"];
 
   return {
     isOpen,
     setIsOpen,
     toggleDrawer,
     menuItems,
-    icons,
-    urlPath,
   };
 }
+
+export type UseHamburgerMenu = ReturnType<typeof useHamburgerMenu>;

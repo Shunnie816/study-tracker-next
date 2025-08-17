@@ -6,6 +6,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Modal> = {
   component: Modal,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "ダイアログ表示用のAtomコンポーネント。開閉状態や内容をpropsで制御可能。",
+      },
+    },
+  },
 };
 
 export default meta;

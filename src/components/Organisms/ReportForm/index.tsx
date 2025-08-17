@@ -5,10 +5,11 @@ import {
   FieldErrors,
   Control,
 } from "react-hook-form";
+import Alert from "@/components/Atoms/Alert";
 import { Button } from "@/components/Atoms/Button";
 import FormSelect from "@/components/Molecules/FormSelect";
 import FormTextField from "@/components/Molecules/FormTextField";
-import { ReportData } from "@/components/Pages/Report/containers/formSchema";
+import { ReportData } from "@/components/Pages/Report/formSchema";
 import { Textbook } from "@/pages/api/textbook";
 import styles from "./index.module.scss";
 
@@ -20,6 +21,9 @@ type ReportFormProps = {
   timeData: string[];
   // eslint-disable-next-line no-unused-vars
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+  showAlert: boolean;
+  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  isDisabled: boolean;
 };
 
 /** NOTE: 再利用するつもりはないので、nameやlabelは直接記述している */
@@ -30,10 +34,18 @@ export default function ReportForm({
   textbooks,
   timeData,
   onSubmit,
+  showAlert,
+  setShowAlert,
+  isDisabled,
 }: ReportFormProps) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
+        {showAlert && (
+          <Alert security="success" onClose={() => setShowAlert(false)}>
+            記録完了！
+          </Alert>
+        )}
         <div className={styles.formsWrapper}>
           <FormSelect<string, ReportData>
             name="time"
@@ -62,7 +74,12 @@ export default function ReportForm({
           />
         </div>
         <div className={styles.button}>
-          <Button variant="contained" type="submit" size="large">
+          <Button
+            variant="contained"
+            type="submit"
+            size="large"
+            disabled={isDisabled}
+          >
             確定
           </Button>
         </div>

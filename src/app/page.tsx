@@ -1,4 +1,4 @@
-import { Report } from "@/components/Pages/Report/containers";
+import { Report } from "@/components/Pages/Report";
 
 export default function Page() {
   return (

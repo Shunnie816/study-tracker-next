@@ -1,10 +1,8 @@
-/** 時間の仮データ */
-export let timeData: Array<string> = [""];
-for (let i: number = 5; i <= 180; i += 5) {
-  let value: string = i.toString();
-  timeData.push(value);
-}
-
+/**
+ * Date型の日付をフォーマットして文字列で返す
+ * @param date
+ * @returns ex: 2023/03/15 12:30:45
+ */
 export function formatDate(date: Date): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");

@@ -4,6 +4,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof TextField> = {
   component: TextField,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "テキスト入力用のAtomコンポーネント。propsでラベルやバリデーションを指定可能。",
+      },
+    },
+  },
 };
 
 export default meta;

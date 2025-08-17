@@ -4,6 +4,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Select> = {
   component: Select,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "セレクトボックス用のAtomコンポーネント。選択肢やラベルをpropsで指定可能。",
+      },
+    },
+  },
 };
 
 export default meta;

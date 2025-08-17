@@ -6,6 +6,15 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof HamburgerMenu> = {
   component: HamburgerMenu,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "ハンバーガーメニューのOrganismコンポーネント。メニュー表示・切替に対応。",
+      },
+    },
+  },
 };
 
 export default meta;
