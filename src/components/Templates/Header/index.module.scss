@@ -19,7 +19,7 @@
     }
 
     @media screen and (min-width: $breakpoint) {
-      .isPC {
+      &.isPC {
         display: flex;
         padding-right: var(--spacing-5);
         width: 50%;
