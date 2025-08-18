@@ -21,8 +21,7 @@ export default meta;
 type Story = StoryObj<typeof HamburgerMenu>;
 
 const Component: Story["render"] = () => {
-  const { isOpen, setIsOpen, menuItems, icons, urlPath, toggleDrawer } =
-    useHamburgerMenu();
+  const { isOpen, setIsOpen, menuItems, toggleDrawer } = useHamburgerMenu();
   return (
     <>
       <Button variant="contained" onClick={() => setIsOpen(true)}>
@@ -32,8 +31,6 @@ const Component: Story["render"] = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         menuItems={menuItems}
-        icons={icons}
-        urlPath={urlPath}
         toggleDrawer={toggleDrawer}
       />
     </>
