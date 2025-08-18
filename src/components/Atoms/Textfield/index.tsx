@@ -13,7 +13,7 @@ type BaseProps = {
 
 type Props = BaseProps & TextFieldProps;
 
-export function TextFieldInner(
+function TextFieldInner(
   {
     label,
     variant = "outlined",
