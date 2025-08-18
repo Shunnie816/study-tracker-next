@@ -31,8 +31,8 @@ jobs:
         run: npm run lint
 
       # 5. 型チェック
-      # - name: Type check
-      #   run: npx tsc --noEmit
+      - name: Type check
+        run: npx tsc -p tsconfig.json --noEmit
 
       # 6. テスト (Vitest)
       - name: Run tests
