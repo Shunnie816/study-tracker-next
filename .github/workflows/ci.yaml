@@ -32,7 +32,7 @@ jobs:
 
       # 5. 型チェック
       - name: Type check
-        run: npx tsc -p tsconfig.json --noEmit
+        run: npx tsc -p [tsconfig.json](http://_vscodecontentref_/2) --noEmit
 
       # 6. テスト (Vitest)
       - name: Run tests
