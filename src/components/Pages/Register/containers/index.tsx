@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/Atoms/Button";
 import { Heading } from "@/components/Atoms/Heading";
 import { TextField } from "@/components/Atoms/TextField";
-import { useRegister } from "../../../../libs/hooks/useRegister";
+import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import { RegisteredBook } from "../presentations/RegisteredBook";
 import {
   EditTextBookData,
@@ -23,7 +23,7 @@ import {
 import styles from "./index.module.scss";
 
 export function Register() {
-  const { textbooks, postData } = useRegister();
+  const { textbooks, postData } = useTextbookData();
 
   const {
     formState: { errors },

@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { PostData } from "../types";
 
-export const usePosts = () => {
+export const usePostData = () => {
   const apiPath = "posts";
 
   async function fetchPostData() {
@@ -47,4 +47,4 @@ export const usePosts = () => {
   };
 };
 
-export type UsePosts = ReturnType<typeof usePosts>;
+export type UsePostData = ReturnType<typeof usePostData>;

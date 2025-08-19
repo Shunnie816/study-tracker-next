@@ -1,15 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { usePosts } from "@/libs/hooks/usePosts";
-import { useRegister } from "@/libs/hooks/useRegister";
+import { usePostData } from "@/libs/hooks/usePostData";
+import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import { PostData } from "@/libs/types";
 import { formatDate } from "@/libs/utils/formatDate";
 import { formSchema, ReportData } from "./formSchema";
 
 export function useReport() {
-  const { textbooks } = useRegister();
-  const { postData } = usePosts();
+  const { textbooks } = useTextbookData();
+  const { postData } = usePostData();
 
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);

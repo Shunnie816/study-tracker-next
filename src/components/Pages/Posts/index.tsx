@@ -3,11 +3,11 @@ import { CircularProgress, Typography } from "@mui/material";
 import React from "react";
 import { PostList } from "@/components/Organisms/PostList";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
-import { usePosts } from "@/libs/hooks/usePosts";
+import { usePostData } from "@/libs/hooks/usePostData";
 import styles from "./index.module.scss";
 
 export function Posts() {
-  const { posts, isLoading, error } = usePosts();
+  const { posts, isLoading, error } = usePostData();
 
   return (
     <SingleColumn title={"学習記録一覧"}>

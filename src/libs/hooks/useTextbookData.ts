@@ -5,7 +5,7 @@ import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { Textbook } from "../types";
 
-export function useRegister() {
+export function useTextbookData() {
   const apiPath = "textbooks";
 
   async function fetchTextbooks() {
@@ -49,4 +49,4 @@ export function useRegister() {
   };
 }
 
-export type UseRegister = ReturnType<typeof useRegister>;
+export type UseTextbookData = ReturnType<typeof useTextbookData>;
