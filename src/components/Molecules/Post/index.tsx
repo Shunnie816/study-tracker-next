@@ -37,7 +37,7 @@ export function Post({ date, textbook, time, content, onDelete }: Props) {
         <Typography variant="subtitle1">教材名：{textbook}</Typography>
         <Typography variant="subtitle1">時間：{time}分</Typography>
       </div>
-      <Divider light />
+      <Divider />
       <div className={styles.contentWrapper}>
         <Typography variant="subtitle2">学習内容：</Typography>
         <Typography variant="body2">{content}</Typography>

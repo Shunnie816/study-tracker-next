@@ -31,7 +31,7 @@ export const defaultTheme = createTheme({
       disabled: COLOR_PALETTE.fog,
     },
     background: {
-      paper: COLOR_PALETTE.gray,
+      paper: COLOR_PALETTE.lightGray,
     },
   },
   typography: {
