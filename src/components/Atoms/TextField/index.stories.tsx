@@ -1,4 +1,4 @@
-import { TextField } from "./index";
+import { TextField } from "../TextField/index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list

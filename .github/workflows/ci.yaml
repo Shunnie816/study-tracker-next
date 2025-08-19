@@ -1,6 +1,6 @@
 name: CI
 
-run-name: ${{ github.actor }} has pushed on ${{ github.ref }}
+run-name: ${{ github.actor }} has pushed
 
 on:
   push:
@@ -29,12 +29,6 @@ jobs:
       # 4. Lint
       - name: Run ESLint
         run: npm run lint
-
-      - name: check existance of Select
-        run: ls src/components/Atoms/Select
-
-      - name: check existance of TextField
-        run: ls src/components/Atoms/TextField
 
       # 5. 型チェック
       - name: Type check
