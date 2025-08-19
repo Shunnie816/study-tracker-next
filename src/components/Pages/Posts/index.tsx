@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { Heading } from "@/components/Atoms/Heading";
 import { Post } from "@/components/Molecules/Post";
+import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { usePosts } from "@/libs/hooks/usePosts";
 import styles from "./index.module.scss";
 
@@ -9,8 +9,7 @@ export function Posts() {
   const { posts } = usePosts();
 
   return (
-    <div className={styles.container}>
-      <Heading text="学習記録" />
+    <SingleColumn title={"学習記録"}>
       <div className={styles.postWrapper}>
         {posts ? (
           posts.map((data) => {
@@ -30,6 +29,6 @@ export function Posts() {
           <>投稿データがありません。</>
         )}
       </div>
-    </div>
+    </SingleColumn>
   );
 }
