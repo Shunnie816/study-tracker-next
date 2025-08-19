@@ -1,4 +1,4 @@
-import { Posts } from "@/components/Pages/Posts/containers";
+import { Posts } from "@/components/Pages/Posts";
 
 export default function Page() {
   return (
