@@ -5,7 +5,7 @@ import { Post } from "@/components/Molecules/Post";
 import { usePosts } from "@/libs/hooks/usePosts";
 import styles from "./index.module.scss";
 
-export const Posts = () => {
+export function Posts() {
   const { posts } = usePosts();
 
   return (
@@ -32,4 +32,4 @@ export const Posts = () => {
       </div>
     </div>
   );
-};
+}

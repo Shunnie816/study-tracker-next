@@ -18,7 +18,7 @@ type FormSelectProps<O, T extends FieldValues> = {
   errorMessage?: string;
 };
 
-export default function FormSelect<O, T extends FieldValues>({
+export function FormSelect<O, T extends FieldValues>({
   name,
   control,
   options,

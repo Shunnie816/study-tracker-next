@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import ReportForm from "@/components/Organisms/ReportForm";
+import { ReportForm } from "@/components/Organisms/ReportForm";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { useReport } from "./useReport";
 
-export const Report = () => {
+export function Report() {
   const {
     methods,
     control,
@@ -32,4 +32,4 @@ export const Report = () => {
       />
     </SingleColumn>
   );
-};
+}

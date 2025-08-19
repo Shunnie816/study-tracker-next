@@ -10,7 +10,7 @@ import { useStudyLog } from "./useStudyLog";
 //   time: string;
 // };
 
-export const StudyLog = () => {
+export function StudyLog() {
   const { data } = useStudyLog();
 
   return (
@@ -36,4 +36,4 @@ export const StudyLog = () => {
       </section>
     </div>
   );
-};
+}

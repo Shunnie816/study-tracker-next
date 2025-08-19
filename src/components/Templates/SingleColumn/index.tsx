@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const SingleColumn = ({ title, children }: Props) => {
+export function SingleColumn({ title, children }: Props) {
   return (
     <Container maxWidth="sm" className={styles.container}>
       <Heading text={title} />
@@ -17,4 +17,4 @@ export const SingleColumn = ({ title, children }: Props) => {
       </Box>
     </Container>
   );
-};
+}
