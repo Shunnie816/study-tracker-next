@@ -2,8 +2,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { defaultTheme } from "@/assets/themes";
-import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { Footer } from "@/components/Templates/Footer";
+import { Header } from "@/components/Templates/Header";
 import styles from "./index.module.scss";
 
 type Props = {

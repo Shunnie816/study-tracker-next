@@ -2,7 +2,7 @@
 import React from "react";
 import { Heading } from "@/components/Atoms/Heading";
 import { Post } from "@/components/Molecules/Post";
-import { usePosts } from "../../../../libs/hooks/usePosts";
+import { usePosts } from "@/libs/hooks/usePosts";
 import styles from "./index.module.scss";
 
 export const Posts = () => {
