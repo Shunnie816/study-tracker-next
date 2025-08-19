@@ -30,6 +30,9 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: check existance of Select
+        run: ls src/components/Atoms/Select
+
       - name: check existance of TextField
         run: ls src/components/Atoms/TextField
 
