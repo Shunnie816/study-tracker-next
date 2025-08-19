@@ -1,32 +1,27 @@
 "use client";
+import { CircularProgress, Typography } from "@mui/material";
 import React from "react";
-import { Post } from "@/components/Molecules/Post";
+import { PostList } from "@/components/Organisms/PostList";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { usePosts } from "@/libs/hooks/usePosts";
 import styles from "./index.module.scss";
 
 export function Posts() {
-  const { posts } = usePosts();
+  const { posts, isLoading, error } = usePosts();
 
   return (
-    <SingleColumn title={"学習記録"}>
+    <SingleColumn title={"学習記録一覧"}>
       <div className={styles.postWrapper}>
-        {posts ? (
-          posts.map((data) => {
-            return (
-              <React.Fragment key={data.id}>
-                <Post
-                  date={data.date}
-                  textbook={data.textbook.name}
-                  time={data.time}
-                  content={data.content}
-                  onDelete={() => {}}
-                />
-              </React.Fragment>
-            );
-          })
+        {isLoading ? (
+          <div className={styles.loadingWrapper}>
+            <CircularProgress />
+          </div>
+        ) : error ? (
+          <Typography color="error">エラーが発生しました。</Typography>
+        ) : posts ? (
+          <PostList posts={posts} />
         ) : (
-          <>投稿データがありません。</>
+          <Typography>投稿データがありません。</Typography>
         )}
       </div>
     </SingleColumn>

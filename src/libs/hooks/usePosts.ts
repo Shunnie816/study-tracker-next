@@ -26,7 +26,11 @@ export const usePosts = () => {
   }
 
   /** isLoading, errorハンドリングを記述する */
-  const { data: posts } = useSWR(apiPath, fetchPostData, {
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useSWR(apiPath, fetchPostData, {
     onSuccess(data) {
       return data;
     },
@@ -38,6 +42,8 @@ export const usePosts = () => {
   return {
     posts,
     postData,
+    isLoading,
+    error,
   };
 };
 
