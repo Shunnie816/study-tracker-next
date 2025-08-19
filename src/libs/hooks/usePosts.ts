@@ -1,8 +1,8 @@
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import useSWR from "swr";
-import { PostData } from "@/pages/api/post";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
+import { PostData } from "../types";
 
 export const usePosts = () => {
   const apiPath = "posts";

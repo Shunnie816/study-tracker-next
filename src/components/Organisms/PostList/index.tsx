@@ -1,6 +1,6 @@
 import React from "react";
 import { Post } from "@/components/Molecules/Post";
-import { PostData } from "@/pages/api/post";
+import { PostData } from "@/libs/types";
 
 type Props = {
   posts: PostData[];
