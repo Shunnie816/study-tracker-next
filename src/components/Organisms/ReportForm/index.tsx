@@ -10,7 +10,7 @@ import { Button } from "@/components/Atoms/Button";
 import { FormSelect } from "@/components/Molecules/FormSelect";
 import { FormTextField } from "@/components/Molecules/FormTextField";
 import { ReportData } from "@/components/Pages/Report/formSchema";
-import { Textbook } from "@/pages/api/textbook";
+import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type ReportFormProps = {

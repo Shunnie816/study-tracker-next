@@ -1,7 +1,6 @@
 import axios from "axios";
 import useSWR from "swr";
-import { PostData } from "@/pages/api/post";
-import { Textbook } from "@/pages/api/textbook";
+import { PostData, Textbook } from "@/libs/types";
 
 export const useStudyLog = () => {
   const apiPathToPost = "/api/post";

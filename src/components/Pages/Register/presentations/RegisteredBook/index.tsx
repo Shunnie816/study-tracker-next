@@ -8,7 +8,7 @@ import {
 import React, { useState } from "react";
 import { Icon } from "@/components/Atoms/Icon";
 import { EditDialog } from "@/components/Molecules/EditDialog";
-import { Textbook } from "@/pages/api/textbook";
+import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type Props = {

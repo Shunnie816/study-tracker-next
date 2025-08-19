@@ -1,9 +1,9 @@
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useMemo } from "react";
 import useSWR from "swr";
-import { Textbook } from "@/pages/api/textbook";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
+import { Textbook } from "../types";
 
 export function useRegister() {
   const apiPath = "textbooks";
