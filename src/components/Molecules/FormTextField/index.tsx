@@ -13,7 +13,7 @@ type FormTextFieldProps<T extends FieldValues = FieldValues> = {
   type?: string;
 };
 
-export default function FormTextField<T extends FieldValues = FieldValues>({
+export function FormTextField<T extends FieldValues = FieldValues>({
   name,
   control,
   label,

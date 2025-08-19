@@ -6,7 +6,7 @@ import {
   type ReportData,
 } from "@/components/Pages/Report/formSchema";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
-import ReportForm from "./index";
+import { ReportForm } from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof ReportForm> = {

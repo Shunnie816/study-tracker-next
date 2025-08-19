@@ -15,7 +15,7 @@ type Props = {
   onDelete: () => void;
 };
 
-export const Post = ({ date, textbook, time, content, onDelete }: Props) => {
+export function Post({ date, textbook, time, content, onDelete }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const modalOpen = () => {
@@ -59,4 +59,4 @@ export const Post = ({ date, textbook, time, content, onDelete }: Props) => {
       />
     </Card>
   );
-};
+}

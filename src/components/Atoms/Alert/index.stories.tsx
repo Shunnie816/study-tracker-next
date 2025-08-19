@@ -1,4 +1,4 @@
-import Alert from "./index";
+import { Alert } from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof Alert> = {

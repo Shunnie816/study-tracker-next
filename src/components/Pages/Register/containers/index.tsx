@@ -22,7 +22,7 @@ import {
 } from "./formSchema";
 import styles from "./index.module.scss";
 
-export const Register = () => {
+export function Register() {
   const { textbooks, postData } = useRegister();
 
   const {
@@ -96,4 +96,4 @@ export const Register = () => {
       </FormProvider>
     </div>
   );
-};
+}

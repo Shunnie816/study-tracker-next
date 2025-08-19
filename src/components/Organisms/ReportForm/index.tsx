@@ -5,10 +5,10 @@ import {
   FieldErrors,
   Control,
 } from "react-hook-form";
-import Alert from "@/components/Atoms/Alert";
+import { Alert } from "@/components/Atoms/Alert";
 import { Button } from "@/components/Atoms/Button";
-import FormSelect from "@/components/Molecules/FormSelect";
-import FormTextField from "@/components/Molecules/FormTextField";
+import { FormSelect } from "@/components/Molecules/FormSelect";
+import { FormTextField } from "@/components/Molecules/FormTextField";
 import { ReportData } from "@/components/Pages/Report/formSchema";
 import { Textbook } from "@/pages/api/textbook";
 import styles from "./index.module.scss";
@@ -27,7 +27,7 @@ type ReportFormProps = {
 };
 
 /** NOTE: 再利用するつもりはないので、nameやlabelは直接記述している */
-export default function ReportForm({
+export function ReportForm({
   methods,
   control,
   errors,
