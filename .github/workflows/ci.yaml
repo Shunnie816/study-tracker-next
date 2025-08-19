@@ -30,14 +30,17 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: check existance of TextField
+        run: ls src/components/Atoms/TextField
+
       # 5. 型チェック
-      # - name: Type check
-      #   run: npx tsc --noEmit
+      - name: Type check
+        run: npx tsc --noEmit
 
       # 6. テスト (Vitest)
       - name: Run tests
         run: npm run test -- --coverage
 
       # 7. ビルド確認
-      # - name: Build
-      #   run: npm run build
+      - name: Build
+        run: npm run build
