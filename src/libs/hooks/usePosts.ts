@@ -1,5 +1,4 @@
-import { addDoc, collection } from "@firebase/firestore";
-import axios from "axios";
+import { addDoc, collection, getDocs } from "@firebase/firestore";
 import useSWR from "swr";
 import { PostData } from "@/pages/api/post";
 import { db } from "../firebase";
@@ -8,14 +7,13 @@ import { COLLECTIONS } from "../firebase/constants";
 export const usePosts = () => {
   const apiPath = "posts";
 
-  // TODO: firestoreに置き換え
-  async function fetchData(): Promise<PostData[]> {
-    try {
-      const res = await axios.get(apiPath);
-      return res.data;
-    } catch (error) {
-      throw new Error("データが取得できませんでした。");
-    }
+  async function fetchPostData() {
+    /** Firestoreからデータを取得 */
+    const posts = await getDocs(collection(db, COLLECTIONS.POSTS));
+    return posts.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as PostData[];
   }
 
   async function postData(data: PostData) {
@@ -28,7 +26,7 @@ export const usePosts = () => {
   }
 
   /** isLoading, errorハンドリングを記述する */
-  const { data: posts } = useSWR(apiPath, fetchData, {
+  const { data: posts } = useSWR(apiPath, fetchPostData, {
     onSuccess(data) {
       return data;
     },

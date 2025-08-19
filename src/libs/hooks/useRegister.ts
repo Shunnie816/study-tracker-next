@@ -13,7 +13,7 @@ export function useRegister() {
     const textbookData = await getDocs(collection(db, COLLECTIONS.TEXTBOOKS));
     const textbooks = textbookData.docs.map((doc) => ({
       id: doc.id,
-      name: doc.data().name,
+      ...doc.data(),
     })) as Textbook[];
     return textbooks;
   }
