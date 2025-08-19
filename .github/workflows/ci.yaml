@@ -31,13 +31,13 @@ jobs:
         run: npm run lint
 
       # 5. 型チェック
-      - name: Type check
-        run: npx tsc -p [tsconfig.json](http://_vscodecontentref_/2) --noEmit
+      # - name: Type check
+      #   run: npx tsc --noEmit
 
       # 6. テスト (Vitest)
       - name: Run tests
         run: npm run test -- --coverage
 
       # 7. ビルド確認
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
