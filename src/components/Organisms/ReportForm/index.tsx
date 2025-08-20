@@ -42,7 +42,7 @@ export function ReportForm({
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
         {showAlert && (
-          <Alert security="success" onClose={() => setShowAlert(false)}>
+          <Alert severity="success" onClose={() => setShowAlert(false)}>
             記録完了！
           </Alert>
         )}
