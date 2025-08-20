@@ -1,11 +1,5 @@
-.postWrapper {
+.loadingWrapper {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-
-  .loadingWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  justify-content: center;
+  align-items: center;
 }

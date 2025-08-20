@@ -1,9 +1,8 @@
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/Atoms/Button";
 import { Card } from "@/components/Atoms/Card";
-import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
 
 import styles from "./index.module.scss";
 
@@ -12,25 +11,10 @@ type Props = {
   textbook: string;
   time: string;
   content: string;
-  onDelete: () => void;
+  handleOpen: () => void;
 };
 
-export function Post({ date, textbook, time, content, onDelete }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const modalOpen = () => {
-    setIsOpen(true);
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleDelete = () => {
-    onDelete();
-    onClose();
-  };
-
+export function Post({ date, textbook, time, content, handleOpen }: Props) {
   return (
     <Card title={date}>
       <div className={styles.wrapper}>
@@ -46,17 +30,11 @@ export function Post({ date, textbook, time, content, onDelete }: Props) {
         variant="outlined"
         color="error"
         size="small"
-        onClick={modalOpen}
+        onClick={handleOpen}
         fullWidth={false}
       >
         投稿を削除
       </Button>
-      <DeleteDialog
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleDelete}
-        deleteTarget="投稿"
-      />
     </Card>
   );
 }
