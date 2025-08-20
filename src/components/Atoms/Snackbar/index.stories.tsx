@@ -1,0 +1,82 @@
+import React, { useState } from "react";
+import { Button } from "../Button";
+import { Snackbar } from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
+
+const meta: Meta<typeof Snackbar> = {
+  component: Snackbar,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "MUIのSnackbarをラップしたコンポーネント。メッセージ表示や自動非表示に対応しています。ボタン押下で表示する例も含みます。Alertコンポーネントをラップした使用例も追加。",
+      },
+    },
+  },
+  argTypes: {
+    open: {
+      control: "boolean",
+      description: "Snackbarの表示状態",
+    },
+    message: {
+      control: "text",
+      description: "表示するメッセージ",
+    },
+    anchorOrigin: {
+      control: "object",
+      description: "表示位置 (top/bottom, left/right)",
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Snackbar>;
+
+const Component = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Button variant="contained" onClick={handleOpen}>
+        Show Snackbar
+      </Button>
+      <Snackbar
+        open={open}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        onClose={handleClose}
+        message="ボタン押下で表示されるSnackbarです。"
+      />
+    </div>
+  );
+};
+
+export const WithButton: Story = {
+  render: (args) => <Component {...args} />,
+};
+
+export const Default: Story = {
+  args: {
+    open: true,
+    message: "操作が完了しました。",
+    anchorOrigin: { vertical: "bottom", horizontal: "center" },
+  },
+};
+
+export const TopRight: Story = {
+  args: {
+    open: true,
+    message: "右上に表示されるSnackbarです。",
+    anchorOrigin: { vertical: "top", horizontal: "right" },
+  },
+};
+
+export const BottomLeft: Story = {
+  args: {
+    open: true,
+    message: "左下に表示されるSnackbarです。",
+    anchorOrigin: { vertical: "bottom", horizontal: "left" },
+  },
+};
