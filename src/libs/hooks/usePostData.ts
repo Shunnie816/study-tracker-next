@@ -1,5 +1,13 @@
-import { addDoc, collection, getDocs } from "@firebase/firestore";
-import useSWR from "swr";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+} from "@firebase/firestore";
+import { useEffect } from "react";
+import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { PostData } from "../types";
@@ -25,6 +33,35 @@ export const usePostData = () => {
     }
   }
 
+  async function deletePost(id: string) {
+    /** Firestoreから教材データを削除 */
+    try {
+      await deleteDoc(doc(db, COLLECTIONS.POSTS, id));
+    } catch (e) {
+      console.error("Error deleting post: ", e);
+    }
+  }
+
+  /** Firestoreのデータを監視(リアルタイム更新) */
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, COLLECTIONS.POSTS),
+      (snapshot) => {
+        const updatedPosts = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as PostData[];
+
+        // SWRのキャッシュを更新(データはSWRが保持しているため、ここで更新する必要がある)
+        mutate(apiPath, updatedPosts, false);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   /** isLoading, errorハンドリングを記述する */
   const {
     data: posts,
@@ -44,6 +81,7 @@ export const usePostData = () => {
     postData,
     isLoading,
     error,
+    deletePost,
   };
 };
 

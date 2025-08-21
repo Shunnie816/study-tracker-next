@@ -1,3 +1,4 @@
+import { SnackbarCloseReason } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "../Button";
 import { Snackbar } from "./index";
@@ -36,7 +37,15 @@ type Story = StoryObj<typeof Snackbar>;
 const Component = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
