@@ -7,14 +7,16 @@ import { Card } from "@/components/Atoms/Card";
 import styles from "./index.module.scss";
 
 type Props = {
+  id: string;
   date: string;
   textbook: string;
   time: string;
   content: string;
-  handleOpen: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleOpen: (id: string) => void;
 };
 
-export function Post({ date, textbook, time, content, handleOpen }: Props) {
+export function Post({ id, date, textbook, time, content, handleOpen }: Props) {
   return (
     <Card title={date}>
       <div className={styles.wrapper}>
@@ -30,7 +32,7 @@ export function Post({ date, textbook, time, content, handleOpen }: Props) {
         variant="outlined"
         color="error"
         size="small"
-        onClick={handleOpen}
+        onClick={() => handleOpen(id)}
         fullWidth={false}
       >
         投稿を削除

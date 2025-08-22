@@ -1,6 +1,7 @@
 "use client";
 import { CircularProgress, Typography } from "@mui/material";
 import React from "react";
+import { Snackbar } from "@/components/Atoms/Snackbar";
 import { PostList } from "@/components/Organisms/PostList";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { usePostData } from "@/libs/hooks/usePostData";
@@ -9,7 +10,14 @@ import { usePosts } from "./usePosts";
 
 export function Posts() {
   const { posts, isLoading, error } = usePostData();
-  const { isOpen, handleOpen, onClose, handleDelete } = usePosts();
+  const {
+    isDeleteModalOpen,
+    handleOpen,
+    onClose,
+    handleDelete,
+    isDeleteSuccess,
+    handleSnackbarClose,
+  } = usePosts();
 
   return (
     <SingleColumn title={"学習記録一覧"}>
@@ -19,10 +27,10 @@ export function Posts() {
         </div>
       ) : error ? (
         <Typography color="error">エラーが発生しました。</Typography>
-      ) : posts ? (
+      ) : posts && posts.length > 0 ? (
         <PostList
           posts={posts}
-          isOpen={isOpen}
+          isOpen={isDeleteModalOpen}
           handleOpen={handleOpen}
           onClose={onClose}
           handleDelete={handleDelete}
@@ -30,6 +38,13 @@ export function Posts() {
       ) : (
         <Typography>投稿データがありません。</Typography>
       )}
+      <Snackbar
+        open={isDeleteSuccess}
+        onClose={handleSnackbarClose}
+        withAlert
+        alertMessage="投稿が削除されました"
+        severity="success"
+      />
     </SingleColumn>
   );
 }

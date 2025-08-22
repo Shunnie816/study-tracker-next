@@ -7,7 +7,8 @@ import styles from "./index.module.scss";
 type Props = {
   posts: PostData[];
   isOpen: boolean;
-  handleOpen: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleOpen: (id: string) => void;
   onClose: () => void;
   handleDelete: () => void;
 };
@@ -25,6 +26,7 @@ export function PostList({
         return (
           <React.Fragment key={data.id}>
             <Post
+              id={data.id!}
               date={data.date}
               textbook={data.textbook.name}
               time={data.time}

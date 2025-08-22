@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import React from "react";
 import {
   FormProvider,
@@ -5,7 +6,6 @@ import {
   FieldErrors,
   Control,
 } from "react-hook-form";
-import { Alert } from "@/components/Atoms/Alert";
 import { Button } from "@/components/Atoms/Button";
 import { FormSelect } from "@/components/Molecules/FormSelect";
 import { FormTextField } from "@/components/Molecules/FormTextField";
@@ -42,7 +42,7 @@ export function ReportForm({
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
         {showAlert && (
-          <Alert security="success" onClose={() => setShowAlert(false)}>
+          <Alert severity="success" onClose={() => setShowAlert(false)}>
             記録完了！
           </Alert>
         )}
