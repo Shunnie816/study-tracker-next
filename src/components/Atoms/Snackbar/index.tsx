@@ -1,11 +1,40 @@
-import { Snackbar as MUISnackbar, SnackbarProps } from "@mui/material";
+import {
+  Alert,
+  Snackbar as MUISnackbar,
+  SnackbarCloseReason,
+  SnackbarProps,
+} from "@mui/material";
 
-type Props = SnackbarProps;
+type Props = {
+  withAlert?: boolean;
+  alertMessage?: string;
+  severity?: "success" | "error" | "info" | "warning";
+  onClose: (
+    // eslint-disable-next-line no-unused-vars
+    event: React.SyntheticEvent | Event,
+    // eslint-disable-next-line no-unused-vars
+    reason?: SnackbarCloseReason
+  ) => void;
+} & SnackbarProps;
 
-/**
- * childrenにコンポーネントをラップすることでカスタマイズ可能
- * ex) <Snackbar {...args}><Alert severity="success">メッセージ</Alert></Snackbar>
- */
-export function Snackbar(props: Props) {
-  return <MUISnackbar autoHideDuration={6000} {...props} />;
+export function Snackbar({
+  withAlert = false,
+  alertMessage,
+  severity,
+  onClose,
+  ...props
+}: Props) {
+  return (
+    <>
+      {withAlert ? (
+        <MUISnackbar autoHideDuration={6000} onClose={onClose} {...props}>
+          <Alert severity={severity} onClose={onClose}>
+            {alertMessage}
+          </Alert>
+        </MUISnackbar>
+      ) : (
+        <MUISnackbar autoHideDuration={6000} {...props} />
+      )}
+    </>
+  );
 }

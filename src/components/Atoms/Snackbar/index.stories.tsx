@@ -11,7 +11,7 @@ const meta: Meta<typeof Snackbar> = {
     docs: {
       description: {
         component:
-          "MUIのSnackbarをラップしたコンポーネント。メッセージ表示や自動非表示に対応しています。ボタン押下で表示する例も含みます。Alertコンポーネントをラップした使用例も追加。",
+          "MUIのSnackbarをラップしたコンポーネント。メッセージ表示や自動非表示に対応しています。ボタン押下で表示する例も含みます。Alertコンポーネントをラップするパターンもある。",
       },
     },
   },
@@ -54,7 +54,6 @@ const Component = () => {
       </Button>
       <Snackbar
         open={open}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         onClose={handleClose}
         message="ボタン押下で表示されるSnackbarです。"
       />
@@ -70,7 +69,6 @@ export const Default: Story = {
   args: {
     open: true,
     message: "操作が完了しました。",
-    anchorOrigin: { vertical: "bottom", horizontal: "center" },
   },
 };
 
@@ -82,10 +80,20 @@ export const TopRight: Story = {
   },
 };
 
-export const BottomLeft: Story = {
+export const BottomCenter: Story = {
   args: {
     open: true,
-    message: "左下に表示されるSnackbarです。",
-    anchorOrigin: { vertical: "bottom", horizontal: "left" },
+    message: "中央下部に表示されるSnackbarです。",
+    anchorOrigin: { vertical: "bottom", horizontal: "center" },
+  },
+};
+
+export const WithAlert: Story = {
+  args: {
+    open: true,
+    withAlert: true,
+    alertMessage: "投稿が削除されました",
+    severity: "success",
+    onClose: () => {},
   },
 };

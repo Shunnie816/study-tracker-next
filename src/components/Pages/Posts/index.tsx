@@ -1,7 +1,6 @@
 "use client";
 import { CircularProgress, Typography } from "@mui/material";
 import React from "react";
-import { Alert } from "@/components/Atoms/Alert";
 import { Snackbar } from "@/components/Atoms/Snackbar";
 import { PostList } from "@/components/Organisms/PostList";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
@@ -39,11 +38,13 @@ export function Posts() {
       ) : (
         <Typography>投稿データがありません。</Typography>
       )}
-      <Snackbar open={isDeleteSuccess} onClose={handleSnackbarClose}>
-        <Alert severity="success" onClose={handleSnackbarClose}>
-          投稿が削除されました
-        </Alert>
-      </Snackbar>
+      <Snackbar
+        open={isDeleteSuccess}
+        onClose={handleSnackbarClose}
+        withAlert
+        alertMessage="投稿が削除されました"
+        severity="success"
+      />
     </SingleColumn>
   );
 }
