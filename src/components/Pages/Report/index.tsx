@@ -11,7 +11,7 @@ export function Report() {
     errors,
     textbooks,
     timeData,
-    handleSubmit,
+    onSubmit,
     showAlert,
     setShowAlert,
     isDisabled,
@@ -25,7 +25,7 @@ export function Report() {
         errors={errors}
         textbooks={textbooks}
         timeData={timeData}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         showAlert={showAlert}
         setShowAlert={setShowAlert}
         isDisabled={isDisabled}
