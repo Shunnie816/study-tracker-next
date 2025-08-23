@@ -4,7 +4,7 @@ import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
 import { TextField } from "@/components/Atoms/TextField";
 import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
-import { EditTextBookData } from "@/components/Pages/Register/containers/formSchema";
+import { EditTextBookData } from "@/components/Pages/Register/formSchema";
 import styles from "./index.module.scss";
 
 type Props = {
