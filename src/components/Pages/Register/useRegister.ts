@@ -19,6 +19,7 @@ export function useRegister() {
   const [showRegisterAlert, setShowRegisterAlert] = useState<boolean>(false);
   const [isDeleteSuccess, setIsDeleteSuccess] = useState<boolean>(false);
   const [isEditSuccess, setIsEditSuccess] = useState<boolean>(false);
+  const [isEditDisabled, setIsEditDisabled] = useState<boolean>(false);
 
   const TextbookFormMethods = useForm<TextBookData>({
     resolver: zodResolver(textbookForm),
@@ -52,6 +53,14 @@ export function useRegister() {
       setIsEditSuccess(false);
     }
   }, [isEditOpen]);
+
+  useEffect(() => {
+    setIsEditDisabled(
+      !EditTextbookFormMethods.formState.isValid ||
+        EditTextbookFormMethods.formState.isSubmitting ||
+        !EditTextbookFormMethods.formState.isDirty
+    );
+  }, [EditTextbookFormMethods.formState]);
 
   /** 教材を登録 */
   const onSubmitRegister = TextbookFormMethods.handleSubmit(async (data) => {
@@ -140,6 +149,7 @@ export function useRegister() {
     isDeleteSuccess,
     handleSnackbarClose,
     isEditSuccess,
+    isEditDisabled,
   };
 }
 

@@ -15,6 +15,7 @@ type Props<T extends FieldValues> = {
   isDeleteOpen: boolean;
   onDelete: () => void;
   setIsDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isEditDisabled: boolean;
 };
 
 export function EditDialog<T extends FieldValues>({
@@ -26,6 +27,7 @@ export function EditDialog<T extends FieldValues>({
   onDelete,
   isDeleteOpen,
   setIsDeleteOpen,
+  isEditDisabled,
 }: Props<T>) {
   const {
     control,
@@ -48,7 +50,12 @@ export function EditDialog<T extends FieldValues>({
           <Button variant="text" onClick={onClose} size="small">
             戻る
           </Button>
-          <Button variant="outlined" onClick={onSubmit} size="small">
+          <Button
+            variant="outlined"
+            onClick={onSubmit}
+            size="small"
+            disabled={isEditDisabled}
+          >
             保存
           </Button>
           <Button

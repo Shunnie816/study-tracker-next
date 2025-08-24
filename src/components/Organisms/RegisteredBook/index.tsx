@@ -25,6 +25,7 @@ type Props = {
   | "onCloseEditDialog"
   | "handleOpenEditDialog"
   | "setIsDeleteOpen"
+  | "isEditDisabled"
 >;
 
 type ListProps = {
@@ -41,6 +42,7 @@ export function RegisteredBook({
   onCloseEditDialog,
   handleOpenEditDialog,
   setIsDeleteOpen,
+  isEditDisabled,
 }: Props) {
   return (
     <div className={styles.container}>
@@ -69,6 +71,7 @@ export function RegisteredBook({
               onDelete={handleDelete}
               isDeleteOpen={isDeleteOpen}
               setIsDeleteOpen={setIsDeleteOpen}
+              isEditDisabled={isEditDisabled}
             />
           </div>
         ) : (
