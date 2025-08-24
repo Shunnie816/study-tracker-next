@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import {
@@ -15,6 +15,7 @@ export function useRegister() {
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
   const [editTargetId, setEditTargetId] = useState<string>("");
+  const [showRegisterAlert, setShowRegisterAlert] = useState<boolean>(false);
 
   const TextbookFormMethods = useForm<TextBookData>({
     resolver: zodResolver(textbookForm),
@@ -26,10 +27,25 @@ export function useRegister() {
     defaultValues: { textbook: "" },
   });
 
+  /** 登録完了のアラートが表示されていて、ユーザーが次の入力を始めたらアラートが消える */
+  useEffect(() => {
+    if (showRegisterAlert) {
+      const hasNextInput =
+        !TextbookFormMethods.formState.isDirty ||
+        TextbookFormMethods.formState.errors.textbook;
+      setShowRegisterAlert(!hasNextInput);
+    }
+  }, [
+    TextbookFormMethods.formState.errors.textbook,
+    TextbookFormMethods.formState.isDirty,
+    showRegisterAlert,
+  ]);
+
   /** 教材を登録 */
-  const onSubmitRegister = TextbookFormMethods.handleSubmit((data) => {
+  const onSubmitRegister = TextbookFormMethods.handleSubmit(async (data) => {
     /** 教材データを登録 */
-    registerTextbook({ name: data.textbook });
+    await registerTextbook({ name: data.textbook });
+    setShowRegisterAlert(true);
 
     /** formの値を初期値に戻す */
     TextbookFormMethods.reset();
@@ -92,6 +108,8 @@ export function useRegister() {
     setIsDeleteOpen,
     handleOpenEditDialog,
     textbooks,
+    showRegisterAlert,
+    setShowRegisterAlert,
   };
 }
 

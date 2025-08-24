@@ -19,12 +19,18 @@ export function Register() {
     handleOpenEditDialog,
     setIsDeleteOpen,
     textbooks,
+    showRegisterAlert,
+    setShowRegisterAlert,
   } = useRegister();
 
   return (
     <SingleColumn title="教材登録">
       <FormProvider {...TextbookFormMethods}>
-        <RegisterForm onSubmitRegister={onSubmitRegister} />
+        <RegisterForm
+          onSubmitRegister={onSubmitRegister}
+          showRegisterAlert={showRegisterAlert}
+          setShowRegisterAlert={setShowRegisterAlert}
+        />
       </FormProvider>
       <FormProvider {...EditTextbookFormMethods}>
         <RegisteredBook

@@ -1,5 +1,11 @@
-.form {
+.formWrapper {
   margin-top: var(--spacing-4);
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
 
   .button {
     margin-top: var(--spacing-4);
