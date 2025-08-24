@@ -59,7 +59,7 @@ export function useTextbookData() {
     }
   }
 
-  const { data } = useSWR(apiPath, fetchTextbooks, {
+  const { data, isLoading, error } = useSWR(apiPath, fetchTextbooks, {
     onSuccess(data) {
       return data;
     },
@@ -95,6 +95,8 @@ export function useTextbookData() {
     registerTextbook,
     editTextbook,
     deleteTextbook,
+    isLoading,
+    error,
   };
 }
 

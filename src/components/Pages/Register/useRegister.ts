@@ -10,8 +10,14 @@ import {
   textbookForm,
 } from "./formSchema";
 export function useRegister() {
-  const { textbooks, registerTextbook, editTextbook, deleteTextbook } =
-    useTextbookData();
+  const {
+    textbooks,
+    registerTextbook,
+    editTextbook,
+    deleteTextbook,
+    isLoading,
+    error,
+  } = useTextbookData();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
@@ -150,6 +156,8 @@ export function useRegister() {
     handleSnackbarClose,
     isEditSuccess,
     isEditDisabled,
+    isLoading,
+    error,
   };
 }
 

@@ -26,6 +26,8 @@ export function Register() {
     handleSnackbarClose,
     isEditSuccess,
     isEditDisabled,
+    isLoading,
+    error,
   } = useRegister();
 
   return (
@@ -48,6 +50,8 @@ export function Register() {
           handleOpenEditDialog={handleOpenEditDialog}
           setIsDeleteOpen={setIsDeleteOpen}
           isEditDisabled={isEditDisabled}
+          isLoading={isLoading}
+          error={error}
         />
       </FormProvider>
       <Snackbar
