@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SnackbarCloseReason } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
@@ -16,6 +17,8 @@ export function useRegister() {
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
   const [editTargetId, setEditTargetId] = useState<string>("");
   const [showRegisterAlert, setShowRegisterAlert] = useState<boolean>(false);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState<boolean>(false);
+  const [isEditSuccess, setIsEditSuccess] = useState<boolean>(false);
 
   const TextbookFormMethods = useForm<TextBookData>({
     resolver: zodResolver(textbookForm),
@@ -40,6 +43,15 @@ export function useRegister() {
     TextbookFormMethods.formState.errors.textbook,
     showRegisterAlert,
   ]);
+
+  /** 編集ダイアログが開いたら、アラートをすべて消す(編集後や削除後にも登録完了アラートが出続けるのを防止) */
+  useEffect(() => {
+    if (isEditOpen) {
+      setShowRegisterAlert(false);
+      setIsDeleteSuccess(false);
+      setIsEditSuccess(false);
+    }
+  }, [isEditOpen]);
 
   /** 教材を登録 */
   const onSubmitRegister = TextbookFormMethods.handleSubmit(async (data) => {
@@ -79,6 +91,7 @@ export function useRegister() {
     }
     /** 教材データを削除 */
     deleteTextbook(editTargetId);
+    setIsDeleteSuccess(true);
 
     setIsDeleteOpen(false);
     onCloseEditDialog();
@@ -91,11 +104,24 @@ export function useRegister() {
     }
     /** 教材データを更新 */
     editTextbook(editTargetId, { name: data.textbook });
+    setIsEditSuccess(true);
+
     setIsEditOpen(false);
 
     /** formの値を初期値に戻す */
     EditTextbookFormMethods.reset();
   });
+
+  const handleSnackbarClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setIsDeleteSuccess(false);
+    setIsEditSuccess(false);
+  };
 
   return {
     TextbookFormMethods,
@@ -111,6 +137,9 @@ export function useRegister() {
     textbooks,
     showRegisterAlert,
     setShowRegisterAlert,
+    isDeleteSuccess,
+    handleSnackbarClose,
+    isEditSuccess,
   };
 }
 

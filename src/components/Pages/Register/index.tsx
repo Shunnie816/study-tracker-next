@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FormProvider } from "react-hook-form";
+import { Snackbar } from "@/components/Atoms/Snackbar";
 import { RegisterForm } from "@/components/Organisms/RegisterForm";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { RegisteredBook } from "../../Organisms/RegisteredBook";
@@ -21,6 +22,9 @@ export function Register() {
     textbooks,
     showRegisterAlert,
     setShowRegisterAlert,
+    isDeleteSuccess,
+    handleSnackbarClose,
+    isEditSuccess,
   } = useRegister();
 
   return (
@@ -44,6 +48,20 @@ export function Register() {
           setIsDeleteOpen={setIsDeleteOpen}
         />
       </FormProvider>
+      <Snackbar
+        open={isDeleteSuccess}
+        onClose={handleSnackbarClose}
+        withAlert
+        alertMessage="教材が削除されました"
+        severity="success"
+      />
+      <Snackbar
+        open={isEditSuccess}
+        onClose={handleSnackbarClose}
+        withAlert
+        alertMessage="教材が編集されました"
+        severity="success"
+      />
     </SingleColumn>
   );
 }
