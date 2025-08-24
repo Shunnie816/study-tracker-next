@@ -37,12 +37,23 @@ export function useRegister() {
 
   const onCloseEditDialog = useCallback(() => {
     setIsEditOpen(false);
-  }, []);
+    /** formの値を初期値に戻す(エラーも消す) */
+    EditTextbookFormMethods.reset();
+  }, [EditTextbookFormMethods]);
 
-  const handleOpenEditDialog = useCallback((id: string) => {
-    setEditTargetId(id);
-    setIsEditOpen(true);
-  }, []);
+  const handleOpenEditDialog = useCallback(
+    (id: string) => {
+      setEditTargetId(id);
+
+      /** 編集ダイアログの初期値を設定 */
+      EditTextbookFormMethods.setValue(
+        "textbook",
+        textbooks.find((t) => t.id === id)?.name || ""
+      );
+      setIsEditOpen(true);
+    },
+    [EditTextbookFormMethods, textbooks]
+  );
 
   /** 教材データの削除 */
   const handleDelete = useCallback(() => {
