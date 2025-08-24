@@ -36,12 +36,7 @@ export function PostList({
           </React.Fragment>
         );
       })}
-      <DeleteDialog
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleDelete}
-        deleteTarget="投稿"
-      />
+      <DeleteDialog isOpen={isOpen} onClose={onClose} onSubmit={handleDelete} />
     </div>
   );
 }

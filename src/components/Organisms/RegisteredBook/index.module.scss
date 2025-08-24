@@ -1,8 +1,17 @@
 .container {
-  padding: 0 var(--spacing-2);
-  width: 70%;
+  margin-top: var(--spacing-6);
 
-  .list {
-    max-width: var(--containerSmall);
+  .listContainer {
+    padding: 0 var(--spacing-2);
+    width: 70%;
+
+    .listDataWrapper {
+      padding: 0 var(--spacing-2);
+      width: 70%;
+
+      .list {
+        max-width: var(--containerSmall);
+      }
+    }
   }
 }

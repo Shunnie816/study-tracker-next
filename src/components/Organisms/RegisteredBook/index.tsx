@@ -4,54 +4,77 @@ import {
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
+  Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { Icon } from "@/components/Atoms/Icon";
-import { EditDialog } from "@/components/Molecules/EditDialog";
+import { EditDialog } from "@/components/Organisms/EditDialog";
+import { EditTextBookData } from "@/components/Pages/Register/formSchema";
+import { UseRegister } from "@/components/Pages/Register/useRegister";
 import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type Props = {
   listData: Textbook[];
-};
+} & Pick<
+  UseRegister,
+  | "onSubmitEdit"
+  | "handleDelete"
+  | "isDeleteOpen"
+  | "isEditOpen"
+  | "onCloseEditDialog"
+  | "handleOpenEditDialog"
+  | "setIsDeleteOpen"
+>;
 
 type ListProps = {
   value: string;
   onClick: () => void;
 };
 
-export function RegisteredBook({ listData }: Props) {
-  const [isOpen, setIsOpen] = useState<{ [key: string]: boolean }>({});
-
-  const submitEdit = () => {
-    alert("教材を保存しました");
-    setIsOpen({});
-  };
-
-  const onDelete = () => {
-    alert("教材を削除しました");
-    setIsOpen({});
-  };
-
+export function RegisteredBook({
+  listData,
+  onSubmitEdit,
+  handleDelete,
+  isDeleteOpen,
+  isEditOpen,
+  onCloseEditDialog,
+  handleOpenEditDialog,
+  setIsDeleteOpen,
+}: Props) {
   return (
     <div className={styles.container}>
-      <List className={styles.list}>
-        {listData.map((textbook) => (
-          <React.Fragment key={textbook.id}>
-            <MUIListItem
-              value={textbook.name}
-              onClick={() => setIsOpen({ [textbook.id]: true })}
-            />
-            <EditDialog
-              isOpen={isOpen[textbook.id] || false}
-              onClose={() => setIsOpen({})}
-              onSubmit={submitEdit}
-              onDelete={onDelete}
-              textbook={textbook.name}
-            />
-          </React.Fragment>
-        ))}
-      </List>
+      <Typography variant="h5" component="h2" gutterBottom fontWeight="bold">
+        登録済みの教材
+      </Typography>
+      <div className={styles.listContainer}>
+        {listData.length > 0 ? (
+          <div className={styles.listDataWrapper}>
+            <List className={styles.list}>
+              {listData.map((textbook) => (
+                <React.Fragment key={textbook.id}>
+                  <MUIListItem
+                    value={textbook.name}
+                    onClick={() => handleOpenEditDialog(textbook.id)}
+                  />
+                  <EditDialog<EditTextBookData>
+                    name="textbook"
+                    label={"教材名"}
+                    isOpen={isEditOpen}
+                    onClose={onCloseEditDialog}
+                    onSubmit={onSubmitEdit}
+                    onDelete={handleDelete}
+                    isDeleteOpen={isDeleteOpen}
+                    setIsDeleteOpen={setIsDeleteOpen}
+                  />
+                </React.Fragment>
+              ))}
+            </List>
+          </div>
+        ) : (
+          <Typography>登録された教材がありません</Typography>
+        )}
+      </div>
     </div>
   );
 }

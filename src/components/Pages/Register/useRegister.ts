@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
@@ -10,6 +11,9 @@ import {
 } from "./formSchema";
 export function useRegister() {
   const { textbooks, postData } = useTextbookData();
+
+  const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
+  const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
 
   const TextbookFormMethods = useForm<TextBookData>({
     resolver: zodResolver(textbookForm),
@@ -23,7 +27,7 @@ export function useRegister() {
 
   const { reset, handleSubmit } = TextbookFormMethods;
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmitRegister = handleSubmit((data) => {
     /** 教材IDを生成 */
     const id = uuidv4();
 
@@ -33,10 +37,35 @@ export function useRegister() {
     reset();
   });
 
+  const onCloseEditDialog = useCallback(() => {
+    setIsEditOpen(false);
+  }, []);
+
+  const handleOpenEditDialog = useCallback((id: string) => {
+    // TODO: どの教材を変更しているのかを検知するidをstateで管理する
+    setIsEditOpen(true);
+  }, []);
+
+  const handleDelete = useCallback(() => {
+    setIsDeleteOpen(false);
+    onCloseEditDialog();
+  }, [onCloseEditDialog]);
+
+  const onSubmitEdit = useCallback(() => {
+    setIsEditOpen(false);
+  }, []);
+
   return {
     TextbookFormMethods,
     EditTextbookFormMethods,
-    onSubmit,
+    onSubmitRegister,
+    onSubmitEdit,
+    handleDelete,
+    isDeleteOpen,
+    isEditOpen,
+    onCloseEditDialog,
+    setIsDeleteOpen,
+    handleOpenEditDialog,
     textbooks,
   };
 }

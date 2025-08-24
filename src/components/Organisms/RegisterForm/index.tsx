@@ -6,16 +6,16 @@ import { TextBookData } from "@/components/Pages/Register/formSchema";
 import { UseRegister } from "@/components/Pages/Register/useRegister";
 import styles from "./index.module.scss";
 
-export type Props = Pick<UseRegister, "onSubmit">;
+export type Props = Pick<UseRegister, "onSubmitRegister">;
 
-export function RegisterForm({ onSubmit }: Props) {
+export function RegisterForm({ onSubmitRegister }: Props) {
   const {
     control,
     formState: { errors },
   } = useFormContext<TextBookData>();
 
   return (
-    <form onSubmit={onSubmit} className={styles.form}>
+    <form onSubmit={onSubmitRegister} className={styles.form}>
       <FormTextField
         control={control}
         name="textbook"

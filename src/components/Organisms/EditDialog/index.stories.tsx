@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
 import { EditDialog } from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
@@ -21,12 +21,19 @@ const meta: Meta<typeof EditDialog> = {
 export default meta;
 type Story = StoryObj<typeof EditDialog>;
 
+type TextbookForm = {
+  textbook: string;
+};
+
 const Component: Story["render"] = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { control, getValues } = useForm();
+  const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
+
+  const methods = useForm<TextbookForm>();
 
   const onClose = () => {
     setIsOpen(false);
+    setIsDeleteOpen(false);
   };
 
   const onOpen = () => {
@@ -38,20 +45,18 @@ const Component: Story["render"] = () => {
       <Button variant="contained" onClick={onOpen}>
         Open EditDialog
       </Button>
-      <Controller
-        control={control}
-        name="editDialog"
-        render={({ field }) => (
-          <EditDialog
-            {...field}
-            isOpen={isOpen}
-            onClose={onClose}
-            onSubmit={onClose}
-            onDelete={onClose}
-            textbook={getValues("editDialog")}
-          />
-        )}
-      />
+      <FormProvider {...methods}>
+        <EditDialog<TextbookForm>
+          name="textbook"
+          label={"教材名"}
+          isOpen={isOpen}
+          onClose={onClose}
+          onSubmit={onClose}
+          onDelete={onClose}
+          isDeleteOpen={isDeleteOpen}
+          setIsDeleteOpen={setIsDeleteOpen}
+        />
+      </FormProvider>
     </div>
   );
 };
