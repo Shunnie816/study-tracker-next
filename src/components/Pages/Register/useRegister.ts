@@ -31,13 +31,13 @@ export function useRegister() {
   useEffect(() => {
     if (showRegisterAlert) {
       const hasNextInput =
-        !TextbookFormMethods.formState.isDirty ||
+        TextbookFormMethods.formState.isDirty ||
         TextbookFormMethods.formState.errors.textbook;
       setShowRegisterAlert(!hasNextInput);
     }
   }, [
-    TextbookFormMethods.formState.errors.textbook,
     TextbookFormMethods.formState.isDirty,
+    TextbookFormMethods.formState.errors.textbook,
     showRegisterAlert,
   ]);
 
@@ -46,6 +46,7 @@ export function useRegister() {
     /** 教材データを登録 */
     await registerTextbook({ name: data.textbook });
     setShowRegisterAlert(true);
+    console.log("教材登録完了", showRegisterAlert);
 
     /** formの値を初期値に戻す */
     TextbookFormMethods.reset();
