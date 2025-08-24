@@ -9,10 +9,11 @@ import {
   textbookForm,
 } from "./formSchema";
 export function useRegister() {
-  const { textbooks, postData } = useTextbookData();
+  const { textbooks, registerTextbook, editTextbook } = useTextbookData();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
+  const [editTargetId, setEditTargetId] = useState<string>("");
 
   const TextbookFormMethods = useForm<TextBookData>({
     resolver: zodResolver(textbookForm),
@@ -24,14 +25,12 @@ export function useRegister() {
     defaultValues: { textbook: "" },
   });
 
-  const { reset, handleSubmit } = TextbookFormMethods;
-
-  const onSubmitRegister = handleSubmit((data) => {
+  const onSubmitRegister = TextbookFormMethods.handleSubmit((data) => {
     /** 教材データを登録 */
-    postData({ name: data.textbook });
+    registerTextbook({ name: data.textbook });
 
     /** formの値を初期値に戻す */
-    reset();
+    TextbookFormMethods.reset();
   });
 
   const onCloseEditDialog = useCallback(() => {
@@ -39,6 +38,7 @@ export function useRegister() {
   }, []);
 
   const handleOpenEditDialog = useCallback((id: string) => {
+    setEditTargetId(id);
     setIsEditOpen(true);
   }, []);
 
@@ -47,9 +47,17 @@ export function useRegister() {
     onCloseEditDialog();
   }, [onCloseEditDialog]);
 
-  const onSubmitEdit = useCallback(() => {
+  const onSubmitEdit = EditTextbookFormMethods.handleSubmit((data) => {
+    if (!editTargetId) {
+      return;
+    }
+    /** 教材データを更新 */
+    editTextbook(editTargetId, { name: data.textbook });
     setIsEditOpen(false);
-  }, []);
+
+    /** formの値を初期値に戻す */
+    EditTextbookFormMethods.reset();
+  });
 
   return {
     TextbookFormMethods,

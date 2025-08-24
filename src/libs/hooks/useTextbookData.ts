@@ -1,4 +1,11 @@
-import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { useMemo, useEffect } from "react";
 import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
@@ -18,7 +25,7 @@ export function useTextbookData() {
     return textbooks;
   }
 
-  async function postData(textbook: Textbook) {
+  async function registerTextbook(textbook: Textbook) {
     /** Firestoreに教材データを登録 */
     try {
       await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
@@ -26,6 +33,18 @@ export function useTextbookData() {
       });
     } catch (e) {
       console.error("Error adding textbook: ", e);
+    }
+  }
+
+  async function editTextbook(id: string, textbook: Textbook) {
+    /** Firestoreの教材データを更新 */
+    try {
+      const textbookRef = doc(db, COLLECTIONS.TEXTBOOKS, id);
+      await updateDoc(textbookRef, {
+        ...textbook,
+      });
+    } catch (e) {
+      console.error("Error updating textbook: ", e);
     }
   }
 
@@ -62,7 +81,8 @@ export function useTextbookData() {
 
   return {
     textbooks,
-    postData,
+    registerTextbook,
+    editTextbook,
   };
 }
 
