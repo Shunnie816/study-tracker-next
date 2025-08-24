@@ -25,6 +25,7 @@ export function useRegister() {
     defaultValues: { textbook: "" },
   });
 
+  /** 教材を登録 */
   const onSubmitRegister = TextbookFormMethods.handleSubmit((data) => {
     /** 教材データを登録 */
     registerTextbook({ name: data.textbook });
@@ -42,11 +43,13 @@ export function useRegister() {
     setIsEditOpen(true);
   }, []);
 
+  /** 教材データの削除 */
   const handleDelete = useCallback(() => {
     setIsDeleteOpen(false);
     onCloseEditDialog();
   }, [onCloseEditDialog]);
 
+  /** 教材データの編集 */
   const onSubmitEdit = EditTextbookFormMethods.handleSubmit((data) => {
     if (!editTargetId) {
       return;
