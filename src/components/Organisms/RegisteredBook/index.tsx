@@ -103,7 +103,7 @@ const MUIListItem = ({ value, onClick }: ListProps) => {
       <ListItemText>{value}</ListItemText>
       <ListItemSecondaryAction onClick={onClick}>
         <IconButton>
-          <Icon icon="edit" />
+          <Icon icon="edit" fontSize="small" />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
