@@ -57,19 +57,19 @@ export function RegisteredBook({
                     value={textbook.name}
                     onClick={() => handleOpenEditDialog(textbook.id!)}
                   />
-                  <EditDialog<EditTextBookData>
-                    name="textbook"
-                    label={"教材名"}
-                    isOpen={isEditOpen}
-                    onClose={onCloseEditDialog}
-                    onSubmit={onSubmitEdit}
-                    onDelete={handleDelete}
-                    isDeleteOpen={isDeleteOpen}
-                    setIsDeleteOpen={setIsDeleteOpen}
-                  />
                 </React.Fragment>
               ))}
             </List>
+            <EditDialog<EditTextBookData>
+              name="textbook"
+              label={"教材名"}
+              isOpen={isEditOpen}
+              onClose={onCloseEditDialog}
+              onSubmit={onSubmitEdit}
+              onDelete={handleDelete}
+              isDeleteOpen={isDeleteOpen}
+              setIsDeleteOpen={setIsDeleteOpen}
+            />
           </div>
         ) : (
           <Typography>登録された教材がありません</Typography>
