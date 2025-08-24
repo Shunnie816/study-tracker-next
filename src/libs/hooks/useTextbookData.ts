@@ -5,6 +5,9 @@ import {
   doc,
   getDocs,
   onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
 import { useMemo, useEffect } from "react";
@@ -16,9 +19,15 @@ import { Textbook } from "../types";
 export function useTextbookData() {
   const apiPath = "textbooks";
 
+  /** 教材データを作った順(昇順)で取得 */
+  const fetchQuery = query(
+    collection(db, COLLECTIONS.TEXTBOOKS),
+    orderBy("createdAt", "asc")
+  );
+
   async function fetchTextbooks() {
     /** Firestoreからデータを取得 */
-    const textbookData = await getDocs(collection(db, COLLECTIONS.TEXTBOOKS));
+    const textbookData = await getDocs(fetchQuery);
     const textbooks = textbookData.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -31,6 +40,7 @@ export function useTextbookData() {
     try {
       await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
         ...textbook,
+        createdAt: serverTimestamp(),
       });
     } catch (e) {
       console.error("Error adding textbook: ", e);
@@ -74,21 +84,18 @@ export function useTextbookData() {
 
   /** Firestoreの教材データを監視(リアルタイム更新) */
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, COLLECTIONS.TEXTBOOKS),
-      (snapshot) => {
-        const updatedTextbooks = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Textbook[];
-        // SWRのキャッシュを更新
-        mutate(apiPath, updatedTextbooks, false);
-      }
-    );
+    const unsubscribe = onSnapshot(fetchQuery, (snapshot) => {
+      const updatedTextbooks = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Textbook[];
+      // SWRのキャッシュを更新
+      mutate(apiPath, updatedTextbooks, false);
+    });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [fetchQuery]);
 
   return {
     textbooks,
