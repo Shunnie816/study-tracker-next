@@ -1,6 +1,6 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { useMemo } from "react";
-import useSWR from "swr";
+import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
+import { useMemo, useEffect } from "react";
+import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { Textbook } from "../types";
@@ -18,7 +18,6 @@ export function useTextbookData() {
     return textbooks;
   }
 
-  // TODO: idは登録しないので、idを除外する
   async function postData(textbook: Textbook) {
     /** Firestoreに教材データを登録 */
     try {
@@ -42,6 +41,24 @@ export function useTextbookData() {
   const textbooks = useMemo(() => {
     return data ?? [];
   }, [data]);
+
+  /** Firestoreの教材データを監視(リアルタイム更新) */
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, COLLECTIONS.TEXTBOOKS),
+      (snapshot) => {
+        const updatedTextbooks = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Textbook[];
+        // SWRのキャッシュを更新
+        mutate(apiPath, updatedTextbooks, false);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return {
     textbooks,

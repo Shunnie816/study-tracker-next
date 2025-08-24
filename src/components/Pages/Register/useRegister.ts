@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import {
   editForm,
@@ -28,10 +27,8 @@ export function useRegister() {
   const { reset, handleSubmit } = TextbookFormMethods;
 
   const onSubmitRegister = handleSubmit((data) => {
-    /** 教材IDを生成 */
-    const id = uuidv4();
-
-    postData({ id: id, name: data.textbook });
+    /** 教材データを登録 */
+    postData({ name: data.textbook });
 
     /** formの値を初期値に戻す */
     reset();
@@ -42,7 +39,6 @@ export function useRegister() {
   }, []);
 
   const handleOpenEditDialog = useCallback((id: string) => {
-    // TODO: どの教材を変更しているのかを検知するidをstateで管理する
     setIsEditOpen(true);
   }, []);
 
