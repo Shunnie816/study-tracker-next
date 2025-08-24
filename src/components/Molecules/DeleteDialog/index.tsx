@@ -7,23 +7,22 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
-  deleteTarget: "投稿" | "教材";
 };
 
-export function DeleteDialog({
-  isOpen,
-  onClose,
-  onSubmit,
-  deleteTarget,
-}: Props) {
+export function DeleteDialog({ isOpen, onClose, onSubmit }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="削除してよろしいですか？">
       <div className={styles.buttonWrapper}>
-        <Button variant="text" onClick={onClose}>
+        <Button variant="text" onClick={onClose} size="small">
           キャンセル
         </Button>
-        <Button variant="outlined" color="error" onClick={onSubmit}>
-          {deleteTarget}を削除
+        <Button
+          variant="outlined"
+          color="error"
+          onClick={onSubmit}
+          size="small"
+        >
+          削除
         </Button>
       </div>
     </Modal>

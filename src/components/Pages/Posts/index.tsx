@@ -26,7 +26,9 @@ export function Posts() {
           <CircularProgress />
         </div>
       ) : error ? (
-        <Typography color="error">エラーが発生しました。</Typography>
+        <Typography color="error">
+          データ取得中にエラーが発生しました。
+        </Typography>
       ) : posts && posts.length > 0 ? (
         <PostList
           posts={posts}

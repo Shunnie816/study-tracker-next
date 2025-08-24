@@ -1,6 +1,14 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { useMemo } from "react";
-import useSWR from "swr";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
+import { useMemo, useEffect } from "react";
+import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { Textbook } from "../types";
@@ -18,8 +26,7 @@ export function useTextbookData() {
     return textbooks;
   }
 
-  // TODO: idは登録しないので、idを除外する
-  async function postData(textbook: Textbook) {
+  async function registerTextbook(textbook: Textbook) {
     /** Firestoreに教材データを登録 */
     try {
       await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
@@ -30,7 +37,29 @@ export function useTextbookData() {
     }
   }
 
-  const { data } = useSWR(apiPath, fetchTextbooks, {
+  async function editTextbook(id: string, textbook: Textbook) {
+    /** Firestoreの教材データを更新 */
+    try {
+      const textbookRef = doc(db, COLLECTIONS.TEXTBOOKS, id);
+      await updateDoc(textbookRef, {
+        ...textbook,
+      });
+    } catch (e) {
+      console.error("Error updating textbook: ", e);
+    }
+  }
+
+  async function deleteTextbook(id: string) {
+    /** Firestoreの教材データを削除 */
+    try {
+      const textbookRef = doc(db, COLLECTIONS.TEXTBOOKS, id);
+      await deleteDoc(textbookRef);
+    } catch (e) {
+      console.error("Error deleting textbook: ", e);
+    }
+  }
+
+  const { data, isLoading, error } = useSWR(apiPath, fetchTextbooks, {
     onSuccess(data) {
       return data;
     },
@@ -43,9 +72,31 @@ export function useTextbookData() {
     return data ?? [];
   }, [data]);
 
+  /** Firestoreの教材データを監視(リアルタイム更新) */
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, COLLECTIONS.TEXTBOOKS),
+      (snapshot) => {
+        const updatedTextbooks = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Textbook[];
+        // SWRのキャッシュを更新
+        mutate(apiPath, updatedTextbooks, false);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return {
     textbooks,
-    postData,
+    registerTextbook,
+    editTextbook,
+    deleteTextbook,
+    isLoading,
+    error,
   };
 }
 

@@ -35,12 +35,7 @@ const Component: Story["render"] = () => {
       <Button variant="contained" onClick={onOpen}>
         Open DeleteDialog
       </Button>
-      <DeleteDialog
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={onClose}
-        deleteTarget="投稿"
-      />
+      <DeleteDialog isOpen={isOpen} onClose={onClose} onSubmit={onClose} />
     </div>
   );
 };

@@ -86,7 +86,7 @@ export function useReport() {
     methods,
     errors,
     control,
-    handleSubmit: onSubmit,
+    onSubmit,
     reset,
     timeData,
     textbooks,
