@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   onSnapshot,
@@ -48,6 +49,16 @@ export function useTextbookData() {
     }
   }
 
+  async function deleteTextbook(id: string) {
+    /** Firestoreの教材データを削除 */
+    try {
+      const textbookRef = doc(db, COLLECTIONS.TEXTBOOKS, id);
+      await deleteDoc(textbookRef);
+    } catch (e) {
+      console.error("Error deleting textbook: ", e);
+    }
+  }
+
   const { data } = useSWR(apiPath, fetchTextbooks, {
     onSuccess(data) {
       return data;
@@ -83,6 +94,7 @@ export function useTextbookData() {
     textbooks,
     registerTextbook,
     editTextbook,
+    deleteTextbook,
   };
 }
 

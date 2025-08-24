@@ -9,7 +9,8 @@ import {
   textbookForm,
 } from "./formSchema";
 export function useRegister() {
-  const { textbooks, registerTextbook, editTextbook } = useTextbookData();
+  const { textbooks, registerTextbook, editTextbook, deleteTextbook } =
+    useTextbookData();
 
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
@@ -45,9 +46,15 @@ export function useRegister() {
 
   /** 教材データの削除 */
   const handleDelete = useCallback(() => {
+    if (!editTargetId) {
+      return;
+    }
+    /** 教材データを削除 */
+    deleteTextbook(editTargetId);
+
     setIsDeleteOpen(false);
     onCloseEditDialog();
-  }, [onCloseEditDialog]);
+  }, [deleteTextbook, editTargetId, onCloseEditDialog]);
 
   /** 教材データの編集 */
   const onSubmitEdit = EditTextbookFormMethods.handleSubmit((data) => {
