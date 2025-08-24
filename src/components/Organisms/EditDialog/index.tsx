@@ -1,18 +1,21 @@
-import React, { useCallback, useState } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import React from "react";
+import { Control, FieldErrors } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
 import { Modal } from "@/components/Atoms/Modal";
-import { TextField } from "@/components/Atoms/TextField";
 import { DeleteDialog } from "@/components/Molecules/DeleteDialog";
 import { EditTextBookData } from "@/components/Pages/Register/formSchema";
+import { FormTextField } from "../../Molecules/FormTextField";
 import styles from "./index.module.scss";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
+  isDeleteOpen: boolean;
   onDelete: () => void;
-  textbook: string;
+  control: Control<EditTextBookData>;
+  errors: FieldErrors<EditTextBookData>;
+  setIsDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function EditDialog({
@@ -20,40 +23,21 @@ export function EditDialog({
   onClose,
   onSubmit,
   onDelete,
-  textbook,
+  isDeleteOpen,
+  control,
+  errors,
+  setIsDeleteOpen,
 }: Props) {
-  const { control } = useFormContext<EditTextBookData>();
-
-  const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
-  const onCloseDeleteDialog = () => {
-    setIsDeleteOpen(false);
-  };
-
-  const handleDelete = useCallback(() => {
-    onDelete();
-    setIsDeleteOpen(false);
-  }, [onDelete]);
-
-  const handleSubmit = useCallback(() => {
-    onSubmit();
-  }, [onSubmit]);
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="教材を編集">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className={styles.textfield}>
-          <Controller
+          <FormTextField
             control={control}
             name="textbook"
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="教材名を入力"
-                variant="outlined"
-                /** TODO: 初期値が設定されていない */
-                value={textbook}
-              />
-            )}
+            label="教材を入力"
+            error={!!errors.textbook}
+            errorMessage={errors.textbook?.message}
           />
         </div>
         <div className={styles.buttonWrapper}>
@@ -73,8 +57,8 @@ export function EditDialog({
           </Button>
           <DeleteDialog
             isOpen={isDeleteOpen}
-            onClose={onCloseDeleteDialog}
-            onSubmit={handleDelete}
+            onClose={() => setIsDeleteOpen(false)}
+            onSubmit={onDelete}
             deleteTarget="教材"
           />
         </div>
