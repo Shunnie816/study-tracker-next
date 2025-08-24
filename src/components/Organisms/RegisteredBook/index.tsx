@@ -55,7 +55,7 @@ export function RegisteredBook({
                 <React.Fragment key={textbook.id}>
                   <MUIListItem
                     value={textbook.name}
-                    onClick={() => handleOpenEditDialog(textbook.id)}
+                    onClick={() => handleOpenEditDialog(textbook.id!)}
                   />
                   <EditDialog<EditTextBookData>
                     name="textbook"
