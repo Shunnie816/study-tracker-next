@@ -31,7 +31,7 @@ export function ListMenu({
   return (
     <List sx={{ display: row ? "flex" : "block", gap: row ? 4 : 0 }}>
       {items.map((item) => (
-        <ListItem key={item.label} disablePadding>
+        <ListItem key={item.label} disablePadding sx={{ width: "auto" }}>
           <Link href={item.href} passHref legacyBehavior>
             <ListItemButton component="a" onClick={onClick}>
               {showIcons && item.icon && (

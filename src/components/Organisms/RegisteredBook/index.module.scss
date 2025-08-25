@@ -8,19 +8,14 @@
     align-items: center;
   }
 
-  .listContainer {
+  .listDataWrapper {
     padding: 0 var(--spacing-2);
     width: 70%;
 
-    .listDataWrapper {
-      padding: 0 var(--spacing-2);
-      width: 70%;
-
-      .list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-2);
-      }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2);
     }
   }
 }
