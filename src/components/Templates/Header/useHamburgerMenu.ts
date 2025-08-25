@@ -32,7 +32,7 @@ export function useHamburgerMenu() {
       href: URL_VALUES.REGISTER,
     },
     {
-      label: "学習記録",
+      label: "学習記録一覧",
       icon: "school",
       href: URL_VALUES.POSTS,
     },
