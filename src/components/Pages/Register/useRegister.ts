@@ -32,7 +32,7 @@ export function useRegister() {
     defaultValues: { textbook: "" },
   });
 
-  const EditTextbookFormMethods = useForm<EditTextBookData>({
+  const EditFormMethods = useForm<EditTextBookData>({
     resolver: zodResolver(editForm),
     defaultValues: { textbook: "" },
   });
@@ -62,11 +62,11 @@ export function useRegister() {
 
   useEffect(() => {
     setIsEditDisabled(
-      !EditTextbookFormMethods.formState.isValid ||
-        EditTextbookFormMethods.formState.isSubmitting ||
-        !EditTextbookFormMethods.formState.isDirty
+      !EditFormMethods.formState.isValid ||
+        EditFormMethods.formState.isSubmitting ||
+        !EditFormMethods.formState.isDirty
     );
-  }, [EditTextbookFormMethods.formState]);
+  }, [EditFormMethods.formState]);
 
   /** 教材を登録 */
   const onSubmitRegister = TextbookFormMethods.handleSubmit(async (data) => {
@@ -82,21 +82,21 @@ export function useRegister() {
   const onCloseEditDialog = useCallback(() => {
     setIsEditOpen(false);
     /** formの値を初期値に戻す(エラーも消す) */
-    EditTextbookFormMethods.reset();
-  }, [EditTextbookFormMethods]);
+    EditFormMethods.reset();
+  }, [EditFormMethods]);
 
   const handleOpenEditDialog = useCallback(
     (id: string) => {
       setEditTargetId(id);
 
       /** 編集ダイアログの初期値を設定 */
-      EditTextbookFormMethods.setValue(
+      EditFormMethods.setValue(
         "textbook",
         textbooks.find((t) => t.id === id)?.name || ""
       );
       setIsEditOpen(true);
     },
-    [EditTextbookFormMethods, textbooks]
+    [EditFormMethods, textbooks]
   );
 
   /** 教材データの削除 */
@@ -113,7 +113,7 @@ export function useRegister() {
   }, [deleteTextbook, editTargetId, onCloseEditDialog]);
 
   /** 教材データの編集 */
-  const onSubmitEdit = EditTextbookFormMethods.handleSubmit((data) => {
+  const onSubmitEdit = EditFormMethods.handleSubmit((data) => {
     if (!editTargetId) {
       return;
     }
@@ -124,7 +124,7 @@ export function useRegister() {
     setIsEditOpen(false);
 
     /** formの値を初期値に戻す */
-    EditTextbookFormMethods.reset();
+    EditFormMethods.reset();
   });
 
   const handleSnackbarClose = (
@@ -140,7 +140,7 @@ export function useRegister() {
 
   return {
     TextbookFormMethods,
-    EditTextbookFormMethods,
+    EditFormMethods,
     onSubmitRegister,
     onSubmitEdit,
     handleDelete,

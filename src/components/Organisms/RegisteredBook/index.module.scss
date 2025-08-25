@@ -17,7 +17,9 @@
       width: 70%;
 
       .list {
-        max-width: var(--containerSmall);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
       }
     }
   }

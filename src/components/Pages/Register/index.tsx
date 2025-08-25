@@ -10,7 +10,7 @@ import { useRegister } from "./useRegister";
 export function Register() {
   const {
     TextbookFormMethods,
-    EditTextbookFormMethods,
+    EditFormMethods,
     onSubmitRegister,
     onSubmitEdit,
     handleDelete,
@@ -39,7 +39,7 @@ export function Register() {
           setShowRegisterAlert={setShowRegisterAlert}
         />
       </FormProvider>
-      <FormProvider {...EditTextbookFormMethods}>
+      <FormProvider {...EditFormMethods}>
         <RegisteredBook
           listData={textbooks}
           onSubmitEdit={onSubmitEdit}
