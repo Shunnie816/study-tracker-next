@@ -1,0 +1,27 @@
+.headerMenu {
+  justify-content: space-between;
+
+  .link {
+    color: var(--white);
+  }
+
+  .mobileHeader {
+    padding-top: var(--spacing-1);
+
+    @media screen and (min-width: $breakpoint) {
+      &.isPC {
+        display: none;
+      }
+    }
+  }
+
+  .pcHeader {
+    display: none;
+
+    @media screen and (min-width: $breakpoint) {
+      &.isPC {
+        display: flex;
+      }
+    }
+  }
+}

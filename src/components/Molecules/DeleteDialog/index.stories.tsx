@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@/components/Atoms/Button";
 import { DeleteDialog } from "./index";
-import { CustomButton } from "@/components/Atoms/CustomButton";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof DeleteDialog> = {
   component: DeleteDialog,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "削除ダイアログ用のMoleculeコンポーネント。削除対象やコールバックをpropsで指定。",
+      },
+    },
+  },
 };
 
 export default meta;
@@ -23,15 +32,10 @@ const Component: Story["render"] = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <CustomButton variant="contained" onClick={onOpen}>
+      <Button variant="contained" onClick={onOpen}>
         Open DeleteDialog
-      </CustomButton>
-      <DeleteDialog
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={onClose}
-        deleteTarget="投稿"
-      />
+      </Button>
+      <DeleteDialog isOpen={isOpen} onClose={onClose} onSubmit={onClose} />
     </div>
   );
 };

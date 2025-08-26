@@ -1,0 +1,10 @@
+.formsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+.button {
+  margin-top: var(--spacing-4);
+}

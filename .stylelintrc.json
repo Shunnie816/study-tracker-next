@@ -1,0 +1,30 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-order"],
+  "customSyntax": "postcss-styled-syntax",
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      {
+        "type": "at-rule",
+        "name": "include"
+      },
+      {
+        "type": "at-rule",
+        "name": "extend"
+      },
+      "declarations",
+      "rules",
+      "at-rules"
+    ],
+    "order/properties-alphabetical-order": true,
+    "custom-property-pattern": "^(--[a-z][a-zA-Z0-9]*|[a-z][a-zA-Z0-9]*|(-[a-zA-Z0-9]+))*$",
+    "selector-class-pattern": [
+      "^([a-z][a-zA-Z0-9]*|[a-z][a-zA-Z0-9]*)*$",
+      {
+        "resolveNestedSelectors": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+.container {
+  margin-top: var(--spacing-6);
+
+  .loadingWrapper {
+    margin-top: var(--spacing-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .listDataWrapper {
+    padding: 0 var(--spacing-2);
+    width: 70%;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2);
+    }
+  }
+}

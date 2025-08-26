@@ -1,5 +1,4 @@
-import type { Preview } from "@storybook/react";
-/** variable.scssの値を読み込むためにimportが必要 */
+import type { Preview } from "@storybook/nextjs";
 import "../src/assets/styles/variable.scss";
 
 const preview: Preview = {

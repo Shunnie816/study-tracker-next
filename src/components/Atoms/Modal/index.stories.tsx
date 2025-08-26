@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-
+import { Button } from "../Button";
 import { Modal } from "./index";
-import { CustomButton } from "../CustomButton";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Modal> = {
   component: Modal,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "ダイアログ表示用のAtomコンポーネント。開閉状態や内容をpropsで制御可能。",
+      },
+    },
+  },
 };
 
 export default meta;
@@ -24,9 +32,9 @@ const Component: Story["render"] = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <CustomButton variant="contained" onClick={onOpen}>
+      <Button variant="contained" onClick={onOpen}>
         Open Modal
-      </CustomButton>
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose} title={"タイトル"}>
         内容がここに表示されます
       </Modal>

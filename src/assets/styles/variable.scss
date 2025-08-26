@@ -1,5 +1,11 @@
-// 各index.module.scssからアクセスするためのカスタムプロパティ
 :root {
+  //responsive
+  --pcButtonWidth: 343px;
+
+  //constants
+  --headerHeight: 64px; // headerの高さ
+  --footerHeight: 20px; // footerの高さ
+
   //font-size
   --fontSizeXS: 12px;
   --fontSizeS: 14px;
@@ -9,15 +15,16 @@
   --fontSizeXXL: 24px;
 
   //spacing
-  --spacing-1: 4px; /* 小さい間隔 */
-  --spacing-2: 8px; /* 通常の間隔 */
-  --spacing-3: 12px; /* やや大きい間隔 */
-  --spacing-4: 16px; /* 中くらいの間隔 */
-  --spacing-5: 20px; /* 大きい間隔 */
-  --spacing-6: 24px; /* より大きい間隔 */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
   --spacing-9: 36px;
   --spacing-10: 40px;
-  --spacing-14: 56px; /* headerのheight */
+  --spacing-14: 56px;
+  --spacing-16: 64px;
   --spacing-18: 72px;
   --spacing-24: 96px;
 
@@ -27,4 +34,7 @@
   //background-color
   --bgColorBase: #fcffe9;
   --bgColorWhite: #fff;
+
+  //color
+  --white: #fff;
 }

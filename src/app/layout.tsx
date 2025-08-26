@@ -1,8 +1,7 @@
+import { Layout } from "@/components/Templates/Layout";
 import type { Metadata } from "next";
-import "../assets/styles/reset.scss";
 import "../assets/styles/global.scss";
 import "../assets/styles/variable.scss";
-import { Layout } from "@/components/Templates/Layout";
 
 export const metadata: Metadata = {
   title: "Study Tracker Next",
