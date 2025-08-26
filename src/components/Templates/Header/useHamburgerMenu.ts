@@ -36,11 +36,11 @@ export function useHamburgerMenu() {
       icon: "school",
       href: URL_VALUES.POSTS,
     },
-    {
-      label: "学習時間",
-      icon: "time",
-      href: URL_VALUES.STUDYLOG,
-    },
+    // {
+    //   label: "学習時間",
+    //   icon: "time",
+    //   href: URL_VALUES.STUDYLOG,
+    // },
   ];
 
   return {
