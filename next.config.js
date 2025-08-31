@@ -4,4 +4,4 @@ const nextConfig = {
   basePath: "/study-tracker",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
