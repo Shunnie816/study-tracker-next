@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // shunniehub.comのサブドメインにするため、ルートを/study-trackerに設定
-  basePath: "/study-tracker",
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
