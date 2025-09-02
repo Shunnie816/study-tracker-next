@@ -45,3 +45,8 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY
+    value: "6LdA6bsrAAAAAA0tZscBdyDsXx4h45ssLbauzNxa"
+    availability:
+      - BUILD
+      - RUNTIME
