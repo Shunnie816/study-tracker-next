@@ -20,16 +20,18 @@ const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
   typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
-/** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
-(self as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
-  process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
+/** クライアント側限定で呼び出す(SSRで初期化しないように) */
+if (typeof window !== "undefined") {
+  /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
+  (self as any).FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 
-initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider(
-    process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY!
-  ),
-  isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
-});
+  initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(
+      process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY!
+    ),
+    isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
+  });
+}
 
 export const db = getFirestore(app);
 if (process.env.NODE_ENV === "development") {
