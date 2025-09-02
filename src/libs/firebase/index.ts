@@ -1,5 +1,9 @@
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp, getApps } from "firebase/app";
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider,
+} from "firebase/app-check";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -15,6 +19,17 @@ const firebaseConfig = {
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
   typeof window !== "undefined" ? getAnalytics(app) : undefined;
+
+/** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
+(self as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+  process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider(
+    process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY!
+  ),
+  isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
+});
 
 export const db = getFirestore(app);
 if (process.env.NODE_ENV === "development") {
