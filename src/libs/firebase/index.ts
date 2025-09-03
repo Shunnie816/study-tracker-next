@@ -22,8 +22,11 @@ export const analytics =
 
 /** クライアント側限定で呼び出す(SSRで初期化しないように) */
 if (typeof window !== "undefined") {
-  /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
-  (self as any).FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+  if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
+    /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
+    (globalThis as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+      process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
+  }
 
   initializeAppCheck(app, {
     provider: new ReCaptchaEnterpriseProvider(
