@@ -12,9 +12,11 @@ import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { PostData } from "../types";
+import { useAppCheck } from "./useAppCheck";
 
 export const usePostData = () => {
   const apiPath = "posts";
+  const { isAppCheckReady } = useAppCheck();
 
   async function fetchPostData() {
     /** Firestoreからデータを取得 */
@@ -63,12 +65,11 @@ export const usePostData = () => {
     };
   }, []);
 
-  /** isLoading, errorハンドリングを記述する */
   const {
     data: posts,
     isLoading,
     error,
-  } = useSWR(apiPath, fetchPostData, {
+  } = useSWR(isAppCheckReady ? apiPath : null, fetchPostData, {
     onSuccess(data) {
       return data;
     },
