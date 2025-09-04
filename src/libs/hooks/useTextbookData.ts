@@ -88,8 +88,9 @@ export function useTextbookData() {
     return data ?? [];
   }, [data]);
 
-  /** Firestoreの教材データを監視(リアルタイム更新) */
+  /** Firestoreの教材データを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {
+    if (!isAppCheckReady) return;
     const unsubscribe = onSnapshot(fetchQuery, (snapshot) => {
       const updatedTextbooks = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -101,7 +102,7 @@ export function useTextbookData() {
     return () => {
       unsubscribe();
     };
-  }, [fetchQuery]);
+  }, [fetchQuery, isAppCheckReady]);
 
   return {
     textbooks,
