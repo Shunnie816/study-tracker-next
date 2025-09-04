@@ -44,8 +44,9 @@ export const usePostData = () => {
     }
   }
 
-  /** Firestoreのデータを監視(リアルタイム更新) */
+  /** Firestoreのデータを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {
+    if (!isAppCheckReady) return;
     const unsubscribe = onSnapshot(
       collection(db, COLLECTIONS.POSTS),
       (snapshot) => {
@@ -62,7 +63,7 @@ export const usePostData = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [isAppCheckReady]);
 
   const {
     data: posts,
