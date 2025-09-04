@@ -16,9 +16,11 @@ import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { Textbook } from "../types";
+import { useAppCheck } from "./useAppCheck";
 
 export function useTextbookData() {
   const apiPath = "textbooks";
+  const { isAppCheckReady } = useAppCheck();
 
   /** 教材データを作った順(昇順)で取得 */
   const fetchQuery = query(
@@ -70,14 +72,18 @@ export function useTextbookData() {
     }
   }
 
-  const { data, isLoading, error } = useSWR(apiPath, fetchTextbooks, {
-    onSuccess(data) {
-      return data;
-    },
-    onError(error) {
-      console.log("Error fetching textbooks: ", error);
-    },
-  });
+  const { data, isLoading, error } = useSWR(
+    isAppCheckReady ? apiPath : null,
+    fetchTextbooks,
+    {
+      onSuccess(data) {
+        return data;
+      },
+      onError(error) {
+        console.log("Error fetching textbooks: ", error);
+      },
+    }
+  );
 
   const textbooks = useMemo(() => {
     return data ?? [];

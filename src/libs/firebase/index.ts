@@ -20,23 +20,28 @@ const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
   typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
-/** クライアント側限定で呼び出す(SSRで初期化しないように) */
-if (typeof window !== "undefined") {
-  if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
-    /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
-    (globalThis as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
-      process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
-  }
-
-  initializeAppCheck(app, {
+function initAppCheck() {
+  /** クライアント側限定で呼び出す(SSRで初期化しないように) */
+  if (typeof window === "undefined") return;
+  return initializeAppCheck(app, {
     provider: new ReCaptchaEnterpriseProvider(
       process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY!
     ),
-    isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
+    isTokenAutoRefreshEnabled: true,
   });
+}
+export const appCheck = initAppCheck();
+
+/** 開発環境のみ実行する */
+if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
+  /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
+  (globalThis as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+    process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
 }
 
 export const db = getFirestore(app);
+
+/** Firestoreエミュレーター接続 */
 if (process.env.NODE_ENV === "development") {
   try {
     connectFirestoreEmulator(db, "127.0.0.1", 8080);
