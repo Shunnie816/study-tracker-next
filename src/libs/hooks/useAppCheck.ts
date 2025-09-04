@@ -3,10 +3,11 @@ import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 import { appCheck } from "../firebase";
 
+/** 無限レンダリングを防ぐために外側に定義 */
+const appCheckAtom = atom<boolean>(false);
+
 /** AppCheckトークンが発行されているかを確認する */
 export function useAppCheck() {
-  const appCheckAtom = atom<boolean>(false);
-
   const [isAppCheckReady, setIsAppCheckReady] = useAtom(appCheckAtom);
 
   useEffect(() => {
