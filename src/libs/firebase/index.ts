@@ -20,6 +20,13 @@ const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
   typeof window !== "undefined" ? getAnalytics(app) : undefined;
 
+/** 開発環境のみ実行する */
+if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
+  /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
+  (globalThis as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+    process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
+}
+
 function initAppCheck() {
   /** クライアント側限定で呼び出す(SSRで初期化しないように) */
   if (typeof window === "undefined") return;
@@ -31,13 +38,6 @@ function initAppCheck() {
   });
 }
 export const appCheck = initAppCheck();
-
-/** 開発環境のみ実行する */
-if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
-  /** ローカルデバッグトークンを有効にする(App Checkではじかれないように) */
-  (globalThis as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
-    process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN;
-}
 
 export const db = getFirestore(app);
 
