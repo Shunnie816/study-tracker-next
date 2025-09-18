@@ -44,6 +44,19 @@ export const usePostData = () => {
     }
   }
 
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useSWR(isAppCheckReady ? apiPath : null, fetchPostData, {
+    onSuccess(data) {
+      return data;
+    },
+    onError(error) {
+      console.log("swr returns error", error);
+    },
+  });
+
   /** Firestoreのデータを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {
     if (!isAppCheckReady) return;
@@ -64,19 +77,6 @@ export const usePostData = () => {
       unsubscribe();
     };
   }, [isAppCheckReady]);
-
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR(isAppCheckReady ? apiPath : null, fetchPostData, {
-    onSuccess(data) {
-      return data;
-    },
-    onError(error) {
-      console.log("swr returns error", error);
-    },
-  });
 
   return {
     posts,
