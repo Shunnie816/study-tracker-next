@@ -72,8 +72,9 @@ export function useRegister() {
   const onSubmitRegister = TextbookFormMethods.handleSubmit(async (data) => {
     /** 教材データを登録 */
     await registerTextbook({ name: data.textbook });
+
+    /** 登録完了アラートを表示 */
     setShowRegisterAlert(true);
-    console.log("教材登録完了", showRegisterAlert);
 
     /** formの値を初期値に戻す */
     TextbookFormMethods.reset();
@@ -100,12 +101,14 @@ export function useRegister() {
   );
 
   /** 教材データの削除 */
-  const handleDelete = useCallback(() => {
+  const handleDelete = useCallback(async () => {
     if (!editTargetId) {
       return;
     }
     /** 教材データを削除 */
-    deleteTextbook(editTargetId);
+    await deleteTextbook(editTargetId);
+
+    /** 削除完了アラートを表示 */
     setIsDeleteSuccess(true);
 
     setIsDeleteOpen(false);
@@ -113,12 +116,14 @@ export function useRegister() {
   }, [deleteTextbook, editTargetId, onCloseEditDialog]);
 
   /** 教材データの編集 */
-  const onSubmitEdit = EditFormMethods.handleSubmit((data) => {
+  const onSubmitEdit = EditFormMethods.handleSubmit(async (data) => {
     if (!editTargetId) {
       return;
     }
     /** 教材データを更新 */
-    editTextbook(editTargetId, { name: data.textbook });
+    await editTextbook(editTargetId, { name: data.textbook });
+
+    /** 編集完了アラートを表示 */
     setIsEditSuccess(true);
 
     setIsEditOpen(false);
