@@ -10,7 +10,8 @@ export function Report() {
     control,
     errors,
     textbooks,
-    timeData,
+    hourOptions,
+    minuteOptions,
     onSubmit,
     showAlert,
     setShowAlert,
@@ -24,7 +25,8 @@ export function Report() {
         control={control}
         errors={errors}
         textbooks={textbooks}
-        timeData={timeData}
+        hourOptions={hourOptions}
+        minuteOptions={minuteOptions}
         onSubmit={onSubmit}
         showAlert={showAlert}
         setShowAlert={setShowAlert}

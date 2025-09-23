@@ -4,11 +4,18 @@ export type Textbook = {
   name: string;
 };
 
+/** 投稿用の型 */
+export type ReportData = {
+  textbook: Textbook;
+  time: number | string;
+  content: string;
+};
+
+/** 投稿一覧用の型 */
 export type PostData = {
-  /** 投稿するときにはid未定義(firestoreで自動生成されるため) */
-  id?: string;
+  id: string;
   date: string;
   textbook: Textbook;
-  time: string;
+  time: number | string;
   content: string;
 };

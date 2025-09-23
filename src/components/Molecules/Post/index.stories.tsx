@@ -20,9 +20,12 @@ type Story = StoryObj<typeof Post>;
 
 export const FirstStory: Story = {
   args: {
-    date: "2023/12/24",
-    textbook: "英語",
-    time: "60",
-    content: "学習内容はこちらです。",
+    data: {
+      id: "1",
+      date: "2024/01/01 12:00",
+      textbook: { id: "textbook1", name: "Reactの教科書" },
+      content: "Reactの基礎を学習しました。",
+      time: "1時間30分",
+    },
   },
 };
