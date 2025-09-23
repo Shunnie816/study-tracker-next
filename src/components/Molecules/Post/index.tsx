@@ -3,25 +3,22 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { Button } from "@/components/Atoms/Button";
 import { Card } from "@/components/Atoms/Card";
-
+import { PostData } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type Props = {
-  id: string;
-  date: string;
-  textbook: string;
-  time: string;
-  content: string;
+  data: PostData;
   // eslint-disable-next-line no-unused-vars
   handleOpen: (id: string) => void;
 };
 
-export function Post({ id, date, textbook, time, content, handleOpen }: Props) {
+export function Post({ data, handleOpen }: Props) {
+  const { id, date, textbook, time, content } = data;
   return (
     <Card title={date}>
       <div className={styles.wrapper}>
-        <Typography variant="subtitle1">教材名：{textbook}</Typography>
-        <Typography variant="subtitle1">時間：{time}分</Typography>
+        <Typography variant="subtitle1">教材名　：{textbook.name}</Typography>
+        <Typography variant="subtitle1">学習時間：{time}</Typography>
       </div>
       <Divider />
       <div className={styles.contentWrapper}>
@@ -32,7 +29,7 @@ export function Post({ id, date, textbook, time, content, handleOpen }: Props) {
         variant="outlined"
         color="error"
         size="small"
-        onClick={() => handleOpen(id)}
+        onClick={() => handleOpen(id ?? "")}
         fullWidth={false}
       >
         投稿を削除

@@ -6,7 +6,7 @@ import {
   getDocs,
   onSnapshot,
 } from "@firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
@@ -44,18 +44,36 @@ export const usePostData = () => {
     }
   }
 
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR(isAppCheckReady ? apiPath : null, fetchPostData, {
-    onSuccess(data) {
-      return data;
-    },
-    onError(error) {
-      console.log("swr returns error", error);
-    },
-  });
+  const { data, isLoading, error } = useSWR(
+    isAppCheckReady ? apiPath : null,
+    fetchPostData,
+    {
+      onSuccess(data) {
+        return data;
+      },
+      onError(error) {
+        console.log("swr returns error", error);
+      },
+    }
+  );
+
+  const posts = useMemo(() => {
+    return data?.map((item) => {
+      const totalMinutes = Number(item.time);
+      const hour = Math.floor(totalMinutes / 60);
+      const minute = totalMinutes % 60;
+      let timeString = "";
+      if (hour > 0) {
+        timeString = `${hour}時間${minute > 0 ? minute + "分" : ""}`;
+      } else {
+        timeString = `${minute}分`;
+      }
+      return {
+        ...item,
+        time: timeString,
+      };
+    });
+  }, [data]);
 
   /** Firestoreのデータを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {

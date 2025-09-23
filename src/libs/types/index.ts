@@ -9,6 +9,6 @@ export type PostData = {
   id?: string;
   date: string;
   textbook: Textbook;
-  time: string;
+  time: number | string;
   content: string;
 };

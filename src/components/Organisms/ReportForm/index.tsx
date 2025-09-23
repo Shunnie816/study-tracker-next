@@ -18,7 +18,8 @@ type ReportFormProps = {
   control: Control<ReportData>;
   errors: FieldErrors<ReportData>;
   textbooks: Textbook[];
-  timeData: string[];
+  hourOptions: string[];
+  minuteOptions: string[];
   // eslint-disable-next-line no-unused-vars
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   showAlert: boolean;
@@ -32,7 +33,8 @@ export function ReportForm({
   control,
   errors,
   textbooks,
-  timeData,
+  hourOptions,
+  minuteOptions,
   onSubmit,
   showAlert,
   setShowAlert,
@@ -47,14 +49,24 @@ export function ReportForm({
           </Alert>
         )}
         <div className={styles.formsWrapper}>
-          <FormSelect<string, ReportData>
-            name="time"
-            control={control}
-            options={timeData}
-            label="学習時間"
-            error={!!errors.time}
-            errorMessage={errors.time?.message}
-          />
+          <div className={styles.timeSelect}>
+            <FormSelect<string, ReportData>
+              name="hour"
+              control={control}
+              options={hourOptions}
+              label="時間"
+              error={!!errors.hour}
+              errorMessage={errors.hour?.message}
+            />
+            <FormSelect<string, ReportData>
+              name="minute"
+              control={control}
+              options={minuteOptions}
+              label="分"
+              error={!!errors.minute}
+              errorMessage={errors.minute?.message}
+            />
+          </div>
           <FormSelect<Textbook, ReportData>
             name="textbook"
             control={control}

@@ -25,14 +25,7 @@ export function PostList({
       {posts.map((data) => {
         return (
           <React.Fragment key={data.id}>
-            <Post
-              id={data.id!}
-              date={data.date}
-              textbook={data.textbook.name}
-              time={data.time}
-              content={data.content}
-              handleOpen={handleOpen}
-            />
+            <Post data={data} handleOpen={handleOpen} />
           </React.Fragment>
         );
       })}
