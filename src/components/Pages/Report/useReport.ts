@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePostData } from "@/libs/hooks/usePostData";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
-import { PostData } from "@/libs/types";
-import { formatDate } from "@/libs/utils/formatDate";
-import { formSchema, ReportData } from "./formSchema";
+import { ReportData } from "@/libs/types";
+import { formSchema, ReportFormData } from "./formSchema";
 
 export function useReport() {
   const { textbooks } = useTextbookData();
@@ -14,10 +13,11 @@ export function useReport() {
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
-  const methods = useForm<ReportData>({
+  const methods = useForm<ReportFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      time: "",
+      hour: "",
+      minute: "",
       textbook: "",
       studyContent: "",
     },
@@ -43,17 +43,16 @@ export function useReport() {
   }, [isDirty, showAlert]);
 
   /** dataをpostDataの型に成形してsubmitする */
-  const onSubmit = handleSubmit((data: ReportData) => {
+  const onSubmit = handleSubmit((data: ReportFormData) => {
     setShowAlert(false);
-    const submitData: PostData = {
-      date: "",
+
+    /** 時間を分に変換 */
+    const minutes = parseInt(data.hour, 10) * 60 + parseInt(data.minute, 10);
+    const submitData: ReportData = {
       textbook: { id: "", name: "" },
-      time: data.time,
+      time: minutes,
       content: data.studyContent,
     };
-
-    /** 日付取得と成形 */
-    submitData.date = formatDate(new Date());
 
     /** Textbook型に成形 */
     const textbook = textbooks.find((textbook) => {
@@ -75,12 +74,10 @@ export function useReport() {
       });
   });
 
-  /** 時間の仮データ */
-  let timeData: Array<string> = [];
-  for (let i: number = 5; i <= 180; i += 5) {
-    let value: string = i.toString();
-    timeData.push(value);
-  }
+  const hourOptions = Array.from({ length: 24 }, (_, i) => i.toString());
+  const minuteOptions = Array.from({ length: 12 }, (_, i) =>
+    (i * 5).toString()
+  );
 
   return {
     methods,
@@ -88,7 +85,8 @@ export function useReport() {
     control,
     onSubmit,
     reset,
-    timeData,
+    hourOptions,
+    minuteOptions,
     textbooks,
     showAlert,
     setShowAlert,

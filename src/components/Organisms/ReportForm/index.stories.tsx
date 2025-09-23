@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import {
   formSchema,
-  type ReportData,
+  type ReportFormData,
 } from "@/components/Pages/Report/formSchema";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { ReportForm } from "./index";
@@ -28,13 +28,15 @@ const textbooks = [
   { id: "1", name: "テキスト1" },
   { id: "2", name: "テキスト2" },
 ];
-const timeData = ["30分", "1時間", "2時間"];
+const hourOptions = Array.from({ length: 24 }, (_, i) => i.toString());
+const minuteOptions = Array.from({ length: 12 }, (_, i) => (i * 5).toString());
 
 const Template: Story["render"] = (args) => {
-  const methods = useForm<ReportData>({
+  const methods = useForm<ReportFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      time: "",
+      hour: "",
+      minute: "",
       textbook: "",
       studyContent: "",
     },
@@ -48,7 +50,8 @@ const Template: Story["render"] = (args) => {
         control={methods.control}
         errors={methods.formState.errors}
         textbooks={textbooks}
-        timeData={timeData}
+        hourOptions={hourOptions}
+        minuteOptions={minuteOptions}
         onSubmit={methods.handleSubmit(() => Promise.resolve())}
       />
     </SingleColumn>

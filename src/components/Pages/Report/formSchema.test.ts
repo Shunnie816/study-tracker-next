@@ -3,7 +3,8 @@ import { formSchema } from "./formSchema";
 
 // 正常系テスト
 const validData = {
-  time: "1時間",
+  hour: "1",
+  minute: "30",
   textbook: "教科書A",
   studyContent: "数学の勉強",
 };
@@ -13,9 +14,15 @@ describe("formSchema", () => {
     expect(() => formSchema.parse(validData)).not.toThrow();
   });
 
-  it("throws error if time is empty", () => {
-    expect(() => formSchema.parse({ ...validData, time: "" })).toThrow(
-      "学習時間を選択してください"
+  it("throws error if hour is empty", () => {
+    expect(() => formSchema.parse({ ...validData, hour: "" })).toThrow(
+      "学習時間（時間）を選択してください"
+    );
+  });
+
+  it("throws error if minute is empty", () => {
+    expect(() => formSchema.parse({ ...validData, minute: "" })).toThrow(
+      "学習時間（分）を選択してください"
     );
   });
 

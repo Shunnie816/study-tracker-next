@@ -9,16 +9,17 @@ import {
 import { Button } from "@/components/Atoms/Button";
 import { FormSelect } from "@/components/Molecules/FormSelect";
 import { FormTextField } from "@/components/Molecules/FormTextField";
-import { ReportData } from "@/components/Pages/Report/formSchema";
+import { ReportFormData } from "@/components/Pages/Report/formSchema";
 import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type ReportFormProps = {
-  methods: UseFormReturn<ReportData>;
-  control: Control<ReportData>;
-  errors: FieldErrors<ReportData>;
+  methods: UseFormReturn<ReportFormData>;
+  control: Control<ReportFormData>;
+  errors: FieldErrors<ReportFormData>;
   textbooks: Textbook[];
-  timeData: string[];
+  hourOptions: string[];
+  minuteOptions: string[];
   // eslint-disable-next-line no-unused-vars
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   showAlert: boolean;
@@ -32,7 +33,8 @@ export function ReportForm({
   control,
   errors,
   textbooks,
-  timeData,
+  hourOptions,
+  minuteOptions,
   onSubmit,
   showAlert,
   setShowAlert,
@@ -47,15 +49,25 @@ export function ReportForm({
           </Alert>
         )}
         <div className={styles.formsWrapper}>
-          <FormSelect<string, ReportData>
-            name="time"
-            control={control}
-            options={timeData}
-            label="学習時間"
-            error={!!errors.time}
-            errorMessage={errors.time?.message}
-          />
-          <FormSelect<Textbook, ReportData>
+          <div className={styles.timeSelect}>
+            <FormSelect<string, ReportFormData>
+              name="hour"
+              control={control}
+              options={hourOptions}
+              label="時間"
+              error={!!errors.hour}
+              errorMessage={errors.hour?.message}
+            />
+            <FormSelect<string, ReportFormData>
+              name="minute"
+              control={control}
+              options={minuteOptions}
+              label="分"
+              error={!!errors.minute}
+              errorMessage={errors.minute?.message}
+            />
+          </div>
+          <FormSelect<Textbook, ReportFormData>
             name="textbook"
             control={control}
             options={textbooks}
@@ -65,7 +77,7 @@ export function ReportForm({
             error={!!errors.textbook}
             errorMessage={errors.textbook?.message}
           />
-          <FormTextField<ReportData>
+          <FormTextField<ReportFormData>
             name="studyContent"
             control={control}
             label="学習内容"
