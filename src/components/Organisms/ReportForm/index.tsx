@@ -9,14 +9,14 @@ import {
 import { Button } from "@/components/Atoms/Button";
 import { FormSelect } from "@/components/Molecules/FormSelect";
 import { FormTextField } from "@/components/Molecules/FormTextField";
-import { ReportData } from "@/components/Pages/Report/formSchema";
+import { ReportFormData } from "@/components/Pages/Report/formSchema";
 import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
 type ReportFormProps = {
-  methods: UseFormReturn<ReportData>;
-  control: Control<ReportData>;
-  errors: FieldErrors<ReportData>;
+  methods: UseFormReturn<ReportFormData>;
+  control: Control<ReportFormData>;
+  errors: FieldErrors<ReportFormData>;
   textbooks: Textbook[];
   hourOptions: string[];
   minuteOptions: string[];
@@ -50,7 +50,7 @@ export function ReportForm({
         )}
         <div className={styles.formsWrapper}>
           <div className={styles.timeSelect}>
-            <FormSelect<string, ReportData>
+            <FormSelect<string, ReportFormData>
               name="hour"
               control={control}
               options={hourOptions}
@@ -58,7 +58,7 @@ export function ReportForm({
               error={!!errors.hour}
               errorMessage={errors.hour?.message}
             />
-            <FormSelect<string, ReportData>
+            <FormSelect<string, ReportFormData>
               name="minute"
               control={control}
               options={minuteOptions}
@@ -67,7 +67,7 @@ export function ReportForm({
               errorMessage={errors.minute?.message}
             />
           </div>
-          <FormSelect<Textbook, ReportData>
+          <FormSelect<Textbook, ReportFormData>
             name="textbook"
             control={control}
             options={textbooks}
@@ -77,7 +77,7 @@ export function ReportForm({
             error={!!errors.textbook}
             errorMessage={errors.textbook?.message}
           />
-          <FormTextField<ReportData>
+          <FormTextField<ReportFormData>
             name="studyContent"
             control={control}
             label="学習内容"

@@ -2,6 +2,7 @@ import axios from "axios";
 import useSWR from "swr";
 import { PostData, Textbook } from "@/libs/types";
 
+/** WIP */
 export const useStudyLog = () => {
   const apiPathToPost = "/api/post";
   const apiPathToTextbook = "/api/textbook";
@@ -45,7 +46,7 @@ export const useStudyLog = () => {
   });
 
   const mappedData = postData?.map((log) => {
-    return { textbook: log.textbook.id, time: parseInt(log.time) };
+    return { textbook: log.textbook.id, time: Number(log.time) };
   });
 
   const logData = textbooks?.map((textbook) => {
