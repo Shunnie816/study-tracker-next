@@ -7,4 +7,5 @@ export const formSchema = z.object({
   studyContent: z.string().min(1, { message: "学習内容を入力してください" }),
 });
 
-export type ReportData = z.infer<typeof formSchema>;
+/** 投稿フォームschemaの型 */
+export type ReportFormData = z.infer<typeof formSchema>;
