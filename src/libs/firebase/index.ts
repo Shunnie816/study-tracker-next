@@ -30,9 +30,11 @@ if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
 function initAppCheck() {
   /** クライアント側限定で呼び出す(SSRで初期化しないように) */
   if (typeof window === "undefined") return;
+  /** E2E テスト時など App Check キーが未設定の場合はスキップ */
+  if (!process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY) return;
   return initializeAppCheck(app, {
     provider: new ReCaptchaEnterpriseProvider(
-      process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY!
+      process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_KEY
     ),
     isTokenAutoRefreshEnabled: true,
   });

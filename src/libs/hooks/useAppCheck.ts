@@ -11,6 +11,12 @@ export function useAppCheck() {
   const [isAppCheckReady, setIsAppCheckReady] = useAtom(appCheckAtom);
 
   useEffect(() => {
+    /** E2E テスト環境では App Check をバイパスする */
+    if (process.env.NEXT_PUBLIC_SKIP_APP_CHECK === "true") {
+      setIsAppCheckReady(true);
+      return;
+    }
+
     (async () => {
       try {
         /** App Check初期化確認 */
