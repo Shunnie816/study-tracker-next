@@ -15,6 +15,7 @@
     "test:watch": "vitest --watch",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:e2e:local": "bash scripts/e2e-local.sh",
     "mock": "firebase emulators:start --import=./src/emulators --export-on-exit"
   },
   "dependencies": {
