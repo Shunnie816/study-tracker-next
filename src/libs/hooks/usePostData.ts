@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import {
   addDoc,
   collection,
@@ -9,7 +10,6 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
-import { format } from "date-fns";
 import { useEffect, useMemo } from "react";
 import useSWR, { mutate } from "swr";
 import { db } from "../firebase";
