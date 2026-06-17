@@ -8,7 +8,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
-} from "@firebase/firestore";
+} from "firebase/firestore";
 import { format } from "date-fns";
 import { useEffect, useMemo } from "react";
 import useSWR, { mutate } from "swr";
