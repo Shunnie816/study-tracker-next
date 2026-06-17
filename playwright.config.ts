@@ -7,7 +7,7 @@ export default defineConfig({
   workers: 1,
   reporter: process.env.CI ? "github" : "html",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3001",
     trace: "on-first-retry",
   },
   projects: [
@@ -18,10 +18,11 @@ export default defineConfig({
   ],
   webServer: {
     command: "pnpm run dev",
-    url: "http://localhost:3000",
-    reuseExistingServer: !process.env.CI,
+    url: "http://localhost:3001",
+    reuseExistingServer: false,
     timeout: 120_000,
     env: {
+      PORT: "3001",
       NEXT_PUBLIC_SKIP_APP_CHECK: "true",
     },
   },

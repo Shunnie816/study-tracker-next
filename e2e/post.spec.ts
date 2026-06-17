@@ -23,11 +23,11 @@ test("学習記録を投稿すると posts 一覧に反映される", async ({ p
 
   // 時間選択
   await page.getByLabel("時間").click();
-  await page.getByRole("option", { name: "1" }).click();
+  await page.getByRole("option", { name: "1", exact: true }).click();
 
   // 分選択
   await page.getByLabel("分").click();
-  await page.getByRole("option", { name: "30" }).click();
+  await page.getByRole("option", { name: "30", exact: true }).click();
 
   // 学習内容入力
   await page.getByLabel("学習内容").fill("変数と関数について学習した");
