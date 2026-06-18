@@ -9,6 +9,13 @@ export default defineConfig([
   ...storybookPlugin.configs["flat/recommended"],
   prettier,
   {
+    // eslint-plugin-react@7.x uses context.getFilename() which was removed in ESLint 10.
+    // Explicitly setting the version prevents the auto-detection that triggers the error.
+    settings: {
+      react: { version: "19" },
+    },
+  },
+  {
     plugins: {
       prettier: prettierPlugin,
     },
