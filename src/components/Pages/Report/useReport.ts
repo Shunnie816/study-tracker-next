@@ -21,7 +21,7 @@ export function useReport() {
       textbook: "",
       studyContent: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
   const {
     formState: { errors, isValid, isSubmitting, isDirty },
