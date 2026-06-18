@@ -11,7 +11,7 @@ export function Footer() {
       }}
     >
       <Typography variant="body2" color="textSecondary">
-        &copy; {new Date().getFullYear()} Shun Yoshiya. All rights are reserved.
+        &copy; {new Date().getFullYear()} Nekonoko. All rights are reserved.
       </Typography>
     </Box>
   );
