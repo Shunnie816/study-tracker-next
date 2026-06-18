@@ -1,4 +1,4 @@
-@import "@/assets/styles/breakpoint.scss";
+@use "@/assets/styles/breakpoint" as *;
 
 .headerMenu {
   justify-content: space-between;
