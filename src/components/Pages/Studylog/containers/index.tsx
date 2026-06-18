@@ -28,7 +28,7 @@ export function StudyLog() {
             //     </dl>
             //   );
             // })
-            (<>dataあり</>)
+            <>dataあり</>
           ) : (
             <>学習記録がありません</>
           )}

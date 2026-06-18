@@ -20,8 +20,9 @@ export default function NotFound() {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-        background: `linear-gradient(135deg, ${COLOR.background} 0%, ${COLOR.primary} 100%)`
-      }}>
+        background: `linear-gradient(135deg, ${COLOR.background} 0%, ${COLOR.primary} 100%)`,
+      }}
+    >
       <Typography
         variant="h1"
         sx={{
@@ -31,8 +32,9 @@ export default function NotFound() {
           fontFamily: "'Baloo 2', cursive",
           fontSize: "4rem",
           color: COLOR.accent,
-          textShadow: `2px 2px 0 ${COLOR.secondary}`
-        }}>
+          textShadow: `2px 2px 0 ${COLOR.secondary}`,
+        }}
+      >
         404
       </Typography>
       <Typography
@@ -40,8 +42,9 @@ export default function NotFound() {
         sx={{
           textAlign: "center",
           fontFamily: "'M PLUS Rounded 1c', sans-serif",
-          color: COLOR.accent
-        }}>
+          color: COLOR.accent,
+        }}
+      >
         ページが見つかりませんでした 🐾
       </Typography>
       <Box
@@ -49,8 +52,9 @@ export default function NotFound() {
           mt: 4,
           display: "flex",
           justifyContent: "center",
-          gap: 1
-        }}>
+          gap: 1,
+        }}
+      >
         <span
           className="zzz-bounce"
           style={{
@@ -96,8 +100,9 @@ export default function NotFound() {
         sx={{
           justifyContent: "center",
           display: "flex",
-          height: 200
-        }}>
+          height: 200,
+        }}
+      >
         <Image
           src="/sleepingCat.png"
           alt="sleeping cat"
@@ -115,8 +120,9 @@ export default function NotFound() {
           flexDirection: "column",
           alignItems: "center",
           gap: 3,
-          mb: 2
-        }}>
+          mb: 2,
+        }}
+      >
         <Button
           variant="contained"
           sx={{

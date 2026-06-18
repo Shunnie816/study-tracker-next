@@ -51,9 +51,14 @@ export function RegisteredBook({
 }: Props) {
   return (
     <div className={styles.container}>
-      <Typography variant="h5" component="h2" gutterBottom sx={{
-        fontWeight: "bold"
-      }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        gutterBottom
+        sx={{
+          fontWeight: "bold",
+        }}
+      >
         登録済みの教材
       </Typography>
       <LoadingWrapper isLoading={isLoading} error={error}>

@@ -7,8 +7,9 @@ export function Footer() {
       component="footer"
       sx={{
         py: 2,
-        textAlign: "center"
-      }}>
+        textAlign: "center",
+      }}
+    >
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getFullYear()} Shun Yoshiya. All rights are reserved.
       </Typography>

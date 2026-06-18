@@ -14,7 +14,11 @@ export default defineConfig({
     server: {
       deps: {
         // MUI v9 .mjs imports react-transition-group as directory which breaks Node ESM
-        inline: ["@mui/material", "@mui/icons-material", "react-transition-group"],
+        inline: [
+          "@mui/material",
+          "@mui/icons-material",
+          "react-transition-group",
+        ],
       },
     },
   },

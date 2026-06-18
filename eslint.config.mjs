@@ -1,8 +1,8 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
-import storybookPlugin from "eslint-plugin-storybook";
 import prettier from "eslint-config-prettier/flat";
 import prettierPlugin from "eslint-plugin-prettier";
+import storybookPlugin from "eslint-plugin-storybook";
 
 export default defineConfig([
   ...nextVitals,

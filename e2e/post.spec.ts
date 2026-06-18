@@ -15,8 +15,10 @@ test("学習記録を投稿すると posts 一覧に反映される", async ({ p
     if (isOpen) await page.keyboard.press("Escape");
     await page.getByLabel("教材").click();
     await expect(
-      page.getByRole("option", { name: "Python入門" })
-    ).toBeVisible({ timeout: 2_000 });
+      page.getByRole("option", { name: "Python入門" }),
+    ).toBeVisible({
+      timeout: 2_000,
+    });
   }).toPass({ timeout: 15_000 });
 
   await page.getByRole("option", { name: "Python入門" }).click();

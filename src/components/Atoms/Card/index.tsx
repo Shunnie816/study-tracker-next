@@ -17,8 +17,9 @@ export function Card({ children, title }: Props) {
           gutterBottom
           sx={{
             display: "block",
-            color: "text.secondary"
-          }}>
+            color: "text.secondary",
+          }}
+        >
           {title}
         </Typography>
         {children}

@@ -15,8 +15,9 @@ export function SingleColumn({ title, children }: Props) {
       <Box
         sx={{
           mt: 2,
-          mb: 4
-        }}>
+          mb: 4,
+        }}
+      >
         {children}
       </Box>
     </Container>
