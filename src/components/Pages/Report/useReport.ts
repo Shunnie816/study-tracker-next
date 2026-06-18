@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePostData } from "@/libs/hooks/usePostData";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
@@ -10,8 +10,7 @@ export function useReport() {
   const { textbooks } = useTextbookData();
   const { postData } = usePostData();
 
-  const [showAlert, setShowAlert] = useState<boolean>(false);
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [alertShown, setAlertShown] = useState<boolean>(false);
 
   const methods = useForm<ReportFormData>({
     resolver: zodResolver(formSchema),
@@ -21,7 +20,7 @@ export function useReport() {
       textbook: "",
       studyContent: "",
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
   const {
     formState: { errors, isValid, isSubmitting, isDirty },
@@ -31,20 +30,14 @@ export function useReport() {
   } = methods;
 
   /** 確定ボタンの活性制御 */
-  useEffect(() => {
-    setIsDisabled(!isValid || isSubmitting);
-  }, [isValid, isSubmitting]);
+  const isDisabled = !isValid || isSubmitting;
 
   /** 登録完了のアラートが表示されていて、ユーザーが次の入力を始めたらアラートが消える */
-  useEffect(() => {
-    if (showAlert) {
-      setShowAlert(!isDirty);
-    }
-  }, [isDirty, showAlert]);
+  const showAlert = alertShown && !isDirty;
 
   /** dataをpostDataの型に成形してsubmitする */
   const onSubmit = handleSubmit((data: ReportFormData) => {
-    setShowAlert(false);
+    setAlertShown(false);
 
     /** 時間を分に変換 */
     const minutes = parseInt(data.hour, 10) * 60 + parseInt(data.minute, 10);
@@ -66,7 +59,7 @@ export function useReport() {
 
     postData(submitData)
       .then(() => {
-        setShowAlert(true);
+        setAlertShown(true);
         reset();
       })
       .catch((error) => {
@@ -89,7 +82,7 @@ export function useReport() {
     minuteOptions,
     textbooks,
     showAlert,
-    setShowAlert,
+    setShowAlert: setAlertShown,
     isDisabled,
   };
 }

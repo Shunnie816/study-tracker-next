@@ -12,7 +12,12 @@ export function SingleColumn({ title, children }: Props) {
   return (
     <Container maxWidth="sm" className={styles.container}>
       <Heading text={title} />
-      <Box mt={2} mb={4}>
+      <Box
+        sx={{
+          mt: 2,
+          mb: 4,
+        }}
+      >
         {children}
       </Box>
     </Container>

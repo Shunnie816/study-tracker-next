@@ -3,13 +3,23 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    globals: true, // describe, it, expect をグローバルで使う
-    environment: "jsdom", // ブラウザのDOM環境をエミュレート
-    setupFiles: "./src/vitest.setup.ts", // 初期設定ファイルを指定
-    include: ["**/*.test.{ts,tsx}"], // テストファイルのパターン指定
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/vitest.setup.ts",
+    include: ["**/*.test.{ts,tsx}"],
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],
+    },
+    server: {
+      deps: {
+        // MUI v9 .mjs imports react-transition-group as directory which breaks Node ESM
+        inline: [
+          "@mui/material",
+          "@mui/icons-material",
+          "react-transition-group",
+        ],
+      },
     },
   },
 });

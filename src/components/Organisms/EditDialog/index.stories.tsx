@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
 import { EditDialog } from "./index";
@@ -28,17 +28,12 @@ type TextbookForm = {
 const Component: Story["render"] = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState<boolean>(false);
-  const [isEditDisabled, setIsEditDisabled] = useState<boolean>(false);
-
   const methods = useForm<TextbookForm>();
 
-  useEffect(() => {
-    setIsEditDisabled(
-      !methods.formState.isValid ||
-        methods.formState.isSubmitting ||
-        !methods.formState.isDirty
-    );
-  }, [methods.formState]);
+  const isEditDisabled =
+    !methods.formState.isValid ||
+    methods.formState.isSubmitting ||
+    !methods.formState.isDirty;
 
   const onClose = () => {
     setIsOpen(false);

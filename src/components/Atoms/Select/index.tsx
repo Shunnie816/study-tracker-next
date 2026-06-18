@@ -14,6 +14,7 @@ type BaseProps<T> = {
   labelKey?: keyof T;
   // eslint-disable-next-line no-unused-vars
   onChange: (event: string) => void;
+  onBlur?: () => void;
   error?: boolean;
   errorMessage?: string;
 };
@@ -31,6 +32,7 @@ function SelectInner<T>(
     valueKey,
     labelKey,
     onChange,
+    onBlur,
     error,
     errorMessage,
   }: Props<T>,
@@ -52,6 +54,7 @@ function SelectInner<T>(
         label={label}
         value={value}
         onChange={handleChange}
+        onBlur={onBlur}
         ref={ref}
       >
         {/*

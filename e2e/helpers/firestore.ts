@@ -1,5 +1,4 @@
-const PROJECT_ID =
-  process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? "demo-e2e";
+const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? "demo-e2e";
 const EMULATOR_BASE = "http://127.0.0.1:8080";
 
 /** エミュレーター上のデータをすべて削除する */

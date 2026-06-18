@@ -51,3 +51,8 @@ firestore-debug.*.log
 /test-results/
 /playwright-report/
 /blob-report/
+
+# Claude Code / Serena (local tool state)
+.claude/issue-context.md
+.claude/logs/
+.serena/
