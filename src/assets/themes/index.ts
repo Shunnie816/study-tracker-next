@@ -1,69 +1,82 @@
 import { createTheme } from "@mui/material";
+import type { PaletteColor, PaletteColorOptions } from "@mui/material";
 
-// ここを変更したらvariables.scssも変更する
+declare module "@mui/material/styles" {
+  interface Palette {
+    accent: PaletteColor;
+  }
+  interface PaletteOptions {
+    accent?: PaletteColorOptions;
+  }
+}
+
+// ここを変更したらvariable.scssも変更する
 const COLOR_PALETTE = {
-  darkNavy: "#201e43",
-  navy: "#3f51b5",
-  lightNavy: "#508c9b",
-  gray: "#eeeeee",
-  lightGray: "#fafafa",
-  lightBlue: "#eef7ff",
-  fog: "#64748b",
+  // Primary (Indigo Blue)
+  primary50: "#EEF1FF",
+  primary200: "#C5CEFF",
+  primary400: "#748FFC",
+  primary: "#4361EE",
+  primary700: "#3346C4",
+  primary900: "#3A0CA3",
+  // Secondary (Amber)
+  amber: "#F9A825",
+  // Accent (Cyan)
+  cyan: "#0CC8E8",
+  // Success (Green)
+  green: "#22C55E",
+  // Neutrals (Cool Blue Grey)
+  bgBase: "#F5F6FC",
+  surface2: "#EAECF5",
+  border: "#E2E4F0",
+  textPlaceholder: "#9194AF",
+  textSub: "#5C6285",
+  textMain: "#1A1D3B",
 };
 
-/**
- * MUIのpalette
- * https://mui.com/material-ui/customization/default-theme/?expand-path=$.palette
- */
-
-/** MUIのカスタムthemeを定義 */
 export const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: COLOR_PALETTE.navy,
+      main: COLOR_PALETTE.primary,
+      light: COLOR_PALETTE.primary400,
+      dark: COLOR_PALETTE.primary700,
     },
     secondary: {
-      main: COLOR_PALETTE.gray,
-      light: COLOR_PALETTE.lightGray,
+      main: COLOR_PALETTE.amber,
+    },
+    success: {
+      main: COLOR_PALETTE.green,
+    },
+    accent: {
+      main: COLOR_PALETTE.cyan,
+      light: COLOR_PALETTE.cyan,
+      dark: COLOR_PALETTE.cyan,
+      contrastText: "#fff",
     },
     text: {
-      primary: COLOR_PALETTE.darkNavy,
-      disabled: COLOR_PALETTE.fog,
+      primary: COLOR_PALETTE.textMain,
+      secondary: COLOR_PALETTE.textSub,
+      disabled: COLOR_PALETTE.textPlaceholder,
     },
     background: {
-      paper: COLOR_PALETTE.lightGray,
+      default: COLOR_PALETTE.bgBase,
+      paper: COLOR_PALETTE.surface2,
     },
   },
   typography: {
-    h1: {
-      fontSize: "3rem", // 48px
-    },
-    h2: {
-      fontSize: "2.5rem", // 40px
-    },
-    h3: {
-      fontSize: "2rem", // 32px
-    },
-    h4: {
-      fontSize: "1.75rem", // 28px
-    },
-    h5: {
-      fontSize: "1.5rem", // 24px
-    },
-    h6: {
-      fontSize: "1.25rem", // 20px
-    },
-    subtitle1: {
-      fontSize: "1rem", // 16px
-    },
-    subtitle2: {
-      fontSize: "0.875rem", // 14px
-    },
-    body1: {
-      fontSize: "1rem", // 16px
-    },
-    body2: {
-      fontSize: "0.875rem", // 14px
-    },
+    fontFamily: 'var(--font-noto-sans-jp), "Noto Sans JP", sans-serif',
+    h1: { fontSize: "3rem" },
+    h2: { fontSize: "2.5rem" },
+    h3: { fontSize: "2rem" },
+    h4: { fontSize: "1.75rem" },
+    h5: { fontSize: "1.5rem" },
+    h6: { fontSize: "1.25rem" },
+    subtitle1: { fontSize: "1rem" },
+    subtitle2: { fontSize: "0.875rem" },
+    body1: { fontSize: "1rem" },
+    body2: { fontSize: "0.875rem" },
+  },
+  shape: {
+    borderRadius: 8,
   },
 });
