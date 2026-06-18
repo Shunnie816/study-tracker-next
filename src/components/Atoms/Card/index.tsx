@@ -14,10 +14,11 @@ export function Card({ children, title }: Props) {
       <CardContent>
         <Typography
           variant="caption"
-          display="block"
-          color="text.secondary"
           gutterBottom
-        >
+          sx={{
+            display: "block",
+            color: "text.secondary"
+          }}>
           {title}
         </Typography>
         {children}

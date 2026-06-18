@@ -14,40 +14,43 @@ const COLOR = {
 export default function NotFound() {
   return (
     <Box
-      display={"flex"}
-      flexDirection={"column"}
-      alignItems={"center"}
-      justifyContent={"center"}
       sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
         minHeight: "100vh",
-        background: `linear-gradient(135deg, ${COLOR.background} 0%, ${COLOR.primary} 100%)`,
-      }}
-    >
+        background: `linear-gradient(135deg, ${COLOR.background} 0%, ${COLOR.primary} 100%)`
+      }}>
       <Typography
         variant="h1"
-        fontWeight="bold"
-        textAlign={"center"}
-        mb={2}
         sx={{
+          fontWeight: "bold",
+          textAlign: "center",
+          mb: 2,
           fontFamily: "'Baloo 2', cursive",
           fontSize: "4rem",
           color: COLOR.accent,
-          textShadow: `2px 2px 0 ${COLOR.secondary}`,
-        }}
-      >
+          textShadow: `2px 2px 0 ${COLOR.secondary}`
+        }}>
         404
       </Typography>
       <Typography
         variant="body1"
-        textAlign={"center"}
         sx={{
+          textAlign: "center",
           fontFamily: "'M PLUS Rounded 1c', sans-serif",
-          color: COLOR.accent,
-        }}
-      >
+          color: COLOR.accent
+        }}>
         ページが見つかりませんでした 🐾
       </Typography>
-      <Box mt={4} display="flex" justifyContent="center" gap={1}>
+      <Box
+        sx={{
+          mt: 4,
+          display: "flex",
+          justifyContent: "center",
+          gap: 1
+        }}>
         <span
           className="zzz-bounce"
           style={{
@@ -89,7 +92,12 @@ export default function NotFound() {
           50% { transform: translateY(-16px); }
         }
       `}</style>
-      <Box justifyContent={"center"} display="flex" height={200}>
+      <Box
+        sx={{
+          justifyContent: "center",
+          display: "flex",
+          height: 200
+        }}>
         <Image
           src="/sleepingCat.png"
           alt="sleeping cat"
@@ -101,14 +109,14 @@ export default function NotFound() {
           }}
         />
       </Box>
-
       <Box
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems={"center"}
-        gap={3}
-        mb={2}
-      >
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 3,
+          mb: 2
+        }}>
         <Button
           variant="contained"
           sx={{

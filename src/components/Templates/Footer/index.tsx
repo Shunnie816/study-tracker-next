@@ -3,7 +3,12 @@ import React from "react";
 
 export function Footer() {
   return (
-    <Box component="footer" py={2} textAlign="center">
+    <Box
+      component="footer"
+      sx={{
+        py: 2,
+        textAlign: "center"
+      }}>
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getFullYear()} Shun Yoshiya. All rights are reserved.
       </Typography>
