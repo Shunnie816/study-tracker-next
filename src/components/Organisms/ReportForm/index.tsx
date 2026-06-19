@@ -46,7 +46,11 @@ export function ReportForm({
       <Card variant="soft-shadow">
         <form onSubmit={onSubmit}>
           {showAlert && (
-            <Alert severity="success" onClose={() => setShowAlert(false)}>
+            <Alert
+              severity="success"
+              onClose={() => setShowAlert(false)}
+              sx={{ mb: 2 }}
+            >
               記録完了！
             </Alert>
           )}
