@@ -20,7 +20,10 @@ export function Header() {
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", zIndex: "100" }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{ background: "linear-gradient(135deg, #3A0CA3 0%, #4361EE 100%)" }}
+      >
         <Toolbar className={styles.headerMenu}>
           <Link href={URL_VALUES.REPORT} className={styles.link}>
             <Typography color="inherit" variant="h6">

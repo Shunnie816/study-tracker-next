@@ -97,15 +97,19 @@ export const usePostData = () => {
   useEffect(() => {
     if (!isAppCheckReady) return;
     const unsubscribe = onSnapshot(fetchQuery, (snapshot) => {
-      const updatedPosts = snapshot.docs.map((doc) => {
-        const date = doc.data().createdAt.toDate() as Date;
-        const formatedDate = format(date, "yyyy/MM/dd HH:mm");
-        return {
-          id: doc.id,
-          date: formatedDate,
-          ...doc.data(),
-        };
-      }) as PostData[];
+      // serverTimestamp() 書き込み直後はサーバー確定前に createdAt が null になる
+      // ため、確定済みのドキュメントのみ処理する
+      const updatedPosts = snapshot.docs
+        .filter((doc) => doc.data().createdAt !== null)
+        .map((doc) => {
+          const date = doc.data().createdAt.toDate() as Date;
+          const formatedDate = format(date, "yyyy/MM/dd HH:mm");
+          return {
+            id: doc.id,
+            date: formatedDate,
+            ...doc.data(),
+          };
+        }) as PostData[];
 
       // SWRのキャッシュを更新(データはSWRが保持しているため、ここで更新する必要がある)
       mutate(apiPath, updatedPosts, false);

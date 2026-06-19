@@ -51,7 +51,7 @@ export const defaultTheme = createTheme({
     },
     background: {
       default: COLOR_PALETTE.bgBase,
-      paper: COLOR_PALETTE.surface2,
+      paper: "#FFFFFF",
     },
     divider: COLOR_PALETTE.border,
   },
