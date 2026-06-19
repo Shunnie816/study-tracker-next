@@ -7,6 +7,7 @@ import {
   Control,
 } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
+import { Card } from "@/components/Atoms/Card";
 import { FormSelect } from "@/components/Molecules/FormSelect";
 import { FormTextField } from "@/components/Molecules/FormTextField";
 import { ReportFormData } from "@/components/Pages/Report/formSchema";
@@ -42,60 +43,63 @@ export function ReportForm({
 }: ReportFormProps) {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmit}>
-        {showAlert && (
-          <Alert severity="success" onClose={() => setShowAlert(false)}>
-            記録完了！
-          </Alert>
-        )}
-        <div className={styles.formsWrapper}>
-          <div className={styles.timeSelect}>
-            <FormSelect<string, ReportFormData>
-              name="hour"
+      <Card variant="soft-shadow">
+        <form onSubmit={onSubmit}>
+          {showAlert && (
+            <Alert severity="success" onClose={() => setShowAlert(false)}>
+              記録完了！
+            </Alert>
+          )}
+          <div className={styles.formsWrapper}>
+            <div className={styles.timeSelect}>
+              <FormSelect<string, ReportFormData>
+                name="hour"
+                control={control}
+                options={hourOptions}
+                label="時間"
+                error={!!errors.hour}
+                errorMessage={errors.hour?.message}
+              />
+              <FormSelect<string, ReportFormData>
+                name="minute"
+                control={control}
+                options={minuteOptions}
+                label="分"
+                error={!!errors.minute}
+                errorMessage={errors.minute?.message}
+              />
+            </div>
+            <FormSelect<Textbook, ReportFormData>
+              name="textbook"
               control={control}
-              options={hourOptions}
-              label="時間"
-              error={!!errors.hour}
-              errorMessage={errors.hour?.message}
+              options={textbooks}
+              valueKey="id"
+              labelKey="name"
+              label="教材"
+              error={!!errors.textbook}
+              errorMessage={errors.textbook?.message}
             />
-            <FormSelect<string, ReportFormData>
-              name="minute"
+            <FormTextField<ReportFormData>
+              name="studyContent"
               control={control}
-              options={minuteOptions}
-              label="分"
-              error={!!errors.minute}
-              errorMessage={errors.minute?.message}
+              label="学習内容"
+              error={!!errors.studyContent}
+              errorMessage={errors.studyContent?.message}
             />
           </div>
-          <FormSelect<Textbook, ReportFormData>
-            name="textbook"
-            control={control}
-            options={textbooks}
-            valueKey="id"
-            labelKey="name"
-            label="教材"
-            error={!!errors.textbook}
-            errorMessage={errors.textbook?.message}
-          />
-          <FormTextField<ReportFormData>
-            name="studyContent"
-            control={control}
-            label="学習内容"
-            error={!!errors.studyContent}
-            errorMessage={errors.studyContent?.message}
-          />
-        </div>
-        <div className={styles.button}>
-          <Button
-            variant="contained"
-            type="submit"
-            size="large"
-            disabled={isDisabled}
-          >
-            確定
-          </Button>
-        </div>
-      </form>
+          <div className={styles.button}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              size="large"
+              disabled={isDisabled}
+            >
+              確定
+            </Button>
+          </div>
+        </form>
+      </Card>
     </FormProvider>
   );
 }
