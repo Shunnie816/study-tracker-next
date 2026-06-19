@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { format, subDays } from "date-fns";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { TEXTBOOK_COLOR_PALETTE } from "@/libs/constants/textbookColors";
 import { usePostData } from "@/libs/hooks/usePostData";
 import { useStreak } from "@/libs/hooks/useStreak";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
@@ -32,13 +33,36 @@ export function useReport() {
     return `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日（${DAYS[now.getDay()]}）`;
   }, []);
 
+  const textbookColorMap = useMemo(
+    () =>
+      new Map(
+        textbooks
+          .filter((t) => t.id !== undefined)
+          .map((t, index) => [
+            t.id as string,
+            t.color ??
+              TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length],
+          ])
+      ),
+    [textbooks]
+  );
+
   const recentPosts = useMemo(
     () =>
       posts?.slice(0, 3).map((post) => ({
         ...post,
         relativeDateLabel: getRelativeDateLabel(post.date),
+        textbook: {
+          ...post.textbook,
+          color:
+            post.textbook.color ??
+            (post.textbook.id
+              ? textbookColorMap.get(post.textbook.id)
+              : undefined) ??
+            TEXTBOOK_COLOR_PALETTE[0],
+        },
       })) ?? [],
-    [posts]
+    [posts, textbookColorMap]
   );
 
   const [alertShown, setAlertShown] = useState<boolean>(false);

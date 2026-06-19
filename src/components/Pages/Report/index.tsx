@@ -6,6 +6,7 @@ import NextLink from "next/link";
 import React from "react";
 import { Icon } from "@/components/Atoms/Icon";
 import { StreakBadge } from "@/components/Atoms/StreakBadge";
+import { TextbookColorDot } from "@/components/Atoms/TextbookColorDot";
 import { ReportForm } from "@/components/Organisms/ReportForm";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { useReport } from "./useReport";
@@ -90,29 +91,42 @@ export function Report() {
                   sx={{
                     width: 28,
                     height: 28,
-                    backgroundColor: "#EEF1FF",
+                    backgroundColor: post.textbook.color ?? "#EEF1FF",
                     borderRadius: "6px",
                     flexShrink: 0,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    color: "white",
                   }}
                 >
-                  <Icon icon="book" fontSize="small" color="primary" />
+                  <Icon icon="book" fontSize="small" color="inherit" />
                 </Box>
                 <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Typography
+                  <Box
                     sx={{
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      color: "text.primary",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
                       overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
                     }}
                   >
-                    {post.textbook.name}
-                  </Typography>
+                    {post.textbook.color && (
+                      <TextbookColorDot color={post.textbook.color} size={7} />
+                    )}
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        color: "text.primary",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {post.textbook.name}
+                    </Typography>
+                  </Box>
                   <Typography
                     sx={{ fontSize: "10px", color: "text.disabled", mt: "1px" }}
                   >
