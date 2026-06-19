@@ -15,7 +15,9 @@ function getRelativeDateLabel(dateStr: string): string {
   if (postDate === today) return "今日";
   if (postDate === yesterday) return "昨日";
   const date = new Date(postDate.replace(/\//g, "-"));
-  const diffDays = Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24));
+  const diffDays = Math.floor(
+    (Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)
+  );
   return `${diffDays}日前`;
 }
 

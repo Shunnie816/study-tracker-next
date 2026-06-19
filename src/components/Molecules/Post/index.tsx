@@ -43,7 +43,10 @@ export function Post({ data, handleOpen }: Props) {
             fontWeight: 500,
             py: "5px",
             px: "12px",
-            "&:hover": { border: "1.5px solid #E53935", backgroundColor: "#FFF0F0" },
+            "&:hover": {
+              border: "1.5px solid #E53935",
+              backgroundColor: "#FFF0F0",
+            },
           }}
         >
           削除

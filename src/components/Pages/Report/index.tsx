@@ -35,7 +35,12 @@ export function Report() {
         </Typography>
         <Typography
           component="h1"
-          sx={{ fontSize: "20px", fontWeight: 700, color: "text.primary", mb: 1.25 }}
+          sx={{
+            fontSize: "20px",
+            fontWeight: 700,
+            color: "text.primary",
+            mb: 1.25,
+          }}
         >
           今日も学習しよう！
         </Typography>
@@ -108,11 +113,19 @@ export function Report() {
                   >
                     {post.textbook.name}
                   </Typography>
-                  <Typography sx={{ fontSize: "10px", color: "text.disabled", mt: "1px" }}>
+                  <Typography
+                    sx={{ fontSize: "10px", color: "text.disabled", mt: "1px" }}
+                  >
                     {String(post.time)}
                   </Typography>
                 </Box>
-                <Typography sx={{ fontSize: "10px", color: "text.disabled", flexShrink: 0 }}>
+                <Typography
+                  sx={{
+                    fontSize: "10px",
+                    color: "text.disabled",
+                    flexShrink: 0,
+                  }}
+                >
                   {post.relativeDateLabel}
                 </Typography>
               </Box>

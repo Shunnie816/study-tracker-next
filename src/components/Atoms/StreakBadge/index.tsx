@@ -31,7 +31,12 @@ export function StreakBadge({ streak }: Props) {
       />
       <Typography
         component="span"
-        sx={{ fontSize: "11px", fontWeight: 600, color: "#C67C0E", lineHeight: 1 }}
+        sx={{
+          fontSize: "11px",
+          fontWeight: 600,
+          color: "#C67C0E",
+          lineHeight: 1,
+        }}
       >
         {streak}日連続学習中
       </Typography>
