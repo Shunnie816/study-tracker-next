@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/nextjs";
 import { StreakBadge } from "./index";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof StreakBadge> = {
   component: StreakBadge,

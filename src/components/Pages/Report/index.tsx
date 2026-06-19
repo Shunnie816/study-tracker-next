@@ -1,9 +1,9 @@
 "use client";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import MuiLink from "@mui/material/Link";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import MuiLink from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import React from "react";
@@ -66,7 +66,9 @@ export function Report() {
                   {index > 0 && <Divider component="li" />}
                   <ListItem disablePadding sx={{ py: 0.5 }}>
                     <Box>
-                      <Typography variant="body2">{post.textbook.name}</Typography>
+                      <Typography variant="body2">
+                        {post.textbook.name}
+                      </Typography>
                       <Typography variant="caption" color="text.secondary">
                         {post.date.slice(0, 10)} · {post.time}
                       </Typography>
