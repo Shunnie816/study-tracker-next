@@ -28,7 +28,10 @@ export function RegisterForm({
       <form onSubmit={onSubmitRegister}>
         <div className={styles.form}>
           {showRegisterAlert && (
-            <Alert severity="success" onClose={() => setShowRegisterAlert(false)}>
+            <Alert
+              severity="success"
+              onClose={() => setShowRegisterAlert(false)}
+            >
               教材登録完了！
             </Alert>
           )}
