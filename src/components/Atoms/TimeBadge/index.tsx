@@ -1,4 +1,4 @@
-import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 import React from "react";
 
 type Props = {
@@ -7,11 +7,23 @@ type Props = {
 
 export function TimeBadge({ time }: Props) {
   return (
-    <Chip
-      label={time}
-      size="small"
-      color="primary"
-      sx={{ fontWeight: 600, fontSize: "0.75rem" }}
-    />
+    <Box
+      component="span"
+      sx={{
+        display: "inline-block",
+        backgroundColor: "#EEF1FF",
+        color: "#4361EE",
+        fontSize: "12px",
+        fontWeight: 700,
+        px: "10px",
+        py: "4px",
+        borderRadius: "12px",
+        flexShrink: 0,
+        whiteSpace: "nowrap",
+        lineHeight: "normal",
+      }}
+    >
+      {time}
+    </Box>
   );
 }
