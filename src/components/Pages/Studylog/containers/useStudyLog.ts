@@ -19,7 +19,8 @@ export function useStudyLog() {
           .filter((t) => t.id !== undefined)
           .map((t, index) => [
             t.id as string,
-            t.color ?? TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length],
+            t.color ??
+              TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length],
           ])
       ),
     [textbooks]
