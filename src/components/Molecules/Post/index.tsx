@@ -1,9 +1,11 @@
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { Card } from "@/components/Atoms/Card";
 import { Icon } from "@/components/Atoms/Icon";
+import { TextbookColorDot } from "@/components/Atoms/TextbookColorDot";
 import { TimeBadge } from "@/components/Atoms/TimeBadge";
 import { PostData } from "@/libs/types";
 import styles from "./index.module.scss";
@@ -19,9 +21,12 @@ export function Post({ data, handleOpen }: Props) {
   return (
     <Card title={date} variant="bordered">
       <div className={styles.wrapper}>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          {textbook.name}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          {textbook.color && <TextbookColorDot color={textbook.color} size={8} />}
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+            {textbook.name}
+          </Typography>
+        </Box>
         <TimeBadge time={String(time)} />
       </div>
       <Divider sx={{ my: 1 }} />
