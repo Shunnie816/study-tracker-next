@@ -7,7 +7,7 @@ type CardVariant = "default" | "soft-shadow" | "bordered";
 
 export type Props = {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   variant?: CardVariant;
 };
 
@@ -31,16 +31,18 @@ export function Card({ children, title, variant = "default" }: Props) {
   return (
     <MUICard sx={variantStyles[variant]}>
       <CardContent>
-        <Typography
-          variant="caption"
-          gutterBottom
-          sx={{
-            display: "block",
-            color: "text.secondary",
-          }}
-        >
-          {title}
-        </Typography>
+        {title && (
+          <Typography
+            variant="caption"
+            gutterBottom
+            sx={{
+              display: "block",
+              color: "text.secondary",
+            }}
+          >
+            {title}
+          </Typography>
+        )}
         {children}
       </CardContent>
     </MUICard>
