@@ -86,4 +86,57 @@ describe("useTextbookStats", () => {
     const { result } = renderHook(() => useTextbookStats(posts));
     expect(result.current[0].textbook.color).toBe("#FF5722");
   });
+
+  describe("textbookColorMap による色補完", () => {
+    it("post に color がなく textbookColorMap に一致する ID があるとき、マップの色を返すべき", () => {
+      const posts: PostData[] = [
+        {
+          id: "p1",
+          date: "2025/09/23 10:00",
+          textbook: { id: "t1", name: "英語" },
+          time: 30,
+          content: "",
+        },
+      ];
+      const colorMap = new Map([["t1", "#10B981"]]);
+      const { result } = renderHook(() => useTextbookStats(posts, colorMap));
+      expect(result.current[0].textbook.color).toBe("#10B981");
+    });
+
+    it("post に color があり textbookColorMap にも色があるとき、post の color を優先すべき", () => {
+      const posts = [makePost("p1", "t1", "英語", 30, "#FF5722")];
+      const colorMap = new Map([["t1", "#10B981"]]);
+      const { result } = renderHook(() => useTextbookStats(posts, colorMap));
+      expect(result.current[0].textbook.color).toBe("#FF5722");
+    });
+
+    it("post に color がなく textbookColorMap に一致する ID がないとき、color が undefined であるべき", () => {
+      const posts: PostData[] = [
+        {
+          id: "p1",
+          date: "2025/09/23 10:00",
+          textbook: { id: "t1", name: "英語" },
+          time: 30,
+          content: "",
+        },
+      ];
+      const colorMap = new Map([["t2", "#10B981"]]);
+      const { result } = renderHook(() => useTextbookStats(posts, colorMap));
+      expect(result.current[0].textbook.color).toBeUndefined();
+    });
+
+    it("post に color がなく textbookColorMap を渡さないとき、color が undefined であるべき", () => {
+      const posts: PostData[] = [
+        {
+          id: "p1",
+          date: "2025/09/23 10:00",
+          textbook: { id: "t1", name: "英語" },
+          time: 30,
+          content: "",
+        },
+      ];
+      const { result } = renderHook(() => useTextbookStats(posts));
+      expect(result.current[0].textbook.color).toBeUndefined();
+    });
+  });
 });
