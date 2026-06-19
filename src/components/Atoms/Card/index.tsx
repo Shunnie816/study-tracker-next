@@ -24,7 +24,7 @@ const variantStyles: Record<CardVariant, object> = {
   bordered: {
     borderRadius: "var(--radius-card)",
     boxShadow: "none",
-    border: "1px solid var(--mui-palette-divider)",
+    border: "1.5px solid #E2E4F0",
   },
 };
 
