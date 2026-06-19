@@ -4,14 +4,14 @@ import { Heading } from "@/components/Atoms/Heading";
 import styles from "./index.module.scss";
 
 type Props = {
-  title: string;
+  title?: string;
   children: React.ReactNode;
 };
 
 export function SingleColumn({ title, children }: Props) {
   return (
     <Container maxWidth="sm" className={styles.container}>
-      <Heading text={title} />
+      {title && <Heading text={title} />}
       <Box
         sx={{
           mt: 2,
