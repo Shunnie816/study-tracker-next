@@ -35,6 +35,7 @@ const COLOR_PALETTE = {
 };
 
 export const defaultTheme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: COLOR_PALETTE.primary,
