@@ -22,6 +22,7 @@ export function FilterTabs({ value, onChange }: Props) {
         <Box
           key={option.value}
           component="button"
+          aria-pressed={value === option.value}
           onClick={() => onChange(option.value)}
           sx={{
             px: "14px",
