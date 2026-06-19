@@ -122,6 +122,7 @@ export const usePostData = () => {
 
   return {
     posts,
+    rawPosts: data,
     postData,
     isLoading,
     error,
