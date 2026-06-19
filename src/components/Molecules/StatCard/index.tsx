@@ -26,21 +26,21 @@ export function StatCard({ label, value, variant = "default" }: Props) {
       <CardContent>
         <div className={styles.container}>
           <Typography
-            variant="h6"
             component="p"
             sx={{
               fontWeight: 700,
-              lineHeight: 1.1,
+              fontSize: "0.9375rem",
+              lineHeight: 1.2,
               color: isPrimary ? "white" : "primary.main",
             }}
           >
             {value}
           </Typography>
           <Typography
-            variant="caption"
+            component="p"
             sx={{
+              fontSize: "0.6875rem",
               color: isPrimary ? "rgba(255,255,255,0.75)" : "text.disabled",
-              marginTop: "4px",
             }}
           >
             {label}
