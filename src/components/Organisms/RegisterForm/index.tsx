@@ -31,6 +31,7 @@ export function RegisterForm({
             <Alert
               severity="success"
               onClose={() => setShowRegisterAlert(false)}
+              sx={{ mb: 2 }}
             >
               教材登録完了！
             </Alert>
