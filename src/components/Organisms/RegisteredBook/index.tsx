@@ -9,9 +9,11 @@ import {
 import React from "react";
 import { Icon } from "@/components/Atoms/Icon";
 import { LoadingWrapper } from "@/components/Atoms/LoadingWrapper";
+import { TextbookColorDot } from "@/components/Atoms/TextbookColorDot";
 import { EditDialog } from "@/components/Organisms/EditDialog";
 import { EditTextBookData } from "@/components/Pages/Register/formSchema";
 import { UseRegister } from "@/components/Pages/Register/useRegister";
+import { TEXTBOOK_COLOR_PALETTE } from "@/libs/constants/textbookColors";
 import { Textbook } from "@/libs/types";
 import styles from "./index.module.scss";
 
@@ -33,6 +35,7 @@ type Props = {
 
 type ListProps = {
   value: string;
+  color: string;
   onClick: () => void;
 };
 
@@ -65,10 +68,16 @@ export function RegisteredBook({
         {listData.length > 0 ? (
           <div className={styles.listDataWrapper}>
             <List className={styles.list}>
-              {listData.map((textbook) => (
+              {listData.map((textbook, index) => (
                 <React.Fragment key={textbook.id}>
                   <MUIListItem
                     value={textbook.name}
+                    color={
+                      textbook.color ??
+                      TEXTBOOK_COLOR_PALETTE[
+                        index % TEXTBOOK_COLOR_PALETTE.length
+                      ]
+                    }
                     onClick={() => handleOpenEditDialog(textbook.id!)}
                   />
                 </React.Fragment>
@@ -94,9 +103,10 @@ export function RegisteredBook({
   );
 }
 
-const MUIListItem = ({ value, onClick }: ListProps) => {
+const MUIListItem = ({ value, color, onClick }: ListProps) => {
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding sx={{ gap: 1.5 }}>
+      <TextbookColorDot color={color} size={10} />
       <ListItemText>{value}</ListItemText>
       <ListItemSecondaryAction onClick={onClick}>
         <IconButton>
