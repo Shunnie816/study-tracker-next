@@ -1,7 +1,7 @@
 import { useCumulativeTotal } from "@/libs/hooks/useCumulativeTotal";
 import { usePostData } from "@/libs/hooks/usePostData";
-import { useTodayTotal } from "@/libs/hooks/useTodayTotal";
 import { useTextbookStats } from "@/libs/hooks/useTextbookStats";
+import { useTodayTotal } from "@/libs/hooks/useTodayTotal";
 import { useWeeklyTotal } from "@/libs/hooks/useWeeklyTotal";
 
 export function useStudyLog() {

@@ -61,8 +61,20 @@ describe("useTextbookStats", () => {
 
   it("教材 ID がない場合は教材名をキーに集計するべき", () => {
     const posts: PostData[] = [
-      { id: "p1", date: "2025/09/23 10:00", textbook: { name: "英語" }, time: 30, content: "" },
-      { id: "p2", date: "2025/09/23 11:00", textbook: { name: "英語" }, time: 20, content: "" },
+      {
+        id: "p1",
+        date: "2025/09/23 10:00",
+        textbook: { name: "英語" },
+        time: 30,
+        content: "",
+      },
+      {
+        id: "p2",
+        date: "2025/09/23 11:00",
+        textbook: { name: "英語" },
+        time: 20,
+        content: "",
+      },
     ];
     const { result } = renderHook(() => useTextbookStats(posts));
     expect(result.current).toHaveLength(1);

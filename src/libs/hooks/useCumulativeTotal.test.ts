@@ -42,8 +42,20 @@ describe("useCumulativeTotal", () => {
 
   it("日付に関わらず全記録を合計するべき", () => {
     const posts: PostData[] = [
-      { id: "1", date: "2025/09/23 10:00", textbook: { id: "t1", name: "A" }, time: 60, content: "" },
-      { id: "2", date: "2025/01/01 10:00", textbook: { id: "t2", name: "B" }, time: 30, content: "" },
+      {
+        id: "1",
+        date: "2025/09/23 10:00",
+        textbook: { id: "t1", name: "A" },
+        time: 60,
+        content: "",
+      },
+      {
+        id: "2",
+        date: "2025/01/01 10:00",
+        textbook: { id: "t2", name: "B" },
+        time: 30,
+        content: "",
+      },
     ];
     const { result } = renderHook(() => useCumulativeTotal(posts));
     expect(result.current).toBe("1時間30分");

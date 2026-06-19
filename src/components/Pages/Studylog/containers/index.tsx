@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { HorizontalBarChart } from "@/components/Organisms/HorizontalBarChart";
 import { StatCard } from "@/components/Molecules/StatCard";
+import { HorizontalBarChart } from "@/components/Organisms/HorizontalBarChart";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
-import { useStudyLog } from "./useStudyLog";
 import styles from "./index.module.scss";
+import { useStudyLog } from "./useStudyLog";
 
 export function StudyLog() {
   const { todayTotal, weeklyTotal, cumulativeTotal, textbookStats, isLoading } =
