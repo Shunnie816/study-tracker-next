@@ -1,14 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePostData } from "@/libs/hooks/usePostData";
+import { useStreak } from "@/libs/hooks/useStreak";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import { ReportData } from "@/libs/types";
 import { formSchema, ReportFormData } from "./formSchema";
 
 export function useReport() {
   const { textbooks } = useTextbookData();
-  const { postData } = usePostData();
+  const { postData, posts } = usePostData();
+  const streak = useStreak(posts);
+
+  const todayLabel = useMemo(() => {
+    const DAYS = ["日", "月", "火", "水", "木", "金", "土"];
+    const now = new Date();
+    return `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日（${DAYS[now.getDay()]}）`;
+  }, []);
+
+  const recentPosts = useMemo(() => posts?.slice(0, 3) ?? [], [posts]);
 
   const [alertShown, setAlertShown] = useState<boolean>(false);
 
@@ -84,6 +94,9 @@ export function useReport() {
     showAlert,
     setShowAlert: setAlertShown,
     isDisabled,
+    todayLabel,
+    streak,
+    recentPosts,
   };
 }
 
