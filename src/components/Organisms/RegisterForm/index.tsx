@@ -2,6 +2,7 @@ import { Alert } from "@mui/material";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { Button } from "@/components/Atoms/Button";
+import { Card } from "@/components/Atoms/Card";
 import { FormTextField } from "@/components/Molecules/FormTextField";
 import { TextBookData } from "@/components/Pages/Register/formSchema";
 import { UseRegister } from "@/components/Pages/Register/useRegister";
@@ -23,26 +24,31 @@ export function RegisterForm({
   } = useFormContext<TextBookData>();
 
   return (
-    <form onSubmit={onSubmitRegister} className={styles.formWrapper}>
-      <div className={styles.form}>
-        {showRegisterAlert && (
-          <Alert severity="success" onClose={() => setShowRegisterAlert(false)}>
-            教材登録完了！
-          </Alert>
-        )}
-        <FormTextField
-          control={control}
-          name="textbook"
-          label="教材を入力"
-          error={!!errors.textbook}
-          errorMessage={errors.textbook?.message}
-        />
-      </div>
-      <div className={styles.button}>
-        <Button variant="contained" type="submit">
-          登録する
-        </Button>
-      </div>
-    </form>
+    <Card variant="soft-shadow">
+      <form onSubmit={onSubmitRegister}>
+        <div className={styles.form}>
+          {showRegisterAlert && (
+            <Alert
+              severity="success"
+              onClose={() => setShowRegisterAlert(false)}
+            >
+              教材登録完了！
+            </Alert>
+          )}
+          <FormTextField
+            control={control}
+            name="textbook"
+            label="教材を入力"
+            error={!!errors.textbook}
+            errorMessage={errors.textbook?.message}
+          />
+        </div>
+        <div className={styles.button}>
+          <Button variant="contained" color="primary" type="submit">
+            登録する
+          </Button>
+        </div>
+      </form>
+    </Card>
   );
 }
