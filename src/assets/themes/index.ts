@@ -53,6 +53,7 @@ export const defaultTheme = createTheme({
       default: COLOR_PALETTE.bgBase,
       paper: COLOR_PALETTE.surface2,
     },
+    divider: COLOR_PALETTE.border,
   },
   typography: {
     fontFamily: 'var(--font-noto-sans-jp), "Noto Sans JP", sans-serif',

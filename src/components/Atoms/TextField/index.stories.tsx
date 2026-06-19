@@ -9,7 +9,7 @@ const meta: Meta<typeof TextField> = {
     docs: {
       description: {
         component:
-          "テキスト入力用のAtomコンポーネント。propsでラベルやバリデーションを指定可能。",
+          "テキスト入力用のAtomコンポーネント。入力背景色 #EAECF5・ラベル常時上部配置をデフォルト適用。",
       },
     },
   },
