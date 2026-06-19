@@ -46,8 +46,18 @@ function SelectInner<T>(
   const formattedOptions = ["", ...options];
 
   return (
-    <FormControl fullWidth error={error}>
-      <InputLabel id={label}>{label}</InputLabel>
+    <FormControl
+      fullWidth
+      error={error}
+      sx={{
+        "& .MuiInputBase-root": {
+          backgroundColor: "var(--mui-palette-background-paper)",
+        },
+      }}
+    >
+      <InputLabel id={label} shrink>
+        {label}
+      </InputLabel>
       <MUISelect
         labelId={label}
         id={id}
@@ -56,6 +66,7 @@ function SelectInner<T>(
         onChange={handleChange}
         onBlur={onBlur}
         ref={ref}
+        notched
       >
         {/*
          * optionsの中身がstring[]であればそのまま文字列を表示

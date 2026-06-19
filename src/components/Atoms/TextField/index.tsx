@@ -39,6 +39,12 @@ function TextFieldInner(
       fullWidth
       onChange={handleChange}
       ref={ref}
+      slotProps={{ inputLabel: { shrink: true } }}
+      sx={{
+        "& .MuiInputBase-root": {
+          backgroundColor: "var(--mui-palette-background-paper)",
+        },
+      }}
       {...rest}
     />
   );

@@ -9,7 +9,7 @@ const meta: Meta<typeof Select> = {
     docs: {
       description: {
         component:
-          "セレクトボックス用のAtomコンポーネント。選択肢やラベルをpropsで指定可能。",
+          "セレクトボックス用のAtomコンポーネント。入力背景色 #EAECF5・ラベル常時上部配置をデフォルト適用。",
       },
     },
   },
