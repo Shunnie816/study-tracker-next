@@ -10,7 +10,7 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
-import { useMemo, useEffect } from "react";
+import { useEffect } from "react";
 import useSWR, { mutate } from "swr";
 import { TEXTBOOK_COLOR_PALETTE } from "../constants/textbookColors";
 import { db } from "../firebase";
@@ -42,7 +42,9 @@ export function useTextbookData() {
     /** Firestoreに教材データを登録 */
     try {
       const color =
-        TEXTBOOK_COLOR_PALETTE[textbooks.length % TEXTBOOK_COLOR_PALETTE.length];
+        TEXTBOOK_COLOR_PALETTE[
+          textbooks.length % TEXTBOOK_COLOR_PALETTE.length
+        ];
       await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
         ...textbook,
         color,
@@ -88,9 +90,7 @@ export function useTextbookData() {
     }
   );
 
-  const textbooks = useMemo(() => {
-    return data ?? [];
-  }, [data]);
+  const textbooks = data ?? [];
 
   /** Firestoreの教材データを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {

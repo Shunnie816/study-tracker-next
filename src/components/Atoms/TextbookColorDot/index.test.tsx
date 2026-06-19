@@ -10,7 +10,9 @@ describe("TextbookColorDot", () => {
   });
 
   it("size を指定したときクラッシュなくレンダリングされるべき", () => {
-    const { container } = render(<TextbookColorDot color="#06B6D4" size={12} />);
+    const { container } = render(
+      <TextbookColorDot color="#06B6D4" size={12} />
+    );
     expect(container.querySelector("span")).toBeInTheDocument();
   });
 

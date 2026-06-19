@@ -87,7 +87,9 @@ export function RegisteredBook({
                   value={textbook.name}
                   color={
                     textbook.color ??
-                    TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length]
+                    TEXTBOOK_COLOR_PALETTE[
+                      index % TEXTBOOK_COLOR_PALETTE.length
+                    ]
                   }
                   onClick={() => handleOpenEditDialog(textbook.id!)}
                 />
