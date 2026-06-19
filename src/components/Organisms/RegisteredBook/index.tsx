@@ -59,7 +59,7 @@ export function RegisteredBook({
           fontWeight: "bold",
         }}
       >
-        登録済みの教材
+        登録済みの教材（{listData.length}件）
       </Typography>
       <LoadingWrapper isLoading={isLoading} error={error}>
         {listData.length > 0 ? (
