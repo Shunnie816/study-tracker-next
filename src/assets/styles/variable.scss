@@ -31,32 +31,13 @@
   //container-size
   --containerSmall: 360px;
 
-  //background-color
-  --bgColorBase: #f5f6fc;
-  --bgColorWhite: #fff;
+  // カラー・背景色はMUIテーマ(cssVariables)が --mui-palette-* として管理する
 
-  //color (MUIテーマと同期)
-  --white: #fff;
-  --colorPrimary: #4361ee;
-  --colorPrimary50: #eef1ff;
-  --colorPrimary200: #c5ceff;
-  --colorPrimary400: #748ffc;
-  --colorPrimary700: #3346c4;
-  --colorPrimary900: #3a0ca3;
-  --colorAmber: #f9a825;
-  --colorCyan: #0cc8e8;
-  --colorGreen: #22c55e;
-  --colorTextMain: #1a1d3b;
-  --colorTextSub: #5c6285;
-  --colorTextPlaceholder: #9194af;
-  --colorSurface2: #eaecf5;
-  --colorBorder: #e2e4f0;
-
-  //shadow
+  //shadow (MUI管理外のカスタムトークン)
   --shadow-card-soft: 0 2px 16px rgba(67, 97, 238, 0.18);
   --shadow-card-hover: 0 8px 32px rgba(67, 97, 238, 0.12);
 
-  //border-radius
+  //border-radius (MUI管理外のカスタムトークン)
   --radius-card: 12px;
   --radius-button: 8px;
   --radius-input: 8px;
