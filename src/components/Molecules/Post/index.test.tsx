@@ -20,7 +20,9 @@ describe("Post", () => {
 
   it("学習内容が表示されるべき", () => {
     render(<Post data={makePostData("#06B6D4")} handleOpen={vi.fn()} />);
-    expect(screen.getByText("型ガードとユニオン型を学習した")).toBeInTheDocument();
+    expect(
+      screen.getByText("型ガードとユニオン型を学習した")
+    ).toBeInTheDocument();
   });
 
   it("削除ボタンをクリックすると handleOpen が投稿 ID で呼ばれるべき", () => {
