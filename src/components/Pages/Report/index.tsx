@@ -1,10 +1,10 @@
 "use client";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import React from "react";
+import { Icon } from "@/components/Atoms/Icon";
 import { StreakBadge } from "@/components/Atoms/StreakBadge";
 import { ReportForm } from "@/components/Organisms/ReportForm";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
@@ -57,47 +57,65 @@ export function Report() {
         <Box sx={{ mt: 3 }}>
           <Typography
             sx={{
-              fontSize: "11px",
+              fontSize: "10px",
               fontWeight: 700,
-              color: "text.secondary",
+              color: "text.disabled",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              mb: 1.25,
+              mb: 1,
             }}
           >
             最近の記録
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            {recentPosts.map((post, index) => (
-              <React.Fragment key={post.id}>
-                {index > 0 && <Divider />}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {recentPosts.map((post) => (
+              <Box
+                key={post.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "9px",
+                  p: "8px 10px",
+                  backgroundColor: "background.paper",
+                  border: "1px solid #E2E4F0",
+                  borderRadius: "8px",
+                }}
+              >
                 <Box
                   sx={{
-                    backgroundColor: "#F0F1F8",
-                    borderRadius: "10px",
-                    p: "12px",
+                    width: 28,
+                    height: 28,
+                    backgroundColor: "#EEF1FF",
+                    borderRadius: "6px",
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  <Box
+                  <Icon icon="book" fontSize="small" color="primary" />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 0.5,
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "text.primary",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
                     }}
                   >
-                    <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "text.primary" }}>
-                      {post.textbook.name}
-                    </Typography>
-                    <Typography sx={{ fontSize: "11px", fontWeight: 600, color: "#4361EE" }}>
-                      {post.time}
-                    </Typography>
-                  </Box>
-                  <Typography sx={{ fontSize: "11px", color: "text.secondary" }}>
-                    {post.content}
+                    {post.textbook.name}
+                  </Typography>
+                  <Typography sx={{ fontSize: "10px", color: "text.disabled", mt: "1px" }}>
+                    {String(post.time)}
                   </Typography>
                 </Box>
-              </React.Fragment>
+                <Typography sx={{ fontSize: "10px", color: "text.disabled", flexShrink: 0 }}>
+                  {post.relativeDateLabel}
+                </Typography>
+              </Box>
             ))}
           </Box>
           <Button

@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { format, subDays } from "date-fns";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePostData } from "@/libs/hooks/usePostData";
@@ -6,6 +7,17 @@ import { useStreak } from "@/libs/hooks/useStreak";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import { ReportData } from "@/libs/types";
 import { formSchema, ReportFormData } from "./formSchema";
+
+function getRelativeDateLabel(dateStr: string): string {
+  const postDate = dateStr.slice(0, 10);
+  const today = format(new Date(), "yyyy/MM/dd");
+  const yesterday = format(subDays(new Date(), 1), "yyyy/MM/dd");
+  if (postDate === today) return "今日";
+  if (postDate === yesterday) return "昨日";
+  const date = new Date(postDate.replace(/\//g, "-"));
+  const diffDays = Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24));
+  return `${diffDays}日前`;
+}
 
 export function useReport() {
   const { textbooks } = useTextbookData();
@@ -18,7 +30,14 @@ export function useReport() {
     return `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日（${DAYS[now.getDay()]}）`;
   }, []);
 
-  const recentPosts = useMemo(() => posts?.slice(0, 3) ?? [], [posts]);
+  const recentPosts = useMemo(
+    () =>
+      posts?.slice(0, 3).map((post) => ({
+        ...post,
+        relativeDateLabel: getRelativeDateLabel(post.date),
+      })) ?? [],
+    [posts]
+  );
 
   const [alertShown, setAlertShown] = useState<boolean>(false);
 
