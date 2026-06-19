@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          "ボタン用のAtomコンポーネント。ラベルやアイコン、バリアントをpropsで指定可能。CTA ボタンは color=\"secondary\"（Amber）を使用する。",
+          'ボタン用のAtomコンポーネント。ラベルやアイコン、バリアントをpropsで指定可能。CTA ボタンは color="secondary"（Amber）を使用する。',
       },
     },
   },
