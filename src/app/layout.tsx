@@ -1,7 +1,7 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
-import { Layout } from "@/components/Templates/Layout";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
+import { Layout } from "@/components/Templates/Layout";
 import "@/assets/styles/global.scss";
 import "@/assets/styles/variable.scss";
 
