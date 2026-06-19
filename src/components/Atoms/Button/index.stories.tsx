@@ -1,7 +1,6 @@
 import { Button } from "./index";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
-//👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
@@ -9,7 +8,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          "ボタン用のAtomコンポーネント。ラベルやアイコン、バリアントをpropsで指定可能。",
+          "ボタン用のAtomコンポーネント。ラベルやアイコン、バリアントをpropsで指定可能。CTA ボタンは color=\"secondary\"（Amber）を使用する。",
       },
     },
   },
@@ -21,6 +20,14 @@ type Story = StoryObj<typeof Button>;
 export const Standard: Story = {
   args: {
     children: "サンプル",
+  },
+};
+
+export const CTA: Story = {
+  args: {
+    children: "学習を記録する",
+    variant: "contained",
+    color: "secondary",
   },
 };
 
