@@ -1,5 +1,5 @@
+import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { Card } from "@/components/Atoms/Card";
@@ -19,23 +19,35 @@ export function Post({ data, handleOpen }: Props) {
   return (
     <Card title={date} variant="bordered">
       <div className={styles.wrapper}>
-        <Typography variant="subtitle1">{textbook.name}</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+          {textbook.name}
+        </Typography>
         <TimeBadge time={String(time)} />
       </div>
       <Divider sx={{ my: 1 }} />
       <div className={styles.contentWrapper}>
-        <Typography variant="subtitle2">学習内容：</Typography>
-        <Typography variant="body2">{content}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {content}
+        </Typography>
       </div>
       <div className={styles.actions}>
-        <IconButton
+        <Button
           size="small"
-          color="error"
           onClick={() => handleOpen(id ?? "")}
-          aria-label="投稿を削除"
+          startIcon={<Icon icon="delete" fontSize="small" />}
+          sx={{
+            color: "#E53935",
+            border: "1.5px solid #FFE0E0",
+            borderRadius: "8px",
+            fontSize: "12px",
+            fontWeight: 500,
+            py: "5px",
+            px: "12px",
+            "&:hover": { border: "1.5px solid #E53935", backgroundColor: "#FFF0F0" },
+          }}
         >
-          <Icon icon="delete" fontSize="small" />
-        </IconButton>
+          削除
+        </Button>
       </div>
     </Card>
   );
