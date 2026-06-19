@@ -27,20 +27,16 @@ export function FilterTabs({ value, onChange }: Props) {
             px: "14px",
             py: "6px",
             borderRadius: "20px",
-            border:
-              value === option.value ? "none" : "1.5px solid #E2E4F0",
-            backgroundColor:
-              value === option.value ? "#4361EE" : "transparent",
-            color:
-              value === option.value ? "#FFFFFF" : "text.secondary",
+            border: value === option.value ? "none" : "1.5px solid #E2E4F0",
+            backgroundColor: value === option.value ? "#4361EE" : "transparent",
+            color: value === option.value ? "#FFFFFF" : "text.secondary",
             fontSize: "12px",
             fontWeight: 600,
             cursor: "pointer",
             lineHeight: 1.5,
             transition: "all 0.15s ease",
             "&:hover": {
-              backgroundColor:
-                value === option.value ? "#3A55D9" : "#F0F3FF",
+              backgroundColor: value === option.value ? "#3A55D9" : "#F0F3FF",
             },
           }}
         >

@@ -2,9 +2,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { FilterTabs } from "@/components/Molecules/FilterTabs";
 import { LoadingWrapper } from "@/components/Atoms/LoadingWrapper";
 import { Snackbar } from "@/components/Atoms/Snackbar";
+import { FilterTabs } from "@/components/Molecules/FilterTabs";
 import { PostList } from "@/components/Organisms/PostList";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
 import { usePosts } from "./usePosts";

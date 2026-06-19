@@ -10,9 +10,7 @@ export function useWeeklyTotal(rawPosts: PostData[] | undefined): string {
 
     const totalMinutes = rawPosts
       .filter((post) => {
-        const postDate = new Date(
-          post.date.slice(0, 10).replace(/\//g, "-")
-        );
+        const postDate = new Date(post.date.slice(0, 10).replace(/\//g, "-"));
         return postDate >= weekStart;
       })
       .reduce((sum, post) => sum + Number(post.time), 0);
