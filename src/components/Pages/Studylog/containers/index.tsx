@@ -13,7 +13,7 @@ export function StudyLog() {
   return (
     <SingleColumn title="学習統計">
       <div className={styles.statCards}>
-        <StatCard label="今日" value={todayTotal} />
+        <StatCard label="今日" value={todayTotal} variant="primary" />
         <StatCard label="今週" value={weeklyTotal} />
         <StatCard label="累計" value={cumulativeTotal} />
       </div>
