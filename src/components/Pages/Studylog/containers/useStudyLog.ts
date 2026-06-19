@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TEXTBOOK_COLOR_PALETTE } from "@/libs/constants/textbookColors";
 import { useCumulativeTotal } from "@/libs/hooks/useCumulativeTotal";
 import { usePostData } from "@/libs/hooks/usePostData";
 import { useTextbookData } from "@/libs/hooks/useTextbookData";
@@ -10,12 +11,17 @@ export function useStudyLog() {
   const { rawPosts, isLoading } = usePostData();
   const { textbooks } = useTextbookData();
 
+  // RegisteredBook と同じフォールバックロジック: color 未保存の古い教材はインデックス順でパレットから割り当て
   const textbookColorMap = useMemo(
     () =>
       new Map(
         textbooks
           .filter((t) => t.id !== undefined)
-          .map((t) => [t.id as string, t.color])
+          .map((t, index) => [
+            t.id as string,
+            t.color ??
+              TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length],
+          ])
       ),
     [textbooks]
   );
