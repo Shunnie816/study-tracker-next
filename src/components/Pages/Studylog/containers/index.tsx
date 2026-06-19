@@ -1,30 +1,23 @@
 "use client";
 import React from "react";
-import { Card } from "@/components/Atoms/Card";
+import { StatCard } from "@/components/Molecules/StatCard";
+import { HorizontalBarChart } from "@/components/Organisms/HorizontalBarChart";
 import { SingleColumn } from "@/components/Templates/SingleColumn";
+import styles from "./index.module.scss";
 import { useStudyLog } from "./useStudyLog";
 
 export function StudyLog() {
-  const { data } = useStudyLog();
+  const { todayTotal, weeklyTotal, cumulativeTotal, textbookStats, isLoading } =
+    useStudyLog();
 
   return (
-    <SingleColumn title="学習時間">
-      <Card title="教材別の学習時間" variant="soft-shadow">
-        {data ? (
-          // data.map((log) => {
-          //   return (
-          //     /** FIXME: indexを使わないでkeyを入れる */
-          //     <dl key={}>
-          //       <dt>{}</dt>
-          //       <dd>{log.time}分</dd>
-          //     </dl>
-          //   );
-          // })
-          <>dataあり</>
-        ) : (
-          <>学習記録がありません</>
-        )}
-      </Card>
+    <SingleColumn title="学習統計">
+      <div className={styles.statCards}>
+        <StatCard label="今日" value={todayTotal} variant="primary" />
+        <StatCard label="今週" value={weeklyTotal} />
+        <StatCard label="累計" value={cumulativeTotal} />
+      </div>
+      <HorizontalBarChart stats={textbookStats} isLoading={isLoading} />
     </SingleColumn>
   );
 }

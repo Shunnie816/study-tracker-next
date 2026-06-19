@@ -20,3 +20,9 @@ export type PostData = {
   time: number | string;
   content: string;
 };
+
+/** 教材別集計結果 */
+export type TextbookStat = {
+  textbook: Textbook;
+  totalMinutes: number;
+};

@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(72px, 110px) 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.barTrack {
+  background: #e2e4f0;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.time {
+  min-width: 56px;
+  text-align: right;
+  white-space: nowrap;
+}
