@@ -3,8 +3,8 @@
   --pcButtonWidth: 343px;
 
   //constants
-  --headerHeight: 56px; // headerの高さ
-  --footerHeight: 20px; // footerの高さ
+  --headerHeight: 56px;
+  --footerHeight: 20px;
 
   //font-size
   --fontSizeXS: 12px;
@@ -31,10 +31,14 @@
   //container-size
   --containerSmall: 360px;
 
-  //background-color
-  --bgColorBase: #fcffe9;
-  --bgColorWhite: #fff;
+  // カラー・背景色はMUIテーマ(cssVariables)が --mui-palette-* として管理する
 
-  //color
-  --white: #fff;
+  //shadow (MUI管理外のカスタムトークン)
+  --shadow-card-soft: 0 2px 16px rgba(67, 97, 238, 0.18);
+  --shadow-card-hover: 0 8px 32px rgba(67, 97, 238, 0.12);
+
+  //border-radius (MUI管理外のカスタムトークン)
+  --radius-card: 12px;
+  --radius-button: 8px;
+  --radius-input: 8px;
 }
