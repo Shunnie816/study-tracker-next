@@ -90,15 +90,16 @@ export function Report() {
                   sx={{
                     width: 28,
                     height: 28,
-                    backgroundColor: "#EEF1FF",
+                    backgroundColor: post.textbook.color ?? "#EEF1FF",
                     borderRadius: "6px",
                     flexShrink: 0,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    color: "white",
                   }}
                 >
-                  <Icon icon="book" fontSize="small" color="primary" />
+                  <Icon icon="book" fontSize="small" color="inherit" />
                 </Box>
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography
