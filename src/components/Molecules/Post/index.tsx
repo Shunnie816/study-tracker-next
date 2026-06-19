@@ -22,7 +22,9 @@ export function Post({ data, handleOpen }: Props) {
     <Card title={date} variant="bordered">
       <div className={styles.wrapper}>
         <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          {textbook.color && <TextbookColorDot color={textbook.color} size={8} />}
+          {textbook.color && (
+            <TextbookColorDot color={textbook.color} size={8} />
+          )}
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             {textbook.name}
           </Typography>
