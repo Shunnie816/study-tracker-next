@@ -2,7 +2,9 @@ import { SnackbarCloseReason } from "@mui/material";
 import { startOfMonth, startOfWeek } from "date-fns";
 import { useMemo, useState } from "react";
 import { FilterType } from "@/components/Molecules/FilterTabs";
+import { TEXTBOOK_COLOR_PALETTE } from "@/libs/constants/textbookColors";
 import { usePostData } from "@/libs/hooks/usePostData";
+import { useTextbookData } from "@/libs/hooks/useTextbookData";
 import { useWeeklyTotal } from "@/libs/hooks/useWeeklyTotal";
 import { PostData } from "@/libs/types";
 
@@ -27,13 +29,38 @@ export function usePosts() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
   const { posts, rawPosts, isLoading, error, deletePost } = usePostData();
+  const { textbooks } = useTextbookData();
 
   const weeklyTotal = useWeeklyTotal(rawPosts);
 
-  const filteredPosts = useMemo(
-    () => filterByDate(posts ?? [], activeFilter),
-    [posts, activeFilter]
+  const textbookColorMap = useMemo(
+    () =>
+      new Map(
+        textbooks
+          .filter((t) => t.id !== undefined)
+          .map((t, index) => [
+            t.id as string,
+            t.color ?? TEXTBOOK_COLOR_PALETTE[index % TEXTBOOK_COLOR_PALETTE.length],
+          ])
+      ),
+    [textbooks]
   );
+
+  const filteredPosts = useMemo(() => {
+    const filtered = filterByDate(posts ?? [], activeFilter);
+    return filtered.map((post) => ({
+      ...post,
+      textbook: {
+        ...post.textbook,
+        color:
+          post.textbook.color ??
+          (post.textbook.id
+            ? textbookColorMap.get(post.textbook.id)
+            : undefined) ??
+          TEXTBOOK_COLOR_PALETTE[0],
+      },
+    }));
+  }, [posts, activeFilter, textbookColorMap]);
 
   const handleOpen = (id: string) => {
     setIsDeleteModalOpen(true);
