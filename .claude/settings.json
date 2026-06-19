@@ -13,6 +13,7 @@
       "Bash(pnpm run test*)",
       "Bash(pnpm run mock)",
       "Bash(pnpm run storybook)",
+      "Bash(pnpm lint*)",
       "Bash(pnpm install*)",
       "Bash(git status)",
       "Bash(git diff*)",
@@ -33,7 +34,6 @@
       "Bash(gh pr list*)"
     ],
     "deny": [
-      "Bash(npm run lint)",
       "Bash(npm run build)",
       "Bash(git push --force*)",
       "Bash(git push origin main)",
