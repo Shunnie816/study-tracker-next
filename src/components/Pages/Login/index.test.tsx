@@ -44,7 +44,7 @@ describe("LoginPage", () => {
     mockSignInWithGoogle.mockReturnValue(
       new Promise<void>((resolve) => {
         resolveLogin = resolve;
-      }),
+      })
     );
     render(<LoginPage />);
 

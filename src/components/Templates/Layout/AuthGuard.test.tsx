@@ -51,7 +51,11 @@ describe("AuthGuard", () => {
     vi.mocked(useAuth).mockReturnValue(makeAuthState({ loading: true }));
     vi.mocked(usePathname).mockReturnValue("/");
 
-    render(<AuthGuard><div>content</div></AuthGuard>);
+    render(
+      <AuthGuard>
+        <div>content</div>
+      </AuthGuard>
+    );
 
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
     expect(screen.queryByText("content")).not.toBeInTheDocument();
@@ -61,7 +65,11 @@ describe("AuthGuard", () => {
     vi.mocked(useAuth).mockReturnValue(makeAuthState({ user: null }));
     vi.mocked(usePathname).mockReturnValue("/");
 
-    render(<AuthGuard><div>content</div></AuthGuard>);
+    render(
+      <AuthGuard>
+        <div>content</div>
+      </AuthGuard>
+    );
 
     await waitFor(() => {
       expect(mockReplace).toHaveBeenCalledWith("/login");
@@ -70,11 +78,15 @@ describe("AuthGuard", () => {
 
   it("認証済みで /login にアクセスしたとき / にリダイレクトすべき", async () => {
     vi.mocked(useAuth).mockReturnValue(
-      makeAuthState({ user: authenticatedUser as any }),
+      makeAuthState({ user: authenticatedUser as any })
     );
     vi.mocked(usePathname).mockReturnValue("/login");
 
-    render(<AuthGuard><div>content</div></AuthGuard>);
+    render(
+      <AuthGuard>
+        <div>content</div>
+      </AuthGuard>
+    );
 
     await waitFor(() => {
       expect(mockReplace).toHaveBeenCalledWith("/");
@@ -85,7 +97,11 @@ describe("AuthGuard", () => {
     vi.mocked(useAuth).mockReturnValue(makeAuthState({ user: null }));
     vi.mocked(usePathname).mockReturnValue("/login");
 
-    render(<AuthGuard><div>login content</div></AuthGuard>);
+    render(
+      <AuthGuard>
+        <div>login content</div>
+      </AuthGuard>
+    );
 
     expect(screen.getByText("login content")).toBeInTheDocument();
     expect(screen.queryByTestId("header")).not.toBeInTheDocument();
@@ -94,11 +110,15 @@ describe("AuthGuard", () => {
 
   it("認証済みでログインページ以外にアクセスしたとき Header・子・Footer を表示すべき", () => {
     vi.mocked(useAuth).mockReturnValue(
-      makeAuthState({ user: authenticatedUser as any }),
+      makeAuthState({ user: authenticatedUser as any })
     );
     vi.mocked(usePathname).mockReturnValue("/");
 
-    render(<AuthGuard><div>main content</div></AuthGuard>);
+    render(
+      <AuthGuard>
+        <div>main content</div>
+      </AuthGuard>
+    );
 
     expect(screen.getByTestId("header")).toBeInTheDocument();
     expect(screen.getByText("main content")).toBeInTheDocument();

@@ -10,9 +10,7 @@ const defaultProps = {
   isOpen: true,
   setIsOpen: vi.fn(),
   menuItems,
-  toggleDrawer:
-    (_open: boolean) =>
-    (_event: React.KeyboardEvent | React.MouseEvent) => {},
+  toggleDrawer: () => () => {},
   signOut: vi.fn(),
 };
 
@@ -48,10 +46,7 @@ describe("HamburgerMenu", () => {
 
   it("displayName が null のときメールアドレスを表示名として表示すべき", () => {
     render(
-      <HamburgerMenu
-        {...defaultProps}
-        user={makeUser({ displayName: null })}
-      />,
+      <HamburgerMenu {...defaultProps} user={makeUser({ displayName: null })} />
     );
 
     expect(screen.getAllByText("test@example.com")).toHaveLength(1);
@@ -59,7 +54,9 @@ describe("HamburgerMenu", () => {
 
   it("ログアウトボタンをクリックすると signOut が呼ばれるべき", async () => {
     const signOut = vi.fn().mockResolvedValue(undefined);
-    render(<HamburgerMenu {...defaultProps} user={makeUser()} signOut={signOut} />);
+    render(
+      <HamburgerMenu {...defaultProps} user={makeUser()} signOut={signOut} />
+    );
 
     fireEvent.click(screen.getByText("ログアウト"));
 
