@@ -4,6 +4,7 @@ import {
   initializeAppCheck,
   ReCaptchaEnterpriseProvider,
 } from "firebase/app-check";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -42,12 +43,15 @@ function initAppCheck() {
 export const appCheck = initAppCheck();
 
 export const db = getFirestore(app);
+export const auth = getAuth(app);
 
-/** Firestoreエミュレーター接続 */
 if (process.env.NODE_ENV === "development") {
   try {
     connectFirestoreEmulator(db, "127.0.0.1", 8080);
-  } catch (e) {
+    connectAuthEmulator(auth, "http://127.0.0.1:9099", {
+      disableWarnings: true,
+    });
+  } catch {
     // すでに接続済みの場合などは無視
   }
 }
