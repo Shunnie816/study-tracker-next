@@ -32,6 +32,8 @@ const Component: Story["render"] = () => {
         setIsOpen={setIsOpen}
         menuItems={menuItems}
         toggleDrawer={toggleDrawer}
+        user={null}
+        signOut={async () => {}}
       />
     </>
   );

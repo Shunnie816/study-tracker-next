@@ -38,7 +38,7 @@ export function Header() {
           <div className={clns(styles.pcHeader, isPC && styles.isPC)}>
             <ListMenu items={menuItems} row />
           </div>
-          {/* ハンバーガーメニュー */}
+          {/* ハンバーガーメニュー（モバイルのみ） */}
           <div className={clns(styles.mobileHeader, isPC && styles.isPC)}>
             <a onClick={() => setIsOpen(true)}>
               <Icon icon={"menu"} color="inherit" />
@@ -48,9 +48,12 @@ export function Header() {
               setIsOpen={setIsOpen}
               menuItems={menuItems}
               toggleDrawer={toggleDrawer}
+              user={user}
+              signOut={signOut}
             />
           </div>
-          {user && (
+          {/* アバター + ログアウト（PC のみ） */}
+          {user && isPC && (
             <Tooltip title={`${user.displayName ?? user.email} — ログアウト`}>
               <IconButton onClick={signOut} sx={{ ml: 1 }}>
                 <Avatar
