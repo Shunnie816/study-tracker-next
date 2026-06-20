@@ -5,6 +5,7 @@ import React from "react";
 import { defaultTheme } from "@/assets/themes";
 import { Footer } from "@/components/Templates/Footer";
 import { Header } from "@/components/Templates/Header";
+import { AuthGuard } from "./AuthGuard";
 import styles from "./index.module.scss";
 
 type Props = {
@@ -20,9 +21,11 @@ export function Layout({ children }: Props) {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Provider>
-        <Header />
-        <div className={styles.container}>{children}</div>
-        <Footer />
+        <AuthGuard>
+          <Header />
+          <div className={styles.container}>{children}</div>
+          <Footer />
+        </AuthGuard>
       </Provider>
     </ThemeProvider>
   );
