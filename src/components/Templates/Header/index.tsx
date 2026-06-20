@@ -1,7 +1,10 @@
 "use client";
 import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +12,7 @@ import { Icon } from "@/components/Atoms/Icon";
 import { ListMenu } from "@/components/Atoms/ListMenu";
 import { HamburgerMenu } from "@/components/Organisms/HamburgerMenu";
 import { URL_VALUES } from "@/libs/constants/url";
+import { useAuth } from "@/libs/hooks/useAuth";
 import { useDeviceSize } from "@/libs/hooks/useDeviceSize";
 import { clns } from "@/libs/utils/clns/indext";
 import styles from "./index.module.scss";
@@ -17,6 +21,7 @@ import { useHamburgerMenu } from "./useHamburgerMenu";
 export function Header() {
   const { isPC } = useDeviceSize();
   const { isOpen, setIsOpen, toggleDrawer, menuItems } = useHamburgerMenu();
+  const { user, signOut } = useAuth();
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", zIndex: "100" }}>
@@ -45,6 +50,17 @@ export function Header() {
               toggleDrawer={toggleDrawer}
             />
           </div>
+          {user && (
+            <Tooltip title={`${user.displayName ?? user.email} — ログアウト`}>
+              <IconButton onClick={signOut} sx={{ ml: 1 }}>
+                <Avatar
+                  src={user.photoURL ?? undefined}
+                  alt={user.displayName ?? "user"}
+                  sx={{ width: 32, height: 32 }}
+                />
+              </IconButton>
+            </Tooltip>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
