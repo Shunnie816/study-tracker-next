@@ -9,6 +9,7 @@ import {
   query,
   serverTimestamp,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { useEffect } from "react";
 import useSWR, { mutate } from "swr";
@@ -17,14 +18,17 @@ import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { Textbook } from "../types";
 import { useAppCheck } from "./useAppCheck";
+import { useAuth } from "./useAuth";
 
 export function useTextbookData() {
   const apiPath = "textbooks";
   const { isAppCheckReady } = useAppCheck();
+  const { user } = useAuth();
 
   /** 教材データを作った順(昇順)で取得 */
   const fetchQuery = query(
     collection(db, COLLECTIONS.TEXTBOOKS),
+    where("uid", "==", user?.uid ?? ""),
     orderBy("createdAt", "asc")
   );
 
@@ -47,6 +51,7 @@ export function useTextbookData() {
         ];
       await addDoc(collection(db, COLLECTIONS.TEXTBOOKS), {
         ...textbook,
+        uid: user?.uid,
         color,
         createdAt: serverTimestamp(),
       });
@@ -78,7 +83,7 @@ export function useTextbookData() {
   }
 
   const { data, isLoading, error } = useSWR(
-    isAppCheckReady ? apiPath : null,
+    isAppCheckReady && user ? apiPath : null,
     fetchTextbooks,
     {
       onSuccess(data) {
@@ -94,7 +99,7 @@ export function useTextbookData() {
 
   /** Firestoreの教材データを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {
-    if (!isAppCheckReady) return;
+    if (!isAppCheckReady || !user) return;
     const unsubscribe = onSnapshot(fetchQuery, (snapshot) => {
       const updatedTextbooks = snapshot.docs.map((doc) => ({
         id: doc.id,
