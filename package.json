@@ -16,7 +16,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:local": "bash scripts/e2e-local.sh",
-    "mock": "firebase emulators:start --import=./src/emulators --export-on-exit"
+    "mock": "firebase emulators:start --only auth,firestore --import=./src/emulators --export-on-exit"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
