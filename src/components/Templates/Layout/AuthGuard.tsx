@@ -2,7 +2,10 @@
 import { CircularProgress, Box } from "@mui/material";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useEffect } from "react";
+import { Footer } from "@/components/Templates/Footer";
+import { Header } from "@/components/Templates/Header";
 import { useAuth } from "@/libs/hooks/useAuth";
+import styles from "./index.module.scss";
 
 type Props = {
   children: React.ReactNode;
@@ -38,7 +41,18 @@ export function AuthGuard({ children }: Props) {
     );
   }
 
-  if (!user && pathname !== "/login") return null;
+  if (pathname === "/login") {
+    if (user) return null;
+    return <>{children}</>;
+  }
 
-  return <>{children}</>;
+  if (!user) return null;
+
+  return (
+    <>
+      <Header />
+      <div className={styles.container}>{children}</div>
+      <Footer />
+    </>
+  );
 }
