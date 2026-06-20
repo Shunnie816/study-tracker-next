@@ -16,7 +16,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:local": "bash scripts/e2e-local.sh",
-    "mock": "firebase emulators:start --only auth,firestore --import=./src/emulators --export-on-exit"
+    "mock": "firebase emulators:start --only auth,firestore --import=./src/emulators --export-on-exit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -34,6 +35,10 @@
     "react-hook-form": "7.79.0",
     "swr": "2.4.1",
     "zod": "4.4.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix"],
+    "*.{scss,css}": ["prettier --write"]
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
@@ -55,7 +60,9 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-storybook": "10.4.6",
+    "husky": "^9.1.7",
     "jsdom": "29.1.1",
+    "lint-staged": "^17.0.7",
     "postcss": "8.5.15",
     "sass": "1.101.0",
     "sass-loader": "17.0.0",
