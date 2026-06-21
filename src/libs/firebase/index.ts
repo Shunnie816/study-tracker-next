@@ -43,15 +43,30 @@ function initAppCheck() {
 export const appCheck = initAppCheck();
 
 export const db = getFirestore(app);
-export const auth = getAuth(app);
 
 if (process.env.NODE_ENV === "development") {
   try {
     connectFirestoreEmulator(db, "127.0.0.1", 8080);
-    connectAuthEmulator(auth, "http://127.0.0.1:9099", {
-      disableWarnings: true,
-    });
   } catch {
     // すでに接続済みの場合などは無視
   }
+}
+
+// Auth SDK は getAuth() 呼び出し時に API キーを検証するため SSR/ビルド時に失敗する。
+// 遅延初期化でクライアント初回呼び出し時にのみ初期化する。
+let _auth: ReturnType<typeof getAuth> | undefined;
+
+export function getFirebaseAuth(): ReturnType<typeof getAuth> {
+  if (_auth) return _auth;
+  _auth = getAuth(app);
+  if (process.env.NODE_ENV === "development") {
+    try {
+      connectAuthEmulator(_auth, "http://127.0.0.1:9099", {
+        disableWarnings: true,
+      });
+    } catch {
+      // すでに接続済みの場合などは無視
+    }
+  }
+  return _auth;
 }
