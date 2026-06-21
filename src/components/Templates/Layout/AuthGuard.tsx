@@ -12,19 +12,30 @@ type Props = {
 };
 
 export function AuthGuard({ children }: Props) {
+  const isE2E = process.env.NEXT_PUBLIC_E2E_MODE === "true";
   const { user, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    if (loading) return;
+    if (isE2E || loading) return;
     if (!user && pathname !== "/login") {
       router.replace("/login");
     }
     if (user && pathname === "/login") {
       router.replace("/");
     }
-  }, [user, loading, pathname, router]);
+  }, [isE2E, user, loading, pathname, router]);
+
+  if (isE2E) {
+    return (
+      <>
+        <Header />
+        <div className={styles.container}>{children}</div>
+        <Footer />
+      </>
+    );
+  }
 
   if (loading) {
     return (

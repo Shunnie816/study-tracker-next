@@ -19,7 +19,10 @@ const firebaseConfig = {
 
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
-  typeof window !== "undefined" ? getAnalytics(app) : undefined;
+  typeof window !== "undefined" &&
+  process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    ? getAnalytics(app)
+    : undefined;
 
 /** 開発環境のみ実行する */
 if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
