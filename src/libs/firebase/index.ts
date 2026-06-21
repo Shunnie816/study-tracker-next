@@ -4,6 +4,7 @@ import {
   initializeAppCheck,
   ReCaptchaEnterpriseProvider,
 } from "firebase/app-check";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -18,7 +19,10 @@ const firebaseConfig = {
 
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 export const analytics =
-  typeof window !== "undefined" ? getAnalytics(app) : undefined;
+  typeof window !== "undefined" &&
+  process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    ? getAnalytics(app)
+    : undefined;
 
 /** 開発環境のみ実行する */
 if (process.env.NEXT_PUBLIC_FIREBASE_DEBUG_TOKEN) {
@@ -43,11 +47,29 @@ export const appCheck = initAppCheck();
 
 export const db = getFirestore(app);
 
-/** Firestoreエミュレーター接続 */
 if (process.env.NODE_ENV === "development") {
   try {
     connectFirestoreEmulator(db, "127.0.0.1", 8080);
-  } catch (e) {
+  } catch {
     // すでに接続済みの場合などは無視
   }
+}
+
+// Auth SDK は getAuth() 呼び出し時に API キーを検証するため SSR/ビルド時に失敗する。
+// 遅延初期化でクライアント初回呼び出し時にのみ初期化する。
+let _auth: ReturnType<typeof getAuth> | undefined;
+
+export function getFirebaseAuth(): ReturnType<typeof getAuth> {
+  if (_auth) return _auth;
+  _auth = getAuth(app);
+  if (process.env.NODE_ENV === "development") {
+    try {
+      connectAuthEmulator(_auth, "http://127.0.0.1:9099", {
+        disableWarnings: true,
+      });
+    } catch {
+      // すでに接続済みの場合などは無視
+    }
+  }
+  return _auth;
 }

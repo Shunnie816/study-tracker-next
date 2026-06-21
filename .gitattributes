@@ -1,0 +1,6 @@
+# すべてのテキストファイルを LF に統一する
+* text=auto eol=lf
+
+# Windows バッチファイルは CRLF のまま
+*.bat text eol=crlf
+*.cmd text eol=crlf

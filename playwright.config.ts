@@ -24,6 +24,7 @@ export default defineConfig({
     env: {
       PORT: "3001",
       NEXT_PUBLIC_SKIP_APP_CHECK: "true",
+      NEXT_PUBLIC_E2E_MODE: "true",
     },
   },
 });

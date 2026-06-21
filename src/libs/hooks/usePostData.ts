@@ -9,6 +9,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  where,
 } from "firebase/firestore";
 import { useEffect, useMemo } from "react";
 import useSWR, { mutate } from "swr";
@@ -16,14 +17,17 @@ import { db } from "../firebase";
 import { COLLECTIONS } from "../firebase/constants";
 import { PostData, ReportData } from "../types";
 import { useAppCheck } from "./useAppCheck";
+import { useAuth } from "./useAuth";
 
 export const usePostData = () => {
   const apiPath = "posts";
   const { isAppCheckReady } = useAppCheck();
+  const { user } = useAuth();
 
   /** 投稿データを作った順(昇順)で取得 */
   const fetchQuery = query(
     collection(db, COLLECTIONS.POSTS),
+    where("uid", "==", user?.uid ?? ""),
     orderBy("createdAt", "desc")
   );
 
@@ -46,6 +50,7 @@ export const usePostData = () => {
     try {
       await addDoc(collection(db, COLLECTIONS.POSTS), {
         ...data,
+        uid: user?.uid,
         createdAt: serverTimestamp(),
       });
     } catch (e) {
@@ -63,7 +68,7 @@ export const usePostData = () => {
   }
 
   const { data, isLoading, error } = useSWR(
-    isAppCheckReady ? apiPath : null,
+    isAppCheckReady && user ? apiPath : null,
     fetchPostData,
     {
       onSuccess(data) {
@@ -95,7 +100,7 @@ export const usePostData = () => {
 
   /** Firestoreのデータを監視(リアルタイム更新) - AppCheckトークン取得後のみ */
   useEffect(() => {
-    if (!isAppCheckReady) return;
+    if (!isAppCheckReady || !user) return;
     const unsubscribe = onSnapshot(fetchQuery, (snapshot) => {
       // serverTimestamp() 書き込み直後はサーバー確定前に createdAt が null になる
       // ため、確定済みのドキュメントのみ処理する

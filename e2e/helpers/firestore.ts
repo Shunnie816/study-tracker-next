@@ -1,5 +1,6 @@
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? "demo-e2e";
 const EMULATOR_BASE = "http://127.0.0.1:8080";
+const E2E_USER_UID = "e2e-user";
 
 /** エミュレーター上のデータをすべて削除する */
 export async function clearFirestore(): Promise<void> {
@@ -19,6 +20,7 @@ export async function seedTextbook(name: string): Promise<string> {
       body: JSON.stringify({
         fields: {
           name: { stringValue: name },
+          uid: { stringValue: E2E_USER_UID },
           createdAt: { timestampValue: new Date().toISOString() },
         },
       }),
@@ -52,6 +54,7 @@ export async function seedPost(data: {
           },
           time: { integerValue: String(data.timeMinutes) },
           content: { stringValue: data.content },
+          uid: { stringValue: E2E_USER_UID },
           createdAt: { timestampValue: new Date().toISOString() },
         },
       }),

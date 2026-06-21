@@ -3,9 +3,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Provider } from "jotai";
 import React from "react";
 import { defaultTheme } from "@/assets/themes";
-import { Footer } from "@/components/Templates/Footer";
-import { Header } from "@/components/Templates/Header";
-import styles from "./index.module.scss";
+import { AuthGuard } from "./AuthGuard";
 
 type Props = {
   children: React.ReactNode;
@@ -20,9 +18,7 @@ export function Layout({ children }: Props) {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Provider>
-        <Header />
-        <div className={styles.container}>{children}</div>
-        <Footer />
+        <AuthGuard>{children}</AuthGuard>
       </Provider>
     </ThemeProvider>
   );
