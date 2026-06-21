@@ -6,7 +6,7 @@ import {
   User,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { getFirebaseAuth } from "../firebase";
 
 type AuthState = {
   user: User | null;
@@ -20,7 +20,7 @@ export function useAuth(): AuthState {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(getFirebaseAuth(), (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
@@ -29,11 +29,11 @@ export function useAuth(): AuthState {
 
   async function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    await signInWithPopup(getFirebaseAuth(), provider);
   }
 
   async function signOut() {
-    await firebaseSignOut(auth);
+    await firebaseSignOut(getFirebaseAuth());
   }
 
   return { user, loading, signInWithGoogle, signOut };

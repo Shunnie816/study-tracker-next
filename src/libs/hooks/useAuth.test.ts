@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/libs/firebase", () => ({ auth: {} }));
+vi.mock("@/libs/firebase", () => ({ getFirebaseAuth: () => ({}) }));
 
 vi.mock("firebase/auth", () => ({
   GoogleAuthProvider: vi.fn(),
