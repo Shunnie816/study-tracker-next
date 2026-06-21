@@ -13,7 +13,7 @@ test("学習記録を投稿すると posts 一覧に反映される", async ({ p
   await expect(async () => {
     const isOpen = await page.getByRole("listbox").isVisible();
     if (isOpen) await page.keyboard.press("Escape");
-    await page.getByLabel("教材").click();
+    await page.getByRole("combobox", { name: "教材" }).click();
     await expect(page.getByRole("option", { name: "Python入門" })).toBeVisible({
       timeout: 2_000,
     });
