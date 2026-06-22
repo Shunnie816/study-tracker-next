@@ -32,10 +32,26 @@
   --containerSmall: 360px;
 
   // カラー・背景色はMUIテーマ(cssVariables)が --mui-palette-* として管理する
+  // 以下はMUIが自動生成しないサブカラー・テキスト・ボーダートークン
+  --color-primary-50: #eef1ff;
+  --color-primary-200: #c5ceff;
+  --color-primary-400: #748ffc;
+  --color-primary-900: #3a0ca3;
+  --color-secondary: #f9a825;
+  --color-accent: #0cc8e8;
+  --color-success: #22c55e;
+  --color-border: #e2e4f0;
+  --color-text-1: #1a1d3b;
+  --color-text-2: #5c6285;
+  --color-text-3: #9194af;
 
   //shadow (MUI管理外のカスタムトークン)
-  --shadow-card-soft: 0 2px 12px rgba(67, 97, 238, 0.10);
+  --shadow-soft: 0 2px 12px rgba(67, 97, 238, 0.1);
+  --shadow-card-soft: 0 2px 12px rgba(67, 97, 238, 0.1);
   --shadow-card-hover: 0 8px 32px rgba(67, 97, 238, 0.12);
+
+  //border (MUI管理外のカスタムトークン)
+  --border-list-card: 1.5px solid #e2e4f0;
 
   //border-radius (MUI管理外のカスタムトークン)
   --radius-card: 12px;
