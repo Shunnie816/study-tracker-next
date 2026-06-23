@@ -8,8 +8,6 @@
 
 ## アプリ紹介
 
-![Study Tracker](public/image.png)
-
 ### 主な機能
 
 - Google アカウントによる認証（ログイン）
