@@ -12,7 +12,7 @@ Next.js 14 (App Router) + Firebase/Firestore で構築されており、Firebase
 - **フレームワーク**: Next.js 14 (App Router)
 - **言語**: TypeScript (strict mode)
 - **UI ライブラリ**: MUI (Material UI) v5 + Emotion
-- **スタイリング**: SCSS Modules + Tailwind CSS
+- **スタイリング**: SCSS Modules
 - **状態管理**: Jotai (atom ベース)
 - **データ取得**: SWR + Firestore リアルタイムリスナー
 - **フォーム**: React Hook Form + Zod
