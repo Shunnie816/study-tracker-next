@@ -2,19 +2,16 @@
   "enableAllProjectMcpServers": true,
   "permissions": {
     "allow": [
-      "Bash(npx tsc --noEmit)",
-      "Bash(npm run type-check)",
-      "Bash(npm test*)",
-      "Bash(npm run test*)",
-      "Bash(npm run mock)",
-      "Bash(npm run storybook)",
       "Bash(pnpm run type-check)",
       "Bash(pnpm test*)",
       "Bash(pnpm run test*)",
       "Bash(pnpm run mock)",
       "Bash(pnpm run storybook)",
       "Bash(pnpm lint*)",
+      "Bash(pnpm lint --fix*)",
       "Bash(pnpm install*)",
+      "Bash(pnpm test:e2e:local)",
+      "Bash(pnpm run test:e2e:local)",
       "Bash(git status)",
       "Bash(git diff*)",
       "Bash(git log*)",
@@ -34,7 +31,7 @@
       "Bash(gh pr list*)"
     ],
     "deny": [
-      "Bash(npm run build)",
+      "Bash(pnpm run build)",
       "Bash(git push --force*)",
       "Bash(git push origin main)",
       "Bash(git reset --hard*)"

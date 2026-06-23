@@ -56,3 +56,9 @@ firestore-debug.*.log
 .claude/issue-context.md
 .claude/logs/
 .serena/
+
+# Playwright MCP (tool execution logs & snapshots)
+.playwright-mcp/
+
+# Design reference files (local only)
+/design/
