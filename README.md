@@ -2,7 +2,7 @@
 
 学習進捗を記録・可視化できる Web アプリです。
 
-[こちら](https://study-tracker.shunniehub.com/)から見ることができます。
+[こちら](https://study-tracker.nokono.net/)から見ることができます。
 
 ---
 
