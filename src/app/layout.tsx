@@ -1,6 +1,7 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { Noto_Sans_JP } from "next/font/google";
 import { Layout } from "@/components/Templates/Layout";
+import { EXTERNAL_URL_VALUES } from "@/libs/constants/url";
 import type { Metadata } from "next";
 import "@/assets/styles/global.scss";
 import "@/assets/styles/variable.scss";
@@ -14,6 +15,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(EXTERNAL_URL_VALUES.SITE),
   title: "Study Tracker",
   description: "This is an app to track your study time",
 };
