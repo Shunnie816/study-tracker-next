@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { EXTERNAL_URL_VALUES } from "@/libs/constants/url";
 
 const COLOR = {
   primary: "#BBDCE5",
@@ -141,7 +142,7 @@ export default function NotFound() {
           }}
         >
           <Link
-            href="https://shunniehub.com/"
+            href={EXTERNAL_URL_VALUES.PORTFOLIO}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "inherit" }}
@@ -167,7 +168,7 @@ export default function NotFound() {
           }}
         >
           <Link
-            href="https://study-tracker.shunniehub.com/"
+            href={EXTERNAL_URL_VALUES.SITE}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "inherit" }}
